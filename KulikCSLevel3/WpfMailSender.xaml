@@ -6,7 +6,61 @@
         xmlns:local="clr-namespace:KulikCSLevel3"
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
-    <Grid>
-        
+  <DockPanel>
+    <Menu DockPanel.Dock="Top">
+      <MenuItem Header="Файл">
+        <MenuItem Name="mnuExit" Header="Выход" Click="btnExit_Click"/>
+      </MenuItem>
+    </Menu>
+    <Grid DockPanel.Dock="Bottom">
+      <Grid.ColumnDefinitions>
+        <ColumnDefinition Width="1*">
+        </ColumnDefinition>
+        <ColumnDefinition Width="100">
+        </ColumnDefinition>
+        <ColumnDefinition Width="100">
+        </ColumnDefinition>
+      </Grid.ColumnDefinitions>
+      <StatusBar Grid.Column="0" Margin="2">
+        <TextBlock Name="StatusBar"/>
+      </StatusBar>
+      
+      <Button Name="btnExit" Grid.Column="2" Margin="10" Padding="3" Click="btnExit_Click" IsCancel="True">Выход</Button>
     </Grid>
+
+    <TabControl>
+      <TabItem Header="1 письмо" >
+        <Grid Margin="2">
+          <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="2*"/>
+            <ColumnDefinition Width="5*"/>
+            <ColumnDefinition Width="100"/>
+          </Grid.ColumnDefinitions>
+          <Grid.RowDefinitions>
+            <RowDefinition Height="23"/>
+            <RowDefinition Height="23"/>
+            <RowDefinition Height="23"/>
+            <RowDefinition Height="23"/>
+            <RowDefinition/>
+            <RowDefinition Height="42"/>
+          </Grid.RowDefinitions>
+          <Label Grid.Row="0" Grid.Column="0" Foreground="Black">От кого:</Label>
+          <Label Grid.Row="1" Grid.Column="0" Foreground="Black">Пароль:</Label>
+          <Label Grid.Row="2" Grid.Column="0" Foreground="Black">Кому</Label>
+          <Label Grid.Row="3" Grid.Column="0" Foreground="Black">Заголовок:</Label>
+          <Label Grid.Row="4" Grid.Column="0" Foreground="Black" VerticalAlignment="Top">Текст письма:</Label>
+          <TextBox Grid.Row="0" Grid.Column="1" Foreground="Black" Name="MailFrom" Grid.ColumnSpan="2"/>
+          <PasswordBox Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="2" Name="PasswordText"/>
+          <TextBox Grid.Row="2" Grid.Column="1" Foreground="Black" Name="MailTo" Grid.ColumnSpan="2"/>
+          <TextBox Grid.Row="3" Grid.Column="1" Foreground="Black" Name="Subject" Grid.ColumnSpan="2"/>
+          <TextBox Grid.Row="4" Grid.Column="1" Foreground="Black" Name="Body" Grid.ColumnSpan="2"/>
+          <Button Name="btnSend" Grid.Column="2" Margin="8" Padding="3" Grid.Row="5" IsDefault="True" Click="btnSend_Click">Отправить</Button>
+        </Grid>
+      </TabItem>
+      <TabItem Header="Списки" IsEnabled="False"></TabItem>
+      <TabItem Header="Планировщик" IsEnabled="False"></TabItem>
+      <TabItem Header="Письма" IsEnabled="False"></TabItem>
+      <TabItem Header="Статистика" IsEnabled="False"></TabItem>
+    </TabControl>
+  </DockPanel>
 </Window>
