@@ -7,9 +7,13 @@ using System.Net.Mail;
 using System.Security;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 
 namespace KulikCSLevel3
 {
+
+    // TODO Заменить конструктор класса. Отдельный класс на отправителя (ошибки отправки), класс письма (пустой заголовок/текст), класс получателя (ловит ошибки неправильных адресов), класс отправителя (неправильный адрес, пустой пароль)
+
     public class EmailSendSerive
     {
         private MailAddress _senderMail;

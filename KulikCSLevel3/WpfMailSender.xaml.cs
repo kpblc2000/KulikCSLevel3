@@ -22,8 +22,18 @@ namespace KulikCSLevel3
         {
             EmailSendSerive srv = new EmailSendSerive(MailFrom.Text, PasswordText.SecurePassword, MailTo.Text, Subject.Text, Body.Text);
             string res = srv.SendEmail(ClientDatas.ServerAdress, ClientDatas.ServerPort);
-            StatusBar.Text = res;
-            StatusBar.Foreground = srv.SendSuccess == 0 ? Brushes.Black : Brushes.Red;
+            StatusBarMessage.Text = res;
+            if (srv.SendSuccess == 0)
+            {
+                StatusBarMessage.Foreground = Brushes.Black;
+            }
+            else
+            {
+                StatusBarMessage.Foreground = Brushes.Red;
+                ErrorMessage win = new ErrorMessage();
+                win.MessageText.Text = res;
+                win.ShowDialog();
+            }
         }
     }
 }
