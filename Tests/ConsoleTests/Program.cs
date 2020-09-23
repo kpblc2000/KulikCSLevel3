@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Net;
 using System.Net.Mail;
-using System.Net.Http;
+// using System.Net.Http;
 
 namespace ConsoleTests
 {
@@ -13,19 +13,23 @@ namespace ConsoleTests
     {
         static void Main()
         {
-            var mess = new MailMessage("kpblc2000@yandex.ru", "shmachilin@gmail.com");
-            mess.Subject = $"Заголовок от {DateTime.Now}";
-            mess.Body = $"Текст тестового письма от {DateTime.Now}";
+
+            MailAddress from = new MailAddress("kpblc2000@yandex.ru", "NET Console");
+            MailAddress to = new MailAddress("kpblc2000@gmail.com");
+            MailMessage msg = new MailMessage(from, to);
+            msg.Subject = "Test NET Console send";
+            msg.Body = $"Testing Console send mail {DateTime.Now}";
+            msg.IsBodyHtml = false;
 
             var client = new SmtpClient("smpt.yandex.ru", 587);
 
             client.Credentials = new NetworkCredential
             {
                 UserName = "kpblc2000",
-                Password = "pas";
-            }
+                Password = "testPassword" // !!
+            };
 
-            client.Send(mess);
+            client.Send(msg);
 
         }
     }
