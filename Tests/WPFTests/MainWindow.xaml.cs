@@ -60,8 +60,6 @@ namespace WPFTests
             {
                 MessageBox.Show("Не удалось определить порт и связь");
             }
-    
-            Console.ReadKey();
         }
     }
 }
