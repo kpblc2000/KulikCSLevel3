@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WPFTests"
         mc:Ignorable="d"
-        Title="MainWindow" Height="455.05" Width="555.5">
+        Title="Кулик : Рассылка" Height="455.05" Width="555.5">
   <Grid>
     <Grid.ColumnDefinitions>
       <ColumnDefinition Width="0*"/>

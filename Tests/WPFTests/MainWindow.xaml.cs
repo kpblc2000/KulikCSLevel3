@@ -15,6 +15,12 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
+
+/// <summary>
+/// Алексей Кулик kpblc2000@yandex.ru
+/// C# уровень 3, урок 1
+/// </summary>
+
 namespace WPFTests
 {
     /// <summary>
