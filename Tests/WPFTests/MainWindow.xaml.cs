@@ -29,19 +29,39 @@ namespace WPFTests
 
         private void btnSend_Click(object sender, RoutedEventArgs e)
         {
-            var mess = new MailMessage("kpblc2000@yandex.ru", "shmachilin@gmail.com");
-            mess.Subject = $"Заголовок от {DateTime.Now}";
-            mess.Body = $"Текст тестового письма от {DateTime.Now}";
+            var mess = new MailMessage(txtUser.Text, txtDest.Text);
+            mess.Subject = txtHeader.Text;
+            mess.Body = txtBody.Text;
 
-            var client = new SmtpClient("smpt.yandex.ru", 587);
+            SmtpClient client = null;
 
-            client.Credentials = new NetworkCredential
+            if (txtUser.Text.ToUpper().Contains("YANDEX.RU"))
             {
-                UserName = txtUser.Text,
-                SecurePassword = pwdPass.SecurePassword
-            };
+                client = new SmtpClient("smtp.yandex.ru", 25);
+            }
+            else if (txtUser.Text.ToUpper().Contains("GMAIL.COM"))
+            {
+                client = new SmtpClient("smtp.gmail.com", 587);
+            }
 
-            client.Send(mess);
+            if (client!=null)
+            {
+                client.EnableSsl = true;
+
+                client.Credentials = new NetworkCredential()
+                {
+                    UserName = txtUser.Text,
+                    SecurePassword = pwdPass.SecurePassword
+                };
+                
+                client.Send(mess);
+            }
+            else
+            {
+                MessageBox.Show("Не удалось определить порт и связь");
+            }
+    
+            Console.ReadKey();
         }
     }
 }

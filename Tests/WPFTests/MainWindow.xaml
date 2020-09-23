@@ -5,16 +5,27 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WPFTests"
         mc:Ignorable="d"
-        Title="MainWindow" Height="132" Width="282.5">
+        Title="MainWindow" Height="455.05" Width="555.5">
   <Grid>
+    <Grid.ColumnDefinitions>
+      <ColumnDefinition Width="0*"/>
+      <ColumnDefinition/>
+    </Grid.ColumnDefinitions>
     <Grid.Effect>
       <DropShadowEffect/>
     </Grid.Effect>
-    <Label Content="Имя пользователя" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Width="129"/>
-    <Label Content="Пароль" HorizontalAlignment="Left" Margin="10,41,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.608,0.127" Width="129"/>
-    <Button x:Name="btnSend" Content="Отправить" HorizontalAlignment="Left" Margin="184,61,0,0" VerticalAlignment="Top" Width="75" Click="btnSend_Click"/>
-    <TextBox x:Name="txtUser" HorizontalAlignment="Left" Height="23" Margin="139,10,0,0" TextWrapping="Wrap" Text="Enter your mail" VerticalAlignment="Top" Width="120"/>
-    <PasswordBox x:Name="pwdPass" HorizontalAlignment="Left" Margin="139,38,0,0" VerticalAlignment="Top" Width="120"/>
+    <Label Content="Имя пользователя" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Width="129" Grid.ColumnSpan="2"/>
+    <Label Content="Пароль" HorizontalAlignment="Left" Margin="10,41,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.608,0.127" Width="129" Grid.ColumnSpan="2"/>
 
+    <TextBox x:Name="txtUser" Height="23" Margin="139,14,10,0" TextWrapping="Wrap" VerticalAlignment="Top" IsTabStop="True" TabIndex="1" Grid.ColumnSpan="2"/>
+    <PasswordBox x:Name="pwdPass" Margin="139,49,10,0" VerticalAlignment="Top" IsTabStop="True" TabIndex="2" Grid.ColumnSpan="2"/>
+    <Label Content="Кому" HorizontalAlignment="Left" Margin="10,72,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.608,0.127" Width="129" Grid.ColumnSpan="2"/>
+    <TextBox x:Name="txtDest" Height="23" Margin="139,76,10,0" TextWrapping="Wrap" VerticalAlignment="Top" IsTabStop="True" TabIndex="3" Grid.ColumnSpan="2"/>
+
+    <Button x:Name="btnSend" Content="Отправить" HorizontalAlignment="Right" Margin="0,0,10,10" VerticalAlignment="Bottom" Width="75" Click="btnSend_Click" TabIndex="6" Grid.ColumnSpan="2"/>
+    <Label Grid.ColumnSpan="2" Content="Текст письма" HorizontalAlignment="Left" Margin="10,134,0,0" VerticalAlignment="Top" Width="110"/>
+    <Label Grid.ColumnSpan="2" Content="Заголовок письма" HorizontalAlignment="Left" Margin="10,103,0,0" VerticalAlignment="Top"/>
+    <TextBox x:Name="txtHeader" Height="23" Margin="139,106,10,0" TextWrapping="Wrap" VerticalAlignment="Top" IsTabStop="True" TabIndex="4" Grid.ColumnSpan="2"/>
+    <TextBox x:Name="txtBody" Grid.ColumnSpan="2" Margin="10,164,10,35" TextWrapping="Wrap" TabIndex="5"/>
   </Grid>
 </Window>
