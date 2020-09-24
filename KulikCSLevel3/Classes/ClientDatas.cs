@@ -1,9 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
+﻿/// <summary>
+/// Алексей Кулик kpblc2000@yandex.ru
+/// C# Уровень 3 урок1.
+/// </summary>
 namespace KulikCSLevel3
 {
     public static class ClientDatas

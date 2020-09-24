@@ -22,7 +22,7 @@
         </ColumnDefinition>
       </Grid.ColumnDefinitions>
       <StatusBar Grid.Column="0" Margin="2">
-        <TextBlock Name="StatusBarMessage"/>
+        <TextBlock Name="StatusBarMessage" TextWrapping="Wrap"/>
       </StatusBar>
       
       <Button Name="btnExit" Grid.Column="2" Margin="10" Padding="3" Click="btnExit_Click" IsCancel="True">Выход</Button>

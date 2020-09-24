@@ -1,85 +1,96 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Net;
-using System.Net.Http.Headers;
 using System.Net.Mail;
-using System.Security;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows;
-
+/// <summary>
+/// Алексей Кулик kpblc2000@yandex.ru
+/// C# Уровень 3 урок1.
+/// </summary>
 namespace KulikCSLevel3
 {
 
-    // TODO Заменить конструктор класса. Отдельный класс на отправителя (ошибки отправки), класс письма (пустой заголовок/текст), класс получателя (ловит ошибки неправильных адресов), класс отправителя (неправильный адрес, пустой пароль)
-
     public class EmailSendSerive
     {
-        private MailAddress _senderMail;
-        private MailAddress _toMail;
-        private MailMessage _msg;
-        private SecureString _secPwd;
-        private int _sendRes;
-
         /// <summary>
-        /// Создание объекта класса для рассылки писем по указанным адресам
+        /// Перечисление ошибок
         /// </summary>
-        /// <param name="SenderMail">e-mail автора письма</param>
-        /// <param name="Password">пароль автора письма</param>
-        /// <param name="ToMail">e-mail получателя письма</param>
-        /// <param name="LetterSubject">Тема письма</param>
-        /// <param name="LetterBody">Тело письма</param>
-        public EmailSendSerive(string SenderMail, SecureString Password, string ToMail, string LetterSubject, string LetterBody)
+        public enum SendMailErrors
         {
-            _senderMail = new MailAddress(SenderMail);
-            _toMail = new MailAddress(ToMail);
-            _secPwd = Password;
-            _msg = new MailMessage(_senderMail, _toMail);
-            _msg.Subject = LetterSubject;
-            _msg.Body = LetterBody;
-            _msg.IsBodyHtml = false;
-            _sendRes = -1;
+            /// <summary>
+            /// Отустсвуют какие бы то ни было ошибки
+            /// </summary>
+            NoError,
+            /// <summary>
+            /// Ошибка распознавания адреса отправителя
+            /// </summary>
+            SernderMailValidateError,
+            /// <summary>
+            /// Ошибка распознавания адреса получателя
+            /// </summary>
+            ReceiverMailValidateError,
+            /// <summary>
+            /// Ошибка формирования объекта письма
+            /// </summary>
+            MailBodyError,
+            /// <summary>
+            /// Ошибка отправки письма по неизвестным причинам
+            /// </summary>
+            SendMailError
         }
 
         /// <summary>
-        /// Отсылка письма через указанный SMTP-сервер и по указанному порту
+        /// Автоматическая отправка письма получателю
         /// </summary>
-        /// <param name="SmtpServerAdress">Адрес SMTP-сервера (наприме, "smtp.yandex.ru")</param>
-        /// <param name="SmtpPort">Соответствующий порт (для yandex - 25)</param>
-        /// <returns>Строку с сообщением об успехе или ошибке операции</returns>
-        public string SendEmail(string SmtpServerAdress, int SmtpPort)
+        /// <param name="SmtpServerAdress">Адрес SMTP-сервера</param>
+        /// <param name="SmtpPort">Номер порта, по которому надо обращаться к <paramref name="SmtpServerAdress"/></param>
+        /// <param name="MailMesage">Объект письма, содержащий в себе все необходимые данные</param>
+        /// <param name="MessageResult">Строковое представление результата отправки письма</param>
+        /// <param name="SendResult">Номер ошибки при выполнении отсылки. 0 - ошибок не было</param>
+        public EmailSendSerive(string SmtpServerAdress, int SmtpPort, Mail MailMesage, out string MessageResult, out SendMailErrors SendResult)
         {
-            string res;
-
-            using (SmtpClient client = new SmtpClient(SmtpServerAdress, SmtpPort))
+            string res = "";
+            SendMailErrors err = SendMailErrors.NoError;
+            if (MailMesage.MailAuthor.SenderMail == null)
             {
-                client.EnableSsl = true;
+                res = "Ошибка проверки адреса отправителя. Письмо не отправлялось";
+                err = SendMailErrors.SernderMailValidateError;
+            }
+            else if (MailMesage.MailReceiver.ReceiverMail == null)
+            {
+                res = "Ошибка проверки адреса получателя. Письмо не отправлялось";
+                err = SendMailErrors.ReceiverMailValidateError;
+            }
+            else if (MailMesage.Message == null)
+            {
+                res = "Ошибка определения тела письма. Письмо не отправлялось";
+                err = SendMailErrors.MailBodyError;
+            }
+            else
+            {
+                using (SmtpClient client = new SmtpClient(SmtpServerAdress, SmtpPort))
+                {
+                    client.EnableSsl = true;
 
-                client.Credentials = new NetworkCredential()
-                {
-                    UserName = _senderMail.Address,
-                    SecurePassword = _secPwd
-                };
+                    client.Credentials = new NetworkCredential()
+                    {
+                        UserName = MailMesage.MailAuthor.SenderMail.User,
+                        SecurePassword = MailMesage.MailAuthor.SenderPassword
+                    };
 
-                try
-                {
-                    client.Send(_msg);
-                    res = $"Письмо по адресу {_toMail.Address} отправлено";
-                    _sendRes = 0;
-                }
-                catch (Exception ex)
-                {
-                    res = $"Письмо по адресу {_toMail.Address} не доставлено : {ex.Message}";
-                    _sendRes = 1;
+                    try
+                    {
+                        client.Send(MailMesage.Message);
+                        res = $"Письмо по адресу {MailMesage.MailReceiver.ReceiverMail} отправлено";
+                    }
+                    catch (Exception ex)
+                    {
+                        res = $"Письмо по адресу {MailMesage.MailReceiver.ReceiverMail} не доставлено : {ex.Message}";
+                        err = SendMailErrors.MailBodyError;
+                    }
                 }
             }
-            return res;
+            SendResult = err;
+            MessageResult = res;
         }
 
-        /// <summary>
-        /// Возвращает результат отсылки письма: -1 - отсылка не выполнялась, 0 - успех, 1 - ошибка
-        /// </summary>
-        public int SendSuccess { get { return _sendRes; } }
     }
 }
