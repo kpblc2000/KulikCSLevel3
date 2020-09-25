@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:KulikCSLevel3"
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
-  <DockPanel>
+  <!--<DockPanel>
     <Menu DockPanel.Dock="Top">
       <MenuItem Header="Файл">
         <MenuItem Name="mnuExit" Header="Выход" Click="btnExit_Click"/>
@@ -62,5 +62,73 @@
       <TabItem Header="Письма" IsEnabled="False"></TabItem>
       <TabItem Header="Статистика" IsEnabled="False"></TabItem>
     </TabControl>
+  </DockPanel>-->
+  <DockPanel>
+    <Menu DockPanel.Dock="Top">
+      <MenuItem Header="Файл">
+        <MenuItem Header="Создать"/>
+        <MenuItem Header="Открыть"/>
+        <MenuItem  Header="Соъхранить"/>
+        <MenuItem Header="Закрыть"/>
+        <Separator/>
+        <MenuItem Header="Выход"/>
+      </MenuItem>
+      <MenuItem Header="Справка"></MenuItem>
+    </Menu>
+    <StatusBar DockPanel.Dock="Bottom">
+      <StatusBarItem DockPanel.Dock="Right">
+        <ResizeGrip/>
+      </StatusBarItem>
+      
+      <StatusBarItem>
+        <TextBlock Text="Text" Foreground="Black"/>
+      </StatusBarItem>
+      <Separator HorizontalAlignment="Right"/>
+    </StatusBar>
+    <TabControl>
+      <TabItem Header="Списки">
+        <ToolBarTray DockPanel.Dock="Top">
+          <ToolBar Header="Сервера" Band="0">
+            <ComboBox MaxWidth="200" MinWidth="120" SelectedIndex="0">
+              <ComboBoxItem>smtp.yandex.ru:25</ComboBoxItem>
+              <ComboBoxItem>smtp.gmail.com:587</ComboBoxItem>
+            </ComboBox>
+            <Button Content="Add"/>
+            <Button Content="Edit"/>
+            <Button Content="Del"/>
+          </ToolBar>
+          <ToolBar Header="Отправители" Band="1">
+            <ComboBox MaxWidth="200" MinWidth="120" SelectedIndex="0">
+              <ComboBoxItem>Иванов</ComboBoxItem>
+              <ComboBoxItem>Петров</ComboBoxItem>
+            </ComboBox>
+            <Button Content="Add"/>
+            <Button Content="Edit"/>
+            <Button Content="Del"/>
+          </ToolBar>
+          <ToolBar Header="Планировщик" Band="0">
+            <Button Content="Перейти"/>
+          </ToolBar>
+          <ToolBar Header="Получатели" Band="1">
+            <ComboBox MaxWidth="200" MinWidth="120" SelectedIndex="0">
+              <ComboBoxItem>smtp.yandex.ru:25</ComboBoxItem>
+              <ComboBoxItem>smtp.gmail.com:587</ComboBoxItem>
+            </ComboBox>
+            <Button Content="Add"/>
+            <Button Content="Edit"/>
+            <Button Content="Del"/>
+
+          </ToolBar>
+        </ToolBarTray>
+        <GroupBox Header="Список получателей">
+          <DataGrid>
+            
+          </DataGrid>
+        </GroupBox>
+      </TabItem>
+      <TabItem Header="Планировщик"></TabItem>
+      <TabItem Header="Письма"></TabItem>
+      <TabItem Header="Статистика"></TabItem>      
+    </TabControl>    
   </DockPanel>
 </Window>

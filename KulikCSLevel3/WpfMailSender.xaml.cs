@@ -16,21 +16,21 @@ namespace KulikCSLevel3
 
         private void btnSend_Click(object sender, System.Windows.RoutedEventArgs e)
         {
-            Mail mail = new Mail(
-                new Sender(MailFrom.Text, PasswordText.SecurePassword),
-                 new Receiver(MailTo.Text),
-                 Subject.Text,
-                 Body.Text
-                );
+            //Mail mail = new Mail(
+            //    new Sender(MailFrom.Text, PasswordText.SecurePassword),
+            //     new Receiver(MailTo.Text),
+            //     Subject.Text,
+            //     Body.Text
+            //    );
 
-            EmailSendSerive.SendMailErrors errSend;
-            string sendRes;
-            EmailSendSerive srv1 = new EmailSendSerive(
-                ClientDatas.ServerAdress,
-                ClientDatas.ServerPort,
-                mail, out sendRes, out errSend);
-            StatusBarMessage.Foreground = errSend == EmailSendSerive.SendMailErrors.NoError ? Brushes.Black : Brushes.Red;
-            StatusBarMessage.Text = sendRes;
+            //EmailSendSerive.SendMailErrors errSend;
+            //string sendRes;
+            //EmailSendSerive srv1 = new EmailSendSerive(
+            //    ClientDatas.ServerAdress,
+            //    ClientDatas.ServerPort,
+            //    mail, out sendRes, out errSend);
+            //StatusBarMessage.Foreground = errSend == EmailSendSerive.SendMailErrors.NoError ? Brushes.Black : Brushes.Red;
+            //StatusBarMessage.Text = sendRes;
         }
     }
 }
