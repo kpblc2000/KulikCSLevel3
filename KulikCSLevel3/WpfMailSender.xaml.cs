@@ -32,5 +32,10 @@ namespace KulikCSLevel3
             //StatusBarMessage.Foreground = errSend == EmailSendSerive.SendMailErrors.NoError ? Brushes.Black : Brushes.Red;
             //StatusBarMessage.Text = sendRes;
         }
+
+        private void DataGrid_AutoGeneratingColumn(object sender, System.Windows.Controls.DataGridAutoGeneratingColumnEventArgs e)
+        {
+
+        }
     }
 }
