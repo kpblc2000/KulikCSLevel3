@@ -47,5 +47,9 @@ namespace KulikCSLevel3.Models
         /// Пароль автора письма к его email. В случае некорректности исходного e-mail возвращает null
         /// </summary>
         public SecureString SenderPassword { get { return _pwd; } }
+
+        public string Name { get; set; }
+
+        public string EmailAdress { get; set; }
     }
 }
