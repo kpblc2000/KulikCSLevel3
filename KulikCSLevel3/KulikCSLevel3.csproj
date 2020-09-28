@@ -81,6 +81,7 @@
     </Compile>
     <Compile Include="Classes\ClientDatas.cs" />
     <Compile Include="Classes\EmailSendSerive.cs" />
+    <Compile Include="Data\TestData.cs" />
     <Compile Include="ErrorMessage.xaml.cs">
       <DependentUpon>ErrorMessage.xaml</DependentUpon>
     </Compile>

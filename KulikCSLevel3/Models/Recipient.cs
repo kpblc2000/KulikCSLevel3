@@ -22,6 +22,12 @@ namespace KulikCSLevel3.Models
             }
         }
 
+        public Recipient(string Name, string Email)
+        {
+            this.Name = Name;
+            this.EmailAdress = Email;
+        }
+
         public MailAddress ReceiverMail { get { return _mail; } }
 
         public string Name { get; set; }

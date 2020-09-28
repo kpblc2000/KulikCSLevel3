@@ -1,10 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Net.Mail;
 using System.Security;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace KulikCSLevel3.Models
 {
@@ -47,6 +43,12 @@ namespace KulikCSLevel3.Models
         /// Пароль автора письма к его email. В случае некорректности исходного e-mail возвращает null
         /// </summary>
         public SecureString SenderPassword { get { return _pwd; } }
+
+        public Sender(string Name, string Email)
+        {
+            this.Name = Name;
+            this.EmailAdress = Email;
+        }
 
         public string Name { get; set; }
 
