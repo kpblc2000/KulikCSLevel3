@@ -3,6 +3,7 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:fa="http://schemas.fontawesome.com/icons/"
         xmlns:local="clr-namespace:KulikCSLevel3"
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
@@ -66,65 +67,64 @@
   <DockPanel>
     <Menu DockPanel.Dock="Top">
       <MenuItem Header="Файл">
-        <MenuItem Header="Создать"/>
-        <MenuItem Header="Открыть"/>
-        <MenuItem  Header="Соъхранить"/>
-        <MenuItem Header="Закрыть"/>
+        <MenuItem Header="Создать" Name="mnuCreate"/>
+        <MenuItem Header="Открыть" Name="mnuOpen"/>
+        <MenuItem  Header="Сохранить" Name="mnuSave"/>
+        <MenuItem Header="Закрыть" Name="mnuClose"/>
         <Separator/>
-        <MenuItem Header="Выход"/>
+        <MenuItem Header="Выход" Name="mnuExit"/>
       </MenuItem>
-      <MenuItem Header="Справка"></MenuItem>
+      <MenuItem Header="Сервис">
+        <MenuItem Header="Параметры" Name="mnuSettings"/>
+      </MenuItem>
+      <MenuItem Header="Справка" Name="mnuHelp"></MenuItem>
     </Menu>
     <StatusBar DockPanel.Dock="Bottom">
       <StatusBarItem DockPanel.Dock="Right">
         <ResizeGrip/>
       </StatusBarItem>
-
       <StatusBarItem>
-        <TextBlock Text="Text" Foreground="Black"/>
+        <TextBlock Text="Text"/>
       </StatusBarItem>
-      <Separator HorizontalAlignment="Right"/>
     </StatusBar>
     <TabControl>
       <TabItem Header="Списки">
         <DockPanel>
           <ToolBarTray DockPanel.Dock="Top">
             <ToolBar Header="Сервера" Band="0">
-              <ComboBox MaxWidth="200" MinWidth="120" SelectedIndex="0">
+              <ComboBox MaxWidth="200" MinWidth="120" SelectedIndex="0" Margin="26,0,0,0">
                 <ComboBoxItem>smtp.yandex.ru:25</ComboBoxItem>
                 <ComboBoxItem>smtp.gmail.com:587</ComboBoxItem>
               </ComboBox>
-              <Button Content="Add"/>
-              <Button Content="Edit"/>
-              <Button Content="Del"/>
+              <Button fa:Awesome.Content="Solid_PlusCircle" Foreground="DarkBlue"/>
+              <Button fa:Awesome.Content="Solid_Edit" Foreground="OrangeRed"/>
+              <Button fa:Awesome.Content="Regular_TrashAlt" Foreground="Red"/>
             </ToolBar>
             <ToolBar Header="Отправители" Band="1">
               <ComboBox MaxWidth="200" MinWidth="120" SelectedIndex="0">
                 <ComboBoxItem>Иванов</ComboBoxItem>
                 <ComboBoxItem>Петров</ComboBoxItem>
               </ComboBox>
-              <Button Content="Add"/>
-              <Button Content="Edit"/>
-              <Button Content="Del"/>
+              <Button fa:Awesome.Content="Solid_PlusCircle" Foreground="DarkBlue"/>
+              <Button fa:Awesome.Content="Solid_Edit" Foreground="OrangeRed"/>
+              <Button fa:Awesome.Content="Regular_TrashAlt" Foreground="Red"/>
             </ToolBar>
             <ToolBar Header="Планировщик" Band="0">
-              <Button Content="Перейти"/>
+              <Button Content="Перейти" fa:Awesome.Content="Regular_Clock"/>
             </ToolBar>
             <ToolBar Header="Получатели" Band="1">
-              <ComboBox MaxWidth="200" MinWidth="120" SelectedIndex="0">
-                <ComboBoxItem>smtp.yandex.ru:25</ComboBoxItem>
-                <ComboBoxItem>smtp.gmail.com:587</ComboBoxItem>
-              </ComboBox>
-              <Button Content="Add"/>
-              <Button Content="Edit"/>
-              <Button Content="Del"/>
-
+              <Button fa:Awesome.Content="Solid_PlusCircle" Foreground="DarkBlue"/>
+              <Button fa:Awesome.Content="Solid_Edit" Foreground="OrangeRed"/>
+              <Button fa:Awesome.Content="Regular_TrashAlt" Foreground="Red"/>
             </ToolBar>
           </ToolBarTray>
-
           <GroupBox Header="Список получателей">
             <DataGrid>
-
+              <DataGrid.Columns>
+                <DataGridTextColumn Header="Id" MinWidth="30"/>
+                <DataGridTextColumn Header="Имя" Width="1*"/>
+                <DataGridTextColumn Header="Адрес email" MinWidth="120"/>
+              </DataGrid.Columns>
             </DataGrid>
           </GroupBox>
         </DockPanel>
@@ -143,44 +143,55 @@
                 <StackPanel.Resources>
                   <Style TargetType="Button">
                     <Setter Property="Margin" Value="0,3"/>
-                    <Setter Property="Background" Value="White"/>
                   </Style>
                 </StackPanel.Resources>
-                <Button Content="Отправить" Margin="0,3"/>
-                <Button Content="Запланировать" Margin="0,2"/>
+                <Button Content="Отправить"/>
+                <Button Content="Запланировать"/>
               </StackPanel>
             </StackPanel>
           </GroupBox>
           <GroupBox Header="Задачи" Grid.Column="1">
-            <ListBox>
-              <!--<ListBoxItem>
-                <GroupBox Header="Задание">
+            <ListBox >
+              <ListBox.ItemContainerStyle>
+                <Style TargetType="ListBoxItem">
+                  <Setter Property="HorizontalContentAlignment" Value="Stretch"/>
+                </Style>
+              </ListBox.ItemContainerStyle>
+              <ListBoxItem>
+                <GroupBox Header="Задание" Margin="2">
                   <StackPanel>
+                    <StackPanel.Resources>
+                      <Style TargetType="TextBlock">
+                        <Setter Property="Padding" Value="2"/>
+                      </Style>
+                    </StackPanel.Resources>
                     <DockPanel>
-                      <TextBlock Text="Time"/>
+                      <TextBlock Text="Время" />
                       <TextBlock Text="25.09.2020 15:00"/>
                     </DockPanel>
-                  </StackPanel>
-                  <StackPanel>
                     <DockPanel>
-                      <TextBlock Text="Time"/>
-                      <TextBlock Text="25.09.2020 15:00"/>
+                      <TextBlock Text="Отправитель"/>
+                      <TextBlock Text="Иванов"/>
                     </DockPanel>
-                  </StackPanel>
-                  <StackPanel>
                     <DockPanel>
-                      <TextBlock Text="Time"/>
-                      <TextBlock Text="25.09.2020 15:00"/>
+                      <TextBlock Text="Получатель"/>
+                      <TextBlock Text="Петров"/>
+                    </DockPanel>
+                    <DockPanel>
+                      <TextBlock Text="Сообщение"/>
+                      <TextBlock Text="Заголовок письма"/>
                     </DockPanel>
                   </StackPanel>
                 </GroupBox>
-              </ListBoxItem>-->
+              </ListBoxItem>
             </ListBox>
           </GroupBox>
-          <GridSplitter Grid.Column="0" HorizontalAlignment="Right" Width="5" Background="Transparent" ShowsPreview="False"/>
+          <GridSplitter Grid.Column="0" HorizontalAlignment="Right" Width="5" Background="Black" ShowsPreview="False"/>
         </Grid>
       </TabItem>
-      <TabItem Header="Письма"></TabItem>
+      <TabItem Header="Письма">
+
+      </TabItem>
       <TabItem Header="Статистика"></TabItem>
     </TabControl>
   </DockPanel>
