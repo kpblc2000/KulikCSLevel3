@@ -10,8 +10,8 @@ namespace KulikCSLevel3
     {
 
         private MailMessage _msg = null;
-        private Sender _from = null;
-        private Receiver _to = null;
+        private Models.Sender _from = null;
+        private Models.Recipient _to = null;
 
         /// <summary>
         /// Создание объекта письма, содержащего в себе все необходимые для отправки данные
@@ -20,7 +20,7 @@ namespace KulikCSLevel3
         /// <param name="To">Объект получаетля</param>
         /// <param name="MailSubject">Тема письма</param>
         /// <param name="MailBody">Тело письма</param>
-        public Mail(Sender From, Receiver To, string MailSubject, string MailBody)
+        public Mail(Models.Sender From, Models.Recipient To, string MailSubject, string MailBody)
         {
             _from = From;
             _to = To;
@@ -39,7 +39,7 @@ namespace KulikCSLevel3
         }
 
         public MailMessage Message { get { return _msg; } }
-        public Sender MailAuthor { get { return _from; } }
-        public Receiver MailReceiver { get { return _to; } }
+        public Models.Sender MailAuthor { get { return _from; } }
+        public Models.Recipient MailReceiver { get { return _to; } }
     }
 }

@@ -97,7 +97,7 @@
                 <ComboBoxItem>smtp.gmail.com:587</ComboBoxItem>
               </ComboBox>
               <Button fa:Awesome.Content="Solid_PlusCircle" Foreground="DarkBlue"/>
-              <Button fa:Awesome.Content="Solid_Edit" Foreground="OrangeRed"/>
+              <Button fa:Awesome.Content="Solid_Edit" Foreground="Green"/>
               <Button fa:Awesome.Content="Regular_TrashAlt" Foreground="Red"/>
             </ToolBar>
             <ToolBar Header="Отправители" Band="1">
@@ -106,7 +106,7 @@
                 <ComboBoxItem>Петров</ComboBoxItem>
               </ComboBox>
               <Button fa:Awesome.Content="Solid_PlusCircle" Foreground="DarkBlue"/>
-              <Button fa:Awesome.Content="Solid_Edit" Foreground="OrangeRed"/>
+              <Button fa:Awesome.Content="Solid_Edit" Foreground="Green"/>
               <Button fa:Awesome.Content="Regular_TrashAlt" Foreground="Red"/>
             </ToolBar>
             <ToolBar Header="Планировщик" Band="0">
@@ -114,7 +114,7 @@
             </ToolBar>
             <ToolBar Header="Получатели" Band="1">
               <Button fa:Awesome.Content="Solid_PlusCircle" Foreground="DarkBlue"/>
-              <Button fa:Awesome.Content="Solid_Edit" Foreground="OrangeRed"/>
+              <Button fa:Awesome.Content="Solid_Edit" Foreground="Green"/>
               <Button fa:Awesome.Content="Regular_TrashAlt" Foreground="Red"/>
             </ToolBar>
           </ToolBarTray>
@@ -213,7 +213,44 @@
           </DockPanel>
         </Grid>
       </TabItem>
-      <TabItem Header="Статистика"></TabItem>
+      <TabItem Header="Статистика">
+        <Grid Margin="15">
+          <Grid.Resources>
+            <Style TargetType="TextBlock">
+              <Setter Property="FontWeight" Value="Bold"/>
+              <Style.Triggers>
+                <Trigger Property="Grid.Column" Value="0">
+                  <Setter Property="FontWeight" Value="Bold"/>
+                  <Setter Property="TextAlignment" Value="Right"/>
+                </Trigger>
+                <Trigger Property="Grid.Column" Value="1">
+                  <Setter Property="FontWeight" Value="Bold"/>
+                  <Setter Property="TextAlignment" Value="Left"/>
+                  <Setter Property="Margin" Value="5,0,0,0"/>
+                </Trigger>
+              </Style.Triggers>
+            </Style>
+          </Grid.Resources>
+          <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="Auto"/>
+            <ColumnDefinition/>
+          </Grid.ColumnDefinitions>
+          <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+          </Grid.RowDefinitions>
+          <TextBlock Grid.Column="0" Grid.Row="0" Text="Отправленных писем : "/>
+          <TextBlock Grid.Column="1" Grid.Row="0" Text="1"/>
+          <TextBlock Grid.Column="0" Grid.Row="1" Text="Отправителей в БД : "/>
+          <TextBlock Grid.Column="1" Grid.Row="1" Text="2"/>
+          <TextBlock Grid.Column="0" Grid.Row="2" Text="Получателей в БД : "/>
+          <TextBlock Grid.Column="1" Grid.Row="2" Text="3"/>
+          <TextBlock Grid.Column="0" Grid.Row="3" Text="Число запусков : "/>
+          <TextBlock Grid.Column="1" Grid.Row="3" Text="4"/>
+        </Grid>
+      </TabItem>
     </TabControl>
   </DockPanel>
 </Window>

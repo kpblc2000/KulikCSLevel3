@@ -37,9 +37,11 @@
   <ItemGroup>
     <Reference Include="FontAwesome5, Version=2.0.8.0, Culture=neutral, PublicKeyToken=9cfaf01297a008f8, processorArchitecture=MSIL">
       <HintPath>..\packages\FontAwesome5.2.0.8\lib\net472\FontAwesome5.dll</HintPath>
+      <EmbedInteropTypes>False</EmbedInteropTypes>
     </Reference>
     <Reference Include="FontAwesome5.Net, Version=2.0.8.0, Culture=neutral, PublicKeyToken=9cfaf01297a008f8, processorArchitecture=MSIL">
       <HintPath>..\packages\FontAwesome5.2.0.8\lib\net472\FontAwesome5.Net.dll</HintPath>
+      <EmbedInteropTypes>False</EmbedInteropTypes>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
@@ -82,10 +84,12 @@
     <Compile Include="ErrorMessage.xaml.cs">
       <DependentUpon>ErrorMessage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Classes\Receiver.cs" />
-    <Compile Include="Classes\Sender.cs" />
-    <Compile Include="Classes\Mail.cs" />
+    <Compile Include="Models\Message.cs" />
+    <Compile Include="Models\Recipient.cs" />
+    <Compile Include="Models\Sender.cs" />
+    <Compile Include="Models\Mail.cs" />
     <Compile Include="Classes\ValidateMail.cs" />
+    <Compile Include="Models\Server.cs" />
     <Compile Include="WpfMailSender.xaml.cs">
       <DependentUpon>WpfMailSender.xaml</DependentUpon>
       <SubType>Code</SubType>

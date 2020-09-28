@@ -6,7 +6,7 @@ using System.Security;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace KulikCSLevel3
+namespace KulikCSLevel3.Models
 {
     /// <summary>
     /// Объект автора письма

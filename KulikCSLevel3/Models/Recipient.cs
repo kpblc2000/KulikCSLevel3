@@ -1,13 +1,13 @@
 ﻿using System;
 using System.Net.Mail;
 
-namespace KulikCSLevel3
+namespace KulikCSLevel3.Models
 {
-    public class Receiver
+    public class Recipient
     {
         private MailAddress _mail = null;
 
-        public Receiver(string ReceiverMail)
+        public Recipient(string ReceiverMail)
         {
             if (ValidateMail.EMailCorrect(ReceiverMail))
             {
