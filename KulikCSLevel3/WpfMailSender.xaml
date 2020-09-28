@@ -110,7 +110,7 @@
               <Button fa:Awesome.Content="Regular_TrashAlt" Foreground="Red"/>
             </ToolBar>
             <ToolBar Header="Отправители" Band="1">
-              <ComboBox MaxWidth="200" MinWidth="120" SelectedIndex="0" ItemsSource="{x:Static data:TestData.Senders}">
+              <ComboBox Name="SenderList" MaxWidth="200" MinWidth="120" SelectedIndex="0" ItemsSource="{x:Static data:TestData.Senders}">
                 <ComboBox.ItemTemplate>
                   <DataTemplate DataType="m:Sender">
                     <StackPanel Orientation="Horizontal">
@@ -135,7 +135,7 @@
             </ToolBar>
           </ToolBarTray>
           <GroupBox Header="Список получателей">
-            <DataGrid ItemsSource="{x:Static data:TestData.Recipients}" AutoGenerateColumns="False" AlternatingRowBackground="LightGray" GridLinesVisibility="Vertical" VerticalGridLinesBrush="Gray">
+            <DataGrid Name="RecipientList" ItemsSource="{x:Static data:TestData.Recipients}" AutoGenerateColumns="False" AlternatingRowBackground="LightGray" GridLinesVisibility="Vertical" VerticalGridLinesBrush="Gray">
               <DataGrid.Columns>
                 <DataGridTextColumn Header="Id" MinWidth="30"/>
                 <DataGridTextColumn Header="Имя" Width="1*" Binding="{Binding Name}"/>
@@ -161,7 +161,7 @@
                     <Setter Property="Margin" Value="0,3"/>
                   </Style>
                 </StackPanel.Resources>
-                <Button Content="Отправить"/>
+                <Button Name="BtnSend" Content="Отправить" Click="BtnSend_Click"/>
                 <Button Content="Запланировать"/>
               </StackPanel>
             </StackPanel>

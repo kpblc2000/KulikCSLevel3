@@ -1,6 +1,7 @@
 ﻿using KulikCSLevel3.Models;
 using System.Collections.Generic;
 using System.Linq;
+using MailSender.lib; 
 
 namespace KulikCSLevel3.Data
 {
@@ -15,7 +16,7 @@ namespace KulikCSLevel3.Data
             ).ToList();
 
         public static List<Server> Servers { get; } = Enumerable.Range(1, 5)
-            .Select(i => new Server($"smtp.server{i}.com", 25, i % 2 == 0) { Login = $"login-{i}", Passord = $"pwd{i}" }
+            .Select(i => new Server($"smtp.server{i}.com", 25, i % 2 == 0) { Login = $"login-{i}", Passord = TextEncoder.Encoder( $"pwd{i}", 1 )}
             ).ToList();
 
         public static List<Message> Messages { get; } = Enumerable.Range(1, 15)
