@@ -110,7 +110,7 @@
               <Button fa:Awesome.Content="Regular_TrashAlt" Foreground="Red"/>
             </ToolBar>
             <ToolBar Header="Планировщик" Band="0">
-              <Button Content="Перейти" fa:Awesome.Content="Regular_Clock"/>
+              <Button fa:Awesome.Content="Regular_Clock"/>
             </ToolBar>
             <ToolBar Header="Получатели" Band="1">
               <Button fa:Awesome.Content="Solid_PlusCircle" Foreground="DarkBlue"/>
@@ -190,7 +190,28 @@
         </Grid>
       </TabItem>
       <TabItem Header="Письма">
-
+        <Grid>
+          <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="Auto" MinWidth="200" MaxWidth="450"/>
+            <ColumnDefinition Width="1*"/>
+          </Grid.ColumnDefinitions>
+          <GroupBox Grid.Column="0" Header="Список писем">
+            <ListBox>
+              <ListBoxItem>Письмо 1</ListBoxItem>
+              <ListBoxItem>Письмо 2</ListBoxItem>
+              <ListBoxItem>Письмо 3</ListBoxItem>
+              <ListBoxItem>Письмо 4</ListBoxItem>
+            </ListBox>
+          </GroupBox>
+          <DockPanel Grid.Column="1">
+            <GroupBox Header="Заголовок" DockPanel.Dock="Top">
+              <TextBox/>
+            </GroupBox>
+            <GroupBox Header="Тело письма">
+              <TextBox TextWrapping="Wrap" AcceptsReturn="True"/>
+            </GroupBox>
+          </DockPanel>
+        </Grid>
       </TabItem>
       <TabItem Header="Статистика"></TabItem>
     </TabControl>
