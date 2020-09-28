@@ -7,11 +7,7 @@ namespace KulikCSLevel3
 {
     public partial class MainWindow
     {
-        public MainWindow() 
-        {
-            InitializeComponent();
-            // Serverlist.ItemsSource = Data.TestData.Servers;
-        }
+        public MainWindow() => InitializeComponent();
 
         private void btnExit_Click(object sender, System.Windows.RoutedEventArgs e)
         {
