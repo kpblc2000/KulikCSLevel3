@@ -76,5 +76,10 @@ namespace KulikCSLevel3
                 MessageBox.Show("Ошибка при отправке почты" + ex.Message, "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
             }
         }
+
+        private void ButtonTabScheduler_Click(object sender, RoutedEventArgs e)
+        {
+            TabItemScheduler.IsSelected = true;
+        }
     }
 }

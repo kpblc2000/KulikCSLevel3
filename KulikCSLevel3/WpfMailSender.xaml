@@ -89,8 +89,8 @@
         <TextBlock Text="Text"/>
       </StatusBarItem>
     </StatusBar>
-    <TabControl>
-      <TabItem Header="Списки">
+    <TabControl Name="TabItems">
+      <TabItem Header="Списки" Name="TabItemLists">
         <DockPanel>
           <ToolBarTray DockPanel.Dock="Top">
             <ToolBar Header="Сервера" Band="0">
@@ -126,7 +126,7 @@
               <Button fa:Awesome.Content="Regular_TrashAlt" Foreground="Red"/>
             </ToolBar>
             <ToolBar Header="Планировщик" Band="0">
-              <Button fa:Awesome.Content="Regular_Clock"/>
+              <Button Name="ButtonTabScheduler" fa:Awesome.Content="Regular_Clock" Click="ButtonTabScheduler_Click"/>
             </ToolBar>
             <ToolBar Header="Получатели" Band="1">
               <Button fa:Awesome.Content="Solid_PlusCircle" Foreground="DarkBlue"/>
@@ -145,7 +145,7 @@
           </GroupBox>
         </DockPanel>
       </TabItem>
-      <TabItem Header="Планировщик">
+      <TabItem Header="Планировщик" Name="TabItemScheduler">
         <Grid>
           <Grid.ColumnDefinitions>
             <ColumnDefinition Width="Auto" />
@@ -205,7 +205,7 @@
           <GridSplitter Grid.Column="0" HorizontalAlignment="Right" Width="5" Background="Black" ShowsPreview="False"/>
         </Grid>
       </TabItem>
-      <TabItem Header="Письма">
+      <TabItem Header="Письма" Name="TabItemMessages">
         <Grid>
           <Grid.ColumnDefinitions>
             <ColumnDefinition Width="Auto" MinWidth="200" MaxWidth="450"/>
@@ -232,7 +232,7 @@
           </DockPanel>
         </Grid>
       </TabItem>
-      <TabItem Header="Статистика">
+      <TabItem Header="Статистика" Name="TabItemStatistic">
         <Grid Margin="15">
           <Grid.Resources>
             <Style TargetType="TextBlock">
