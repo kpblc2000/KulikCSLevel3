@@ -1,9 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using KulikCSLevel3.Infrastructure.Commands.Base;
+﻿using KulikCSLevel3.Infrastructure.Commands.Base;
+using System;
 
 namespace KulikCSLevel3.Infrastructure.Commands
 {

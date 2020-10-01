@@ -85,12 +85,17 @@
     <Compile Include="ErrorMessage.xaml.cs">
       <DependentUpon>ErrorMessage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Infrastructure\Commands\Base\Command.cs" />
+    <Compile Include="Infrastructure\Commands\CloseWindowCommand.cs" />
+    <Compile Include="Infrastructure\Commands\RelayCommand.cs" />
     <Compile Include="Models\Message.cs" />
     <Compile Include="Models\Recipient.cs" />
     <Compile Include="Models\Sender.cs" />
     <Compile Include="Models\Mail.cs" />
     <Compile Include="Classes\ValidateMail.cs" />
     <Compile Include="Models\Server.cs" />
+    <Compile Include="VIewModels\Base\ViewModel.cs" />
+    <Compile Include="VIewModels\MainWindowViewModel.cs" />
     <Compile Include="WpfMailSender.xaml.cs">
       <DependentUpon>WpfMailSender.xaml</DependentUpon>
       <SubType>Code</SubType>

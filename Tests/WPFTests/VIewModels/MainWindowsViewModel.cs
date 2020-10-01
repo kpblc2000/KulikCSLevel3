@@ -3,10 +3,10 @@ using System.Timers;
 using System.Windows;
 using System.Windows.Data;
 using System.Windows.Input;
-using WPFTests.Infrastructure.Commands;
-using WPFTests.VIewModels.Base;
+using KulikCSLevel3.Infrastructure.Commands;
+using KulikCSLevel3.VIewModels.Base;
 
-namespace WPFTests.VIewModels
+namespace KulikCSLevel3.VIewModels
 {
     class MainWindowsViewModel : ViewModel
     {

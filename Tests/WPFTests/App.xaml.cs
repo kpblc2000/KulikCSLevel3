@@ -6,7 +6,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Windows;
 
-namespace WPFTests
+namespace KulikCSLevel3
 {
     /// <summary>
     /// Логика взаимодействия для App.xaml
