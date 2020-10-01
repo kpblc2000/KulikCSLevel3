@@ -126,7 +126,7 @@
               <Button fa:Awesome.Content="Regular_TrashAlt" Foreground="Red"/>
             </ToolBar>
             <ToolBar Header="Планировщик" Band="0">
-              <Button Name="ButtonTabScheduler" fa:Awesome.Content="Regular_Clock" Click="ButtonTabScheduler_Click"/>
+              <Button Name="ButtonTabScheduler" fa:Awesome.Content="Regular_Clock"/>
             </ToolBar>
             <ToolBar Header="Получатели" Band="1">
               <Button fa:Awesome.Content="Solid_PlusCircle" Foreground="DarkBlue"/>
@@ -161,7 +161,7 @@
                     <Setter Property="Margin" Value="0,3"/>
                   </Style>
                 </StackPanel.Resources>
-                <Button Name="BtnSend" Content="Отправить" Click="BtnSend_Click"/>
+                <Button Name="BtnSend" Content="Отправить"/>
                 <Button Content="Запланировать"/>
               </StackPanel>
             </StackPanel>
