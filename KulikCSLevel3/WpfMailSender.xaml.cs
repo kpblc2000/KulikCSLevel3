@@ -37,11 +37,6 @@ namespace KulikCSLevel3
             //StatusBarMessage.Text = sendRes;
         }
 
-        private void DataGrid_AutoGeneratingColumn(object sender, System.Windows.Controls.DataGridAutoGeneratingColumnEventArgs e)
-        {
-
-        }
-
         private void BtnSend_Click(object sender, System.Windows.RoutedEventArgs e)
         {
             //var sendSender = SenderList.SelectedItem as Sender;
