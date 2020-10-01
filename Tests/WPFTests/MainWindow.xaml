@@ -7,25 +7,8 @@
         mc:Ignorable="d"
         Title="Кулик : Рассылка" Height="455.05" Width="555.5">
   <Grid>
-    <Grid.ColumnDefinitions>
-      <ColumnDefinition Width="0*"/>
-      <ColumnDefinition/>
-    </Grid.ColumnDefinitions>
-    <Grid.Effect>
-      <DropShadowEffect/>
-    </Grid.Effect>
-    <Label Content="Имя пользователя" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Width="129" Grid.ColumnSpan="2"/>
-    <Label Content="Пароль" HorizontalAlignment="Left" Margin="10,41,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.608,0.127" Width="129" Grid.ColumnSpan="2"/>
+    <TextBox Name="txt" HorizontalAlignment="Left" Height="23" Margin="86,89,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="120"/>
+    <Slider HorizontalAlignment="Left" Margin="46,203,0,0" VerticalAlignment="Top" Width="237" Value="{Binding ElementName=txt, Path=Text}" Minimum="-100" Maximum="100"/>
 
-    <TextBox x:Name="txtUser" Height="23" Margin="139,14,10,0" TextWrapping="Wrap" VerticalAlignment="Top" IsTabStop="True" TabIndex="1" Grid.ColumnSpan="2"/>
-    <PasswordBox x:Name="pwdPass" Margin="139,49,10,0" VerticalAlignment="Top" IsTabStop="True" TabIndex="2" Grid.ColumnSpan="2"/>
-    <Label Content="Кому" HorizontalAlignment="Left" Margin="10,72,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.608,0.127" Width="129" Grid.ColumnSpan="2"/>
-    <TextBox x:Name="txtDest" Height="23" Margin="139,76,10,0" TextWrapping="Wrap" VerticalAlignment="Top" IsTabStop="True" TabIndex="3" Grid.ColumnSpan="2"/>
-
-    <Button x:Name="btnSend" Content="Отправить" HorizontalAlignment="Right" Margin="0,0,10,10" VerticalAlignment="Bottom" Width="75" Click="btnSend_Click" TabIndex="6" Grid.ColumnSpan="2"/>
-    <Label Grid.ColumnSpan="2" Content="Текст письма" HorizontalAlignment="Left" Margin="10,134,0,0" VerticalAlignment="Top" Width="110"/>
-    <Label Grid.ColumnSpan="2" Content="Заголовок письма" HorizontalAlignment="Left" Margin="10,103,0,0" VerticalAlignment="Top"/>
-    <TextBox x:Name="txtHeader" Height="23" Margin="139,106,10,0" TextWrapping="Wrap" VerticalAlignment="Top" IsTabStop="True" TabIndex="4" Grid.ColumnSpan="2"/>
-    <TextBox x:Name="txtBody" Grid.ColumnSpan="2" Margin="10,164,10,35" TextWrapping="Wrap" TabIndex="5"/>
   </Grid>
 </Window>
