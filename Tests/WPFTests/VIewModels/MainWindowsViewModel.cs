@@ -56,7 +56,7 @@ namespace WPFTests.VIewModels
             OnPropertyChanged(nameof(CurrentTime));
         }
 
-        // ПОпытка работы с командами
+        // Попытка работы с командами
 
         private ICommand _ShowDlgCmd;
 
