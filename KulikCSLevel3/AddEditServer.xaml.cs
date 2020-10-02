@@ -8,5 +8,10 @@ namespace KulikCSLevel3
     public partial class AddEditServer : Window
     {
         public AddEditServer() => InitializeComponent();
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            this.DialogResult = true;
+        }
     }
 }

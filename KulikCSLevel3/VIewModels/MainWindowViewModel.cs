@@ -129,26 +129,25 @@ namespace KulikCSLevel3.VIewModels
 
         #region Команды
 
-        #region OkButton
-        private ICommand _OkButtonClick;
+        //#region OkButton
+        //private ICommand _OkButtonClick;
 
-        public ICommand OkButtonClick
-        {
-            get
-            {
-                if (_OkButtonClick is null)
-                {
-                    _OkButtonClick = new RelayCommand();
-                }
-                return _OkButtonClick;
-            }
-        }
+        //public ICommand OkButtonClick
+        //{
+        //    get
+        //    {
+        //        if (_OkButtonClick is null)
+        //        {
+        //            _OkButtonClick = new RelayCommand(OnOkButtonClickExecuted, CanOkButtonClickExecute);
+        //        }
+        //        return _OkButtonClick;
+        //    }
+        //}
 
-        private bool CanOkButtonClickExecute(object o) => true;
-        private void OnOkButtonClickExecuted(object o)
-        { }
+        //private bool CanOkButtonClickExecute(object o) => true;
+        //private bool OnOkButtonClickExecuted(object o) => true;
 
-        #endregion
+        //#endregion
 
         #region Server
         #region  CreateNewServerCommand
@@ -169,10 +168,11 @@ namespace KulikCSLevel3.VIewModels
         private bool CanCreateNewServerCommandExecute(object o) => true;
         private void OnCreateNewServerCommandExecuted(object o)
         {
-            MessageBox.Show("Add new server");
-
             AddEditServer win = new AddEditServer();
             win.Title = "Ввод нового сервера";
+            win.ServerName.Text = "";
+            win.ServerPort.Text = "";
+            win.UseSsl.IsChecked = false;
             win.ShowDialog();
 
             if (win.DialogResult == true)
@@ -180,11 +180,7 @@ namespace KulikCSLevel3.VIewModels
                 int port;
                 int.TryParse(win.ServerPort.Text, out port);
                 Servers.Add(new Server(win.ServerName.Text, port, win.UseSsl.IsChecked ?? false));
-
             }
-            
-
-            
         }
         #endregion
 
@@ -208,7 +204,22 @@ namespace KulikCSLevel3.VIewModels
         {
             Server server = o as Server ?? SelectedServer;
             if (server is null) return;
-            MessageBox.Show($"Edit server {server.Adress}");
+            // MessageBox.Show($"Edit server {server.Adress}");
+
+            AddEditServer win = new AddEditServer();
+            win.Title = "Редактирование сервера";
+            win.ServerName.Text = server.Adress;
+            win.ServerPort.Text = server.Port.ToString() ;
+            win.UseSsl.IsChecked = server.UseSSL;
+            win.ShowDialog();
+            if (win.DialogResult == true)
+            {
+                server.Adress = win.ServerName.Text;
+                int port;
+                int.TryParse(win.ServerPort.Text, out port);
+                server.Port = port;
+                server.UseSSL = win.UseSsl.IsChecked ?? false;
+            }
         }
         #endregion
 

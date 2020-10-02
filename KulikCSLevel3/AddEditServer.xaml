@@ -21,7 +21,7 @@
       </Grid>
       <CheckBox Name="UseSsl" Content="Использовать SSL" Margin="10"/>
       <Grid Margin="10" VerticalAlignment="Bottom">
-        <Button Content="OK" Margin="0,0,65,0" HorizontalAlignment="Right" Width="60">
+        <Button Content="OK" Margin="0,0,65,0" HorizontalAlignment="Right" Width="60" IsDefault="True" Click="Button_Click">
           
         </Button>
         <Button Content="Cancel" Width="60" HorizontalAlignment="Right" HorizontalContentAlignment="Center" Margin="0,0,0,0" IsCancel="True">
