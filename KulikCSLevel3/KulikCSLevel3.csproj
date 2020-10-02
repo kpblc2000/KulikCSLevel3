@@ -204,6 +204,7 @@
     <Compile Include="Infrastructure\Commands\Base\Command.cs" />
     <Compile Include="Infrastructure\Commands\CloseWindowCommand.cs" />
     <Compile Include="Infrastructure\Commands\RelayCommand.cs" />
+    <Compile Include="Infrastructure\Commands\TabScheduleActivateCommand.cs" />
     <Compile Include="Models\Message.cs" />
     <Compile Include="Models\Recipient.cs" />
     <Compile Include="Models\Sender.cs" />

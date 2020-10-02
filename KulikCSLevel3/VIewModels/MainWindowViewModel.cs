@@ -40,5 +40,27 @@ namespace KulikCSLevel3.VIewModels
             MessageBox.Show("Hi");
         }
         */
+
+        /*
+        private ICommand _TabScheduleActivate;
+
+        public ICommand TabSceduleActivateCommand
+        {
+            get
+            {
+                if (_TabScheduleActivate is null)
+                {
+                    _TabScheduleActivate = new RelayCommand(OnTabSceduleActivateCommandExecute);
+                }
+                return _TabScheduleActivate;
+            }
+        }
+
+        private void OnTabSceduleActivateCommandExecute(object o)
+        {
+            
+        }
+        */
+
     }
 }

@@ -4,7 +4,7 @@ using System.Windows;
 
 namespace KulikCSLevel3.Infrastructure.Commands
 {
-    class CloseWindowCommand : Command
+    class TabScheduleActivateCommand : Command
     {
         protected override void Execute(object Parameter)
         {
@@ -13,7 +13,11 @@ namespace KulikCSLevel3.Infrastructure.Commands
                 win = Application.Current.Windows.Cast<Window>().FirstOrDefault(x => x.IsFocused);
             if (win is null)
                 win = Application.Current.Windows.Cast<Window>().FirstOrDefault(x => x.IsActive);
-            win?.Close();
+            if (win!= null)
+            {
+                MainWindow main = win as MainWindow;
+                main.TabItemScheduler.IsSelected = true;
+            }
         }
     }
 }

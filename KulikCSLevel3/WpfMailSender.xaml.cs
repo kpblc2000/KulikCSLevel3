@@ -18,25 +18,6 @@ namespace KulikCSLevel3
             Close();
         }
 
-        private void btnSend_Click(object sender, System.Windows.RoutedEventArgs e)
-        {
-            //Mail mail = new Mail(
-            //    new Sender(MailFrom.Text, PasswordText.SecurePassword),
-            //     new Receiver(MailTo.Text),
-            //     Subject.Text,
-            //     Body.Text
-            //    );
-
-            //EmailSendSerive.SendMailErrors errSend;
-            //string sendRes;
-            //EmailSendSerive srv1 = new EmailSendSerive(
-            //    ClientDatas.ServerAdress,
-            //    ClientDatas.ServerPort,
-            //    mail, out sendRes, out errSend);
-            //StatusBarMessage.Foreground = errSend == EmailSendSerive.SendMailErrors.NoError ? Brushes.Black : Brushes.Red;
-            //StatusBarMessage.Text = sendRes;
-        }
-
         private void BtnSend_Click(object sender, System.Windows.RoutedEventArgs e)
         {
             //var sendSender = SenderList.SelectedItem as Sender;
@@ -72,9 +53,10 @@ namespace KulikCSLevel3
             }
         }
 
-        private void ButtonTabScheduler_Click(object sender, RoutedEventArgs e)
-        {
-            TabItemScheduler.IsSelected = true;
-        }
+        // Уже не требуется, вынесено в отдельный класс команды
+        //private void ButtonTabScheduler_Click(object sender, RoutedEventArgs e)
+        //{
+        //    TabItemScheduler.IsSelected = true;
+        //}
     }
 }
