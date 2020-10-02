@@ -1,10 +1,9 @@
-﻿using System;
+﻿using KulikCSLevel3.Infrastructure.Commands;
+using KulikCSLevel3.VIewModels.Base;
+using System;
 using System.Timers;
 using System.Windows;
-using System.Windows.Data;
 using System.Windows.Input;
-using KulikCSLevel3.Infrastructure.Commands;
-using KulikCSLevel3.VIewModels.Base;
 
 namespace KulikCSLevel3.VIewModels
 {

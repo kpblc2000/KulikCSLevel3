@@ -7,8 +7,9 @@
         xmlns:data="clr-namespace:KulikCSLevel3.Data"
         xmlns:m="clr-namespace:KulikCSLevel3.Models"
         xmlns:local="clr-namespace:KulikCSLevel3"
+        DataContext="{Binding Source={StaticResource Locator}, Path=MainWindowModel}"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800" MinHeight="350" MinWidth="600" WindowStartupLocation="CenterScreen">
+        Title="asdf" Height="450" Width="800" MinHeight="350" MinWidth="600" WindowStartupLocation="CenterScreen">
   <!--<DockPanel>
     <Menu DockPanel.Dock="Top">
       <MenuItem Header="Файл">
