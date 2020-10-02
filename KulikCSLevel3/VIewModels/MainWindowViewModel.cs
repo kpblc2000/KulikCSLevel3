@@ -6,6 +6,7 @@ using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
+using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
@@ -128,6 +129,27 @@ namespace KulikCSLevel3.VIewModels
 
         #region Команды
 
+        #region OkButton
+        private ICommand _OkButtonClick;
+
+        public ICommand OkButtonClick
+        {
+            get
+            {
+                if (_OkButtonClick is null)
+                {
+                    _OkButtonClick = new RelayCommand();
+                }
+                return _OkButtonClick;
+            }
+        }
+
+        private bool CanOkButtonClickExecute(object o) => true;
+        private void OnOkButtonClickExecuted(object o)
+        { }
+
+        #endregion
+
         #region Server
         #region  CreateNewServerCommand
         private ICommand _CreateNewServerCommand;
@@ -148,6 +170,21 @@ namespace KulikCSLevel3.VIewModels
         private void OnCreateNewServerCommandExecuted(object o)
         {
             MessageBox.Show("Add new server");
+
+            AddEditServer win = new AddEditServer();
+            win.Title = "Ввод нового сервера";
+            win.ShowDialog();
+
+            if (win.DialogResult == true)
+            {
+                int port;
+                int.TryParse(win.ServerPort.Text, out port);
+                Servers.Add(new Server(win.ServerName.Text, port, win.UseSsl.IsChecked ?? false));
+
+            }
+            
+
+            
         }
         #endregion
 
@@ -196,214 +233,215 @@ namespace KulikCSLevel3.VIewModels
             Server server = o as Server ?? SelectedServer;
             if (server is null) return;
             Servers.Remove(server);
+            SelectedServer = Servers.FirstOrDefault();
             MessageBox.Show($"Erase server {server.Adress}"); 
         }
         #endregion
         #endregion
 
-        #region Sender
-        #region  CreateNewSenderCommand
-        private ICommand _CreateNewSenderCommand;
+        //#region Sender
+        //#region  CreateNewSenderCommand
+        //private ICommand _CreateNewSenderCommand;
 
-        public ICommand CreateNewSenderCommand
-        {
-            get
-            {
-                if (_CreateNewSenderCommand is null)
-                {
-                    _CreateNewSenderCommand = new RelayCommand(OnCreateNewSenderCommandExecuted, CanCreateNewSenderCommandExecute);
-                }
-                return _CreateNewSenderCommand;
-            }
-        }
+        //public ICommand CreateNewSenderCommand
+        //{
+        //    get
+        //    {
+        //        if (_CreateNewSenderCommand is null)
+        //        {
+        //            _CreateNewSenderCommand = new RelayCommand(OnCreateNewSenderCommandExecuted, CanCreateNewSenderCommandExecute);
+        //        }
+        //        return _CreateNewSenderCommand;
+        //    }
+        //}
 
-        private bool CanCreateNewSenderCommandExecute(object o) => true;
-        private void OnCreateNewSenderCommandExecuted(object o)
-        {
-            MessageBox.Show("Add new sender");
-        }
-        #endregion
+        //private bool CanCreateNewSenderCommandExecute(object o) => true;
+        //private void OnCreateNewSenderCommandExecuted(object o)
+        //{
+        //    MessageBox.Show("Add new sender");
+        //}
+        //#endregion
 
-        #region  EditSenderCommand
-        private ICommand _EditSenderCommand;
+        //#region  EditSenderCommand
+        //private ICommand _EditSenderCommand;
 
-        public ICommand EditSenderCommand
-        {
-            get
-            {
-                if (_EditSenderCommand is null)
-                {
-                    _EditSenderCommand = new RelayCommand(OnEditSenderCommandExecuted, CanEditSenderCommandExecute);
-                }
-                return _EditSenderCommand;
-            }
-        }
+        //public ICommand EditSenderCommand
+        //{
+        //    get
+        //    {
+        //        if (_EditSenderCommand is null)
+        //        {
+        //            _EditSenderCommand = new RelayCommand(OnEditSenderCommandExecuted, CanEditSenderCommandExecute);
+        //        }
+        //        return _EditSenderCommand;
+        //    }
+        //}
 
-        private bool CanEditSenderCommandExecute(object o) => true;
-        private void OnEditSenderCommandExecuted(object o)
-        {
-            MessageBox.Show("Edit sender");
-        }
-        #endregion
+        //private bool CanEditSenderCommandExecute(object o) => true;
+        //private void OnEditSenderCommandExecuted(object o)
+        //{
+        //    MessageBox.Show("Edit sender");
+        //}
+        //#endregion
 
-        #region  DeleteSenderCommand
-        private ICommand _DeleteSenderCommand;
+        //#region  DeleteSenderCommand
+        //private ICommand _DeleteSenderCommand;
 
-        public ICommand DeleteSenderCommand
-        {
-            get
-            {
-                if (_DeleteSenderCommand is null)
-                {
-                    _DeleteSenderCommand = new RelayCommand(OnDeleteSenderCommandExecuted, CanDeleteSenderCommandExecute);
-                }
-                return _DeleteSenderCommand;
-            }
-        }
+        //public ICommand DeleteSenderCommand
+        //{
+        //    get
+        //    {
+        //        if (_DeleteSenderCommand is null)
+        //        {
+        //            _DeleteSenderCommand = new RelayCommand(OnDeleteSenderCommandExecuted, CanDeleteSenderCommandExecute);
+        //        }
+        //        return _DeleteSenderCommand;
+        //    }
+        //}
 
-        private bool CanDeleteSenderCommandExecute(object o) => true;
-        private void OnDeleteSenderCommandExecuted(object o)
-        {
-            MessageBox.Show("Erase sender");
-        }
-        #endregion
-        #endregion
+        //private bool CanDeleteSenderCommandExecute(object o) => true;
+        //private void OnDeleteSenderCommandExecuted(object o)
+        //{
+        //    MessageBox.Show("Erase sender");
+        //}
+        //#endregion
+        //#endregion
 
-        #region Message
-        #region  CreateNewMessageCommand
-        private ICommand _CreateNewMessageCommand;
+        //#region Message
+        //#region  CreateNewMessageCommand
+        //private ICommand _CreateNewMessageCommand;
 
-        public ICommand CreateNewMessageCommand
-        {
-            get
-            {
-                if (_CreateNewMessageCommand is null)
-                {
-                    _CreateNewMessageCommand = new RelayCommand(OnCreateNewMessageCommandExecuted, CanCreateNewMessageCommandExecute);
-                }
-                return _CreateNewMessageCommand;
-            }
-        }
+        //public ICommand CreateNewMessageCommand
+        //{
+        //    get
+        //    {
+        //        if (_CreateNewMessageCommand is null)
+        //        {
+        //            _CreateNewMessageCommand = new RelayCommand(OnCreateNewMessageCommandExecuted, CanCreateNewMessageCommandExecute);
+        //        }
+        //        return _CreateNewMessageCommand;
+        //    }
+        //}
 
-        private bool CanCreateNewMessageCommandExecute(object o) => true;
-        private void OnCreateNewMessageCommandExecuted(object o)
-        {
-            MessageBox.Show("Add new msg");
-        }
-        #endregion
+        //private bool CanCreateNewMessageCommandExecute(object o) => true;
+        //private void OnCreateNewMessageCommandExecuted(object o)
+        //{
+        //    MessageBox.Show("Add new msg");
+        //}
+        //#endregion
 
-        #region  EditMessageCommand
-        private ICommand _EditMessageCommand;
+        //#region  EditMessageCommand
+        //private ICommand _EditMessageCommand;
 
-        public ICommand EditMessageCommand
-        {
-            get
-            {
-                if (_EditMessageCommand is null)
-                {
-                    _EditMessageCommand = new RelayCommand(OnEditMessageCommandExecuted, CanEditMessageCommandExecute);
-                }
-                return _EditMessageCommand;
-            }
-        }
+        //public ICommand EditMessageCommand
+        //{
+        //    get
+        //    {
+        //        if (_EditMessageCommand is null)
+        //        {
+        //            _EditMessageCommand = new RelayCommand(OnEditMessageCommandExecuted, CanEditMessageCommandExecute);
+        //        }
+        //        return _EditMessageCommand;
+        //    }
+        //}
 
-        private bool CanEditMessageCommandExecute(object o) => true;
-        private void OnEditMessageCommandExecuted(object o)
-        {
-            MessageBox.Show("Edit msg");
-        }
-        #endregion
+        //private bool CanEditMessageCommandExecute(object o) => true;
+        //private void OnEditMessageCommandExecuted(object o)
+        //{
+        //    MessageBox.Show("Edit msg");
+        //}
+        //#endregion
 
-        #region  DeleteMessageCommand
-        private ICommand _DeleteMessageCommand;
+        //#region  DeleteMessageCommand
+        //private ICommand _DeleteMessageCommand;
 
-        public ICommand DeleteMessageCommand
-        {
-            get
-            {
-                if (_DeleteMessageCommand is null)
-                {
-                    _DeleteMessageCommand = new RelayCommand(OnDeleteMessageCommandExecuted, CanDeleteMessageCommandExecute);
-                }
-                return _DeleteMessageCommand;
-            }
-        }
+        //public ICommand DeleteMessageCommand
+        //{
+        //    get
+        //    {
+        //        if (_DeleteMessageCommand is null)
+        //        {
+        //            _DeleteMessageCommand = new RelayCommand(OnDeleteMessageCommandExecuted, CanDeleteMessageCommandExecute);
+        //        }
+        //        return _DeleteMessageCommand;
+        //    }
+        //}
 
-        private bool CanDeleteMessageCommandExecute(object o) => true;
-        private void OnDeleteMessageCommandExecuted(object o)
-        {
-            MessageBox.Show("Erase msg");
-        }
-        #endregion
-        #endregion
+        //private bool CanDeleteMessageCommandExecute(object o) => true;
+        //private void OnDeleteMessageCommandExecuted(object o)
+        //{
+        //    MessageBox.Show("Erase msg");
+        //}
+        //#endregion
+        //#endregion
 
-        #region Recipient
-        #region  DeleteRecipientCommand
-        private ICommand _DeleteRecipientCommand;
+        //#region Recipient
+        //#region  DeleteRecipientCommand
+        //private ICommand _DeleteRecipientCommand;
 
-        public ICommand DeleteRecipientCommand
-        {
-            get
-            {
-                if (_DeleteRecipientCommand is null)
-                {
-                    _DeleteRecipientCommand = new RelayCommand(OnDeleteRecipientCommandExecuted, CanDeleteRecipientCommandExecute);
-                }
-                return _DeleteRecipientCommand;
-            }
-        }
+        //public ICommand DeleteRecipientCommand
+        //{
+        //    get
+        //    {
+        //        if (_DeleteRecipientCommand is null)
+        //        {
+        //            _DeleteRecipientCommand = new RelayCommand(OnDeleteRecipientCommandExecuted, CanDeleteRecipientCommandExecute);
+        //        }
+        //        return _DeleteRecipientCommand;
+        //    }
+        //}
 
-        private bool CanDeleteRecipientCommandExecute(object o) => true;
-        private void OnDeleteRecipientCommandExecuted(object o)
-        {
-            MessageBox.Show("Erase recip");
-        }
-        #endregion
+        //private bool CanDeleteRecipientCommandExecute(object o) => true;
+        //private void OnDeleteRecipientCommandExecuted(object o)
+        //{
+        //    MessageBox.Show("Erase recip");
+        //}
+        //#endregion
 
-        #region  CreateNewRecipientCommand
-        private ICommand _CreateNewRecipientCommand;
+        //#region  CreateNewRecipientCommand
+        //private ICommand _CreateNewRecipientCommand;
 
-        public ICommand CreateNewRecipientCommand
-        {
-            get
-            {
-                if (_CreateNewRecipientCommand is null)
-                {
-                    _CreateNewRecipientCommand = new RelayCommand(OnCreateNewRecipientCommandExecuted, CanCreateNewRecipientCommandExecute);
-                }
-                return _CreateNewRecipientCommand;
-            }
-        }
+        //public ICommand CreateNewRecipientCommand
+        //{
+        //    get
+        //    {
+        //        if (_CreateNewRecipientCommand is null)
+        //        {
+        //            _CreateNewRecipientCommand = new RelayCommand(OnCreateNewRecipientCommandExecuted, CanCreateNewRecipientCommandExecute);
+        //        }
+        //        return _CreateNewRecipientCommand;
+        //    }
+        //}
 
-        private bool CanCreateNewRecipientCommandExecute(object o) => true;
-        private void OnCreateNewRecipientCommandExecuted(object o)
-        {
-            MessageBox.Show("Add new recip");
-        }
-        #endregion
+        //private bool CanCreateNewRecipientCommandExecute(object o) => true;
+        //private void OnCreateNewRecipientCommandExecuted(object o)
+        //{
+        //    MessageBox.Show("Add new recip");
+        //}
+        //#endregion
 
-        #region  EditRecipientCommand
-        private ICommand _EditRecipientCommand;
+        //#region  EditRecipientCommand
+        //private ICommand _EditRecipientCommand;
 
-        public ICommand EditRecipientCommand
-        {
-            get
-            {
-                if (_EditRecipientCommand is null)
-                {
-                    _EditRecipientCommand = new RelayCommand(OnEditRecipientCommandExecuted, CanEditRecipientCommandExecute);
-                }
-                return _EditRecipientCommand;
-            }
-        }
+        //public ICommand EditRecipientCommand
+        //{
+        //    get
+        //    {
+        //        if (_EditRecipientCommand is null)
+        //        {
+        //            _EditRecipientCommand = new RelayCommand(OnEditRecipientCommandExecuted, CanEditRecipientCommandExecute);
+        //        }
+        //        return _EditRecipientCommand;
+        //    }
+        //}
 
-        private bool CanEditRecipientCommandExecute(object o) => true;
-        private void OnEditRecipientCommandExecuted(object o)
-        {
-            MessageBox.Show("Edit recip");
-        }
-        #endregion
-        #endregion
+        //private bool CanEditRecipientCommandExecute(object o) => true;
+        //private void OnEditRecipientCommandExecuted(object o)
+        //{
+        //    MessageBox.Show("Edit recip");
+        //}
+        //#endregion
+        //#endregion
 
         #endregion
 
