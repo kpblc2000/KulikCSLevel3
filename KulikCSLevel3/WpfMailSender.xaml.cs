@@ -13,11 +13,6 @@ namespace KulikCSLevel3
     {
         public MainWindow() => InitializeComponent();
 
-        private void btnExit_Click(object sender, System.Windows.RoutedEventArgs e)
-        {
-            Close();
-        }
-
         private void BtnSend_Click(object sender, System.Windows.RoutedEventArgs e)
         {
             //var sendSender = SenderList.SelectedItem as Sender;

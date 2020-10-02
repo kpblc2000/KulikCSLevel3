@@ -78,7 +78,11 @@
         <MenuItem  Header="Сохранить" Name="mnuSave"/>
         <MenuItem Header="Закрыть" Name="mnuClose"/>
         <Separator/>
-        <MenuItem Header="Выход" Name="mnuExit"/>
+        <MenuItem Header="Выход" Name="mnuExit">
+          <MenuItem.Command>
+            <cmd:CloseWindowCommand/>
+          </MenuItem.Command>
+        </MenuItem>
       </MenuItem>
       <MenuItem Header="Сервис">
         <MenuItem Header="Параметры" Name="mnuSettings"/>
@@ -98,7 +102,7 @@
         <DockPanel>
           <ToolBarTray DockPanel.Dock="Top">
             <ToolBar Header="Сервера" Band="0">
-              <ComboBox Name="Serverlist" MaxWidth="200" MinWidth="120" SelectedIndex="0" Margin="26,0,0,0" ItemsSource="{x:Static data:TestData.Servers}">
+              <ComboBox Name="Serverlist" MaxWidth="200" MinWidth="120" SelectedIndex="0" Margin="26,0,0,0" ItemsSource="{Binding Servers}" SelectedItem="{Binding SelectedServer}">
                 <ComboBox.ItemTemplate>
                   <DataTemplate>
                     <StackPanel Orientation="Horizontal">
@@ -114,7 +118,7 @@
               <Button fa:Awesome.Content="Regular_TrashAlt" Foreground="Red"/>
             </ToolBar>
             <ToolBar Header="Отправители" Band="1">
-              <ComboBox Name="SenderList" MaxWidth="200" MinWidth="120" SelectedIndex="0" ItemsSource="{x:Static data:TestData.Senders}">
+              <ComboBox Name="SenderList" MaxWidth="200" MinWidth="120" SelectedIndex="0" ItemsSource="{Binding Senders}" SelectedItem="{Binding SelectedSender}">
                 <ComboBox.ItemTemplate>
                   <DataTemplate DataType="m:Sender">
                     <StackPanel Orientation="Horizontal">
@@ -141,7 +145,7 @@
             </ToolBar>
           </ToolBarTray>
           <GroupBox Header="Список получателей">
-            <DataGrid Name="RecipientList" ItemsSource="{x:Static data:TestData.Recipients}" AutoGenerateColumns="False" AlternatingRowBackground="LightGray" GridLinesVisibility="Vertical" VerticalGridLinesBrush="Gray">
+            <DataGrid Name="RecipientList" ItemsSource="{Binding Recipients}" AutoGenerateColumns="False" AlternatingRowBackground="LightGray" GridLinesVisibility="Vertical" VerticalGridLinesBrush="Gray" SelectedItem="{Binding SelectedRecipient}">
               <DataGrid.Columns>
                 <DataGridTextColumn Header="Id" MinWidth="30"/>
                 <DataGridTextColumn Header="Имя" Width="1*" Binding="{Binding Name}"/>
@@ -218,7 +222,7 @@
             <ColumnDefinition Width="1*"/>
           </Grid.ColumnDefinitions>
           <GroupBox Grid.Column="0" Header="Список писем">
-            <ListBox Name="MessagesList" ItemsSource="{x:Static data:TestData.Messages}">
+            <ListBox Name="MessagesList" ItemsSource="{Binding Messages}" SelectedItem="{Binding SelectedMessage}">
               <ListBox.ItemTemplate>
                 <DataTemplate>
                   <StackPanel Orientation="Vertical">
