@@ -113,9 +113,9 @@
                   </DataTemplate>
                 </ComboBox.ItemTemplate>
               </ComboBox>
-              <Button fa:Awesome.Content="Solid_PlusCircle" Foreground="DarkBlue"/>
-              <Button fa:Awesome.Content="Solid_Edit" Foreground="Green"/>
-              <Button fa:Awesome.Content="Regular_TrashAlt" Foreground="Red"/>
+              <Button fa:Awesome.Content="Solid_PlusCircle" Foreground="DarkBlue" Command="{Binding CreateNewServerCommand}"/>
+              <Button fa:Awesome.Content="Solid_Edit" Foreground="Green" Command="{Binding EditServerCommand}" CommandParameter="{Binding SelectedServer}"/>
+              <Button fa:Awesome.Content="Regular_TrashAlt" Foreground="Red" Command="{Binding DeleteServerCommand}" CommandParameter="{Binding SelectedServer}"/>
             </ToolBar>
             <ToolBar Header="Отправители" Band="1">
               <ComboBox Name="SenderList" MaxWidth="200" MinWidth="120" SelectedIndex="0" ItemsSource="{Binding Senders}" SelectedItem="{Binding SelectedSender}">
@@ -127,9 +127,9 @@
                   </DataTemplate>
                 </ComboBox.ItemTemplate>
               </ComboBox>
-              <Button fa:Awesome.Content="Solid_PlusCircle" Foreground="DarkBlue"/>
-              <Button fa:Awesome.Content="Solid_Edit" Foreground="Green"/>
-              <Button fa:Awesome.Content="Regular_TrashAlt" Foreground="Red"/>
+              <Button fa:Awesome.Content="Solid_PlusCircle" Foreground="DarkBlue" Command="{Binding CreateNewSenderCommand}"/>
+              <Button fa:Awesome.Content="Solid_Edit" Foreground="Green" Command="{Binding EditSenderCommand}" CommandParameter="{Binding SelectedSender}"/>
+              <Button fa:Awesome.Content="Regular_TrashAlt" Foreground="Red" Command="{Binding DeleteSenderCommand}" CommandParameter="{Binding SelectedSender}"/>
             </ToolBar>
             <ToolBar Header="Планировщик" Band="0">
               <Button Name="ButtonTabScheduler" fa:Awesome.Content="Regular_Clock" >
@@ -139,9 +139,9 @@
               </Button>
             </ToolBar>
             <ToolBar Header="Получатели" Band="1">
-              <Button fa:Awesome.Content="Solid_PlusCircle" Foreground="DarkBlue"/>
-              <Button fa:Awesome.Content="Solid_Edit" Foreground="Green"/>
-              <Button fa:Awesome.Content="Regular_TrashAlt" Foreground="Red"/>
+              <Button fa:Awesome.Content="Solid_PlusCircle" Foreground="DarkBlue" Command="{Binding CreateNewRecipientCommand}"/>
+              <Button fa:Awesome.Content="Solid_Edit" Foreground="Green" Command="{Binding EditRecipientCommand}" CommandParameter="{Binding SelectedRecipient}"/>
+              <Button fa:Awesome.Content="Regular_TrashAlt" Foreground="Red" Command="{Binding DeleteRecipientCommand}" CommandParameter="{Binding SelectedRecipient}"/>
             </ToolBar>
           </ToolBarTray>
           <GroupBox Header="Список получателей">
