@@ -37,7 +37,7 @@
         <DockPanel>
           <ToolBarTray DockPanel.Dock="Top">
             <ToolBar Header="Сервера" Band="0">
-              <ComboBox Name="Serverlist" MaxWidth="200" MinWidth="120" SelectedIndex="0" Margin="26,0,0,0" ItemsSource="{x:Static data:TestData.Servers}">
+              <ComboBox Name="ServerList" MaxWidth="200" MinWidth="120" SelectedIndex="0" Margin="26,0,0,0" ItemsSource="{x:Static data:TestData.Servers}">
                 <ComboBox.ItemTemplate>
                   <DataTemplate>
                     <StackPanel Orientation="Horizontal">
@@ -102,7 +102,7 @@
                     <Setter Property="Margin" Value="0,3"/>
                   </Style>
                 </StackPanel.Resources>
-                <Button Name="BtnSend" Content="Отправить"/>
+                <Button Name="BtnSend" Content="Отправить" Click="OnSendButtonClick"/>
                 <Button Content="Запланировать"/>
               </StackPanel>
             </StackPanel>

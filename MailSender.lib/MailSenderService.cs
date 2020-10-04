@@ -1,5 +1,7 @@
-﻿using System;
+﻿using MailSender.lib.Service;
+using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Net;
 using System.Net.Mail;
 using System.Text;
@@ -18,7 +20,7 @@ namespace MailSender.lib
 
         public bool UseSSL { get; set; }
 
-        public void SendMail(string SenderMailAdress, string RecipientMailAdress, string MessageSubject, string MessageBody)
+        public void SendMessage(string SenderMailAdress, string RecipientMailAdress, string MessageSubject, string MessageBody)
         {
             using (var mess = new MailMessage(new MailAddress(SenderMailAdress), new MailAddress(RecipientMailAdress)))
             {
@@ -33,7 +35,16 @@ namespace MailSender.lib
                         UserName = Login,
                         Password = TextEncoder.Decode(Password)
                     };
-                    client.Send(mess);
+                    try
+                    {
+                        client.Send(mess);
+                    }
+                    catch (SmtpException e)
+                    {
+                        Trace.TraceError(e.ToString());
+                        throw;
+                    }
+                    
                 }
             }
         }

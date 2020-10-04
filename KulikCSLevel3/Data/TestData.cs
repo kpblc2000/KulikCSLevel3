@@ -1,7 +1,7 @@
 ﻿using KulikCSLevel3.Models;
+using MailSender.lib.Service;
 using System.Collections.Generic;
 using System.Linq;
-using MailSender.lib;
 
 namespace KulikCSLevel3.Data
 {

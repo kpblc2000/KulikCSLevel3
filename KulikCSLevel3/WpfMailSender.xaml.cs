@@ -37,16 +37,51 @@ namespace KulikCSLevel3
             //StatusBarMessage.Text = sendRes;
         }
 
-        private void BtnSend_Click(object sender, System.Windows.RoutedEventArgs e)
+        //private void BtnSend_Click(object sender, System.Windows.RoutedEventArgs e)
+        //{
+        //    //var sendSender = SenderList.SelectedItem as Sender;
+        //    //if (sendSender is null)
+        //    //{
+        //    //    return;
+        //    //}
+        //    if (!(SenderList.SelectedItem is Sender sendSender)) return;
+        //    if (!(RecipientList.SelectedItem is Recipient sendRecip)) return;
+        //    if (!(Serverlist.SelectedItem is Server sendServer)) return;
+        //    if (!(MessagesList.SelectedItem is Message msg)) return;
+
+        //    var sendService = new MailSenderService
+        //    {
+        //        ServerAdress = sendServer.Adress,
+        //        ServerPort = sendServer.Port,
+        //        UseSSL = sendServer.UseSSL,
+        //        Password = sendServer.Passord,
+        //        Login = sendServer.Login
+        //    };
+
+        //    try
+        //    {
+        //        sendService.SendMail(sendSender.EmailAdress, sendRecip.EmailAdress, msg.Subject, msg.Body);
+        //    }
+        //    catch(SmtpException ex)
+        //    {
+        //        MessageBox.Show("Ошибка SMTP при отправке почты" + ex.Message,"Ошибка",MessageBoxButton.OK, MessageBoxImage.Error);
+        //    }
+        //    catch (System.Exception ex)
+        //    {
+        //        MessageBox.Show("Ошибка при отправке почты" + ex.Message, "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
+        //    }
+        //}
+
+        private void ButtonTabScheduler_Click(object sender, RoutedEventArgs e)
         {
-            //var sendSender = SenderList.SelectedItem as Sender;
-            //if (sendSender is null)
-            //{
-            //    return;
-            //}
+            TabItemScheduler.IsSelected = true;
+        }
+
+        private void OnSendButtonClick(object sender, RoutedEventArgs e)
+        {
             if (!(SenderList.SelectedItem is Sender sendSender)) return;
             if (!(RecipientList.SelectedItem is Recipient sendRecip)) return;
-            if (!(Serverlist.SelectedItem is Server sendServer)) return;
+            if (!(ServerList.SelectedItem is Server sendServer)) return;
             if (!(MessagesList.SelectedItem is Message msg)) return;
 
             var sendService = new MailSenderService
@@ -60,21 +95,17 @@ namespace KulikCSLevel3
 
             try
             {
-                sendService.SendMail(sendSender.EmailAdress, sendRecip.EmailAdress, msg.Subject, msg.Body);
+                sendService.SendMessage(sendSender.EmailAdress, sendRecip.EmailAdress, msg.Subject, msg.Body);
             }
-            catch(SmtpException ex)
+            catch (SmtpException ex)
             {
-                MessageBox.Show("Ошибка SMTP при отправке почты" + ex.Message,"Ошибка",MessageBoxButton.OK, MessageBoxImage.Error);
+                MessageBox.Show("Ошибка SMTP при отправке почты: " + ex.Message, "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
             }
             catch (System.Exception ex)
             {
-                MessageBox.Show("Ошибка при отправке почты" + ex.Message, "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
+                MessageBox.Show("Ошибка при отправке почты: " + ex.Message, "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
             }
-        }
 
-        private void ButtonTabScheduler_Click(object sender, RoutedEventArgs e)
-        {
-            TabItemScheduler.IsSelected = true;
         }
     }
 }
