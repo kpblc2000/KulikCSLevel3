@@ -9,63 +9,6 @@
         xmlns:local="clr-namespace:KulikCSLevel3"
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800" MinHeight="350" MinWidth="600" WindowStartupLocation="CenterScreen">
-  <!--<DockPanel>
-    <Menu DockPanel.Dock="Top">
-      <MenuItem Header="Файл">
-        <MenuItem Name="mnuExit" Header="Выход" Click="btnExit_Click"/>
-      </MenuItem>
-    </Menu>
-    <Grid DockPanel.Dock="Bottom">
-      <Grid.ColumnDefinitions>
-        <ColumnDefinition Width="1*">
-        </ColumnDefinition>
-        <ColumnDefinition Width="100">
-        </ColumnDefinition>
-        <ColumnDefinition Width="100">
-        </ColumnDefinition>
-      </Grid.ColumnDefinitions>
-      <StatusBar Grid.Column="0" Margin="2">
-        <TextBlock Name="StatusBarMessage" TextWrapping="Wrap"/>
-      </StatusBar>
-      
-      <Button Name="btnExit" Grid.Column="2" Margin="10" Padding="3" Click="btnExit_Click" IsCancel="True">Выход</Button>
-    </Grid>
-
-    <TabControl>
-      <TabItem Header="1 письмо" >
-        <Grid Margin="2">
-          <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="2*"/>
-            <ColumnDefinition Width="5*"/>
-            <ColumnDefinition Width="100"/>
-          </Grid.ColumnDefinitions>
-          <Grid.RowDefinitions>
-            <RowDefinition Height="23"/>
-            <RowDefinition Height="23"/>
-            <RowDefinition Height="23"/>
-            <RowDefinition Height="23"/>
-            <RowDefinition/>
-            <RowDefinition Height="42"/>
-          </Grid.RowDefinitions>
-          <Label Grid.Row="0" Grid.Column="0" Foreground="Black" Margin="2">От кого:</Label>
-          <Label Grid.Row="1" Grid.Column="0" Foreground="Black" Margin="2">Пароль:</Label>
-          <Label Grid.Row="2" Grid.Column="0" Foreground="Black" Margin="2">Кому</Label>
-          <Label Grid.Row="3" Grid.Column="0" Foreground="Black" Margin="2">Заголовок:</Label>
-          <Label Grid.Row="4" Grid.Column="0" Foreground="Black" VerticalAlignment="Top" Margin="2">Текст письма:</Label>
-          <TextBox Grid.Row="0" Grid.Column="1" Foreground="Black" Name="MailFrom" Grid.ColumnSpan="2" Margin="2"/>
-          <PasswordBox Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="2" Name="PasswordText" Margin="2"/>
-          <TextBox Grid.Row="2" Grid.Column="1" Foreground="Black" Name="MailTo" Grid.ColumnSpan="2" Margin="2"/>
-          <TextBox Grid.Row="3" Grid.Column="1" Foreground="Black" Name="Subject" Grid.ColumnSpan="2" Margin="2"/>
-          <TextBox Grid.Row="4" Grid.Column="1" Foreground="Black" Name="Body" Grid.ColumnSpan="2" Margin="2"/>
-          <Button Name="btnSend" Grid.Column="2" Margin="8" Padding="3" Grid.Row="5" IsDefault="True" Click="btnSend_Click">Отправить</Button>
-        </Grid>
-      </TabItem>
-      <TabItem Header="Списки" IsEnabled="False"></TabItem>
-      <TabItem Header="Планировщик" IsEnabled="False"></TabItem>
-      <TabItem Header="Письма" IsEnabled="False"></TabItem>
-      <TabItem Header="Статистика" IsEnabled="False"></TabItem>
-    </TabControl>
-  </DockPanel>-->
   <DockPanel>
     <Menu DockPanel.Dock="Top">
       <MenuItem Header="Файл">
@@ -94,7 +37,8 @@
         <DockPanel>
           <ToolBarTray DockPanel.Dock="Top">
             <ToolBar Header="Сервера" Band="0">
-              <ComboBox Name="Serverlist" MaxWidth="200" MinWidth="120" SelectedIndex="0" Margin="26,0,0,0" ItemsSource="{x:Static data:TestData.Servers}">
+              <ComboBox Name="Serverlist" MaxWidth="200" MinWidth="120" SelectedIndex="0" Margin="26,0,0,0">
+                <!--ItemsSource="{x:Static data:TestData.Servers}">-->
                 <ComboBox.ItemTemplate>
                   <DataTemplate>
                     <StackPanel Orientation="Horizontal">
@@ -110,7 +54,8 @@
               <Button fa:Awesome.Content="Regular_TrashAlt" Foreground="Red"/>
             </ToolBar>
             <ToolBar Header="Отправители" Band="1">
-              <ComboBox Name="SenderList" MaxWidth="200" MinWidth="120" SelectedIndex="0" ItemsSource="{x:Static data:TestData.Senders}">
+              <ComboBox Name="SenderList" MaxWidth="200" MinWidth="120" SelectedIndex="0" >
+                <!--ItemsSource="{x:Static data:TestData.Senders}">-->
                 <ComboBox.ItemTemplate>
                   <DataTemplate DataType="m:Sender">
                     <StackPanel Orientation="Horizontal">
@@ -135,7 +80,8 @@
             </ToolBar>
           </ToolBarTray>
           <GroupBox Header="Список получателей">
-            <DataGrid Name="RecipientList" ItemsSource="{x:Static data:TestData.Recipients}" AutoGenerateColumns="False" AlternatingRowBackground="LightGray" GridLinesVisibility="Vertical" VerticalGridLinesBrush="Gray">
+            <DataGrid Name="RecipientList" AutoGenerateColumns="False" AlternatingRowBackground="LightGray" GridLinesVisibility="Vertical" VerticalGridLinesBrush="Gray">
+              <!--ItemsSource="{x:Static data:TestData.Recipients}"-->
               <DataGrid.Columns>
                 <DataGridTextColumn Header="Id" MinWidth="30"/>
                 <DataGridTextColumn Header="Имя" Width="1*" Binding="{Binding Name}"/>
@@ -212,7 +158,8 @@
             <ColumnDefinition Width="1*"/>
           </Grid.ColumnDefinitions>
           <GroupBox Grid.Column="0" Header="Список писем">
-            <ListBox Name="MessagesList" ItemsSource="{x:Static data:TestData.Messages}">
+            <ListBox Name="MessagesList">
+              <!--ItemsSource="{x:Static data:TestData.Messages}">-->
               <ListBox.ItemTemplate>
                 <DataTemplate>
                   <StackPanel Orientation="Vertical">

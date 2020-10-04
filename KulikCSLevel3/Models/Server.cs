@@ -2,24 +2,11 @@
 
 namespace KulikCSLevel3.Models
 {
-    class Server
+    public class Server
     {
         private string _adress;
         private int _port;
         private bool _useSsl;
-
-        public Server(string Adress, int Port, bool UseSSL)
-        {
-
-            if (Port < 0 || Port >= 65535)
-            {
-                throw new ArgumentOutOfRangeException(nameof(Port), Port, "Номер порта должен лежать в пределах 1..65535");
-            }
-
-            _adress = Adress;
-            _port = Port;
-            _useSsl = UseSSL;
-        }
 
         public string Adress { get { return _adress; } set { _adress = value; } }
 
