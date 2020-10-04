@@ -1,8 +1,8 @@
-﻿using KulikCSLevel3.Infrastrucuture.Commands.Base;
+﻿using KulikCSLevel3.Infrastructure.Commands.Base;
 using System.Linq;
 using System.Windows;
 
-namespace KulikCSLevel3.Infrastrucuture.Commands
+namespace KulikCSLevel3.Infrastructure.Commands
 {
     class CloseWindowCommand : Command
 

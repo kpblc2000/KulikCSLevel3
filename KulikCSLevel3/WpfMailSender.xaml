@@ -7,7 +7,7 @@
         xmlns:data="clr-namespace:KulikCSLevel3.Data"
         xmlns:m="clr-namespace:KulikCSLevel3.Models"
         xmlns:vm="clr-namespace:KulikCSLevel3.ViewModels"
-        xmlns:cmd="clr-namespace:KulikCSLevel3.Infrastrucuture.Commands"
+        xmlns:cmd="clr-namespace:KulikCSLevel3.Infrastructure.Commands"
         xmlns:local="clr-namespace:KulikCSLevel3"
         mc:Ignorable="d"
         Title="{Binding Title}" Height="450" Width="800" MinHeight="350" MinWidth="600" WindowStartupLocation="CenterScreen">
@@ -209,6 +209,7 @@
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
           </Grid.RowDefinitions>
           <TextBlock Grid.Column="0" Grid.Row="0" Text="Отправленных писем : "/>
           <TextBlock Grid.Column="1" Grid.Row="0" Text="1"/>
@@ -218,6 +219,11 @@
           <TextBlock Grid.Column="1" Grid.Row="2" Text="3"/>
           <TextBlock Grid.Column="0" Grid.Row="3" Text="Число запусков : "/>
           <TextBlock Grid.Column="1" Grid.Row="3" Text="4"/>
+          <Button Name="TestButton" Grid.Row="4" Content="ShowDlg" CommandParameter="Command msg">
+            <Button.Command>
+              <cmd:ShowDialogCommand/>
+            </Button.Command>
+          </Button>
         </Grid>
       </TabItem>
     </TabControl>

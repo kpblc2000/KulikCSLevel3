@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Windows.Input;
 
-namespace KulikCSLevel3.Infrastrucuture.Commands.Base
+namespace KulikCSLevel3.Infrastructure.Commands.Base
 {
     /// <summary>
     /// Общее описание команды для окна
