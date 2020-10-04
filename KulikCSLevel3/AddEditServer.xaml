@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:KulikCSLevel3"
         mc:Ignorable="d"
          xmlns:m="clr-namespace:KulikCSLevel3.Models"
-        xmlns:vm="clr-namespace:KulikCSLevel3.VIewModels"
+        xmlns:vm="clr-namespace:KulikCSLevel3.ViewModels"
         Title="AddEditServer" MinWidth="350" MinHeight="150" Height="190.5" Width="328.5">
   <Grid>
     <StackPanel Orientation="Vertical">

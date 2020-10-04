@@ -1,11 +1,11 @@
 ﻿using KulikCSLevel3.Infrastructure.Commands;
-using KulikCSLevel3.VIewModels.Base;
+using KulikCSLevel3.ViewModels.Base;
 using System;
 using System.Timers;
 using System.Windows;
 using System.Windows.Input;
 
-namespace KulikCSLevel3.VIewModels
+namespace KulikCSLevel3.ViewModels
 {
     class MainWindowsViewModel : ViewModel
     {

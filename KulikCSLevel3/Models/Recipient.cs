@@ -33,5 +33,7 @@ namespace KulikCSLevel3.Models
         public string Name { get; set; }
 
         public string EmailAdress { get; set; }
+
+        public int Id { get; set; }
     }
 }

@@ -15,9 +15,9 @@ namespace KulikCSLevel3.Infrastructure.Commands.Base
             remove { CommandManager.RequerySuggested -= value; }
         }
 
-        bool ICommand.CanExecute(object parameter) => CanExecute(parameter); 
+        bool ICommand.CanExecute(object parameter) => CanExecute(parameter);
 
-        void ICommand.Execute(object parameter) => Execute(parameter); 
+        void ICommand.Execute(object parameter) => Execute(parameter);
 
         protected virtual bool CanExecute(object Parameter) => true;
 

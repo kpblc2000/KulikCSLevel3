@@ -2,7 +2,7 @@
 
 namespace KulikCSLevel3.Models
 {
-    class Server
+    public class Server
     {
         private string _adress;
         private int _port;
@@ -20,6 +20,8 @@ namespace KulikCSLevel3.Models
             _port = Port;
             _useSsl = UseSSL;
         }
+
+        public int Id { get; set; }
 
         public string Adress { get { return _adress; } set { _adress = value; } }
 

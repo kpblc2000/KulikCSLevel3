@@ -1,7 +1,7 @@
 ﻿using System.ComponentModel;
 using System.Runtime.CompilerServices;
 
-namespace KulikCSLevel3.VIewModels.Base
+namespace KulikCSLevel3.ViewModels.Base
 {
     abstract class ViewModel : INotifyPropertyChanged
     {

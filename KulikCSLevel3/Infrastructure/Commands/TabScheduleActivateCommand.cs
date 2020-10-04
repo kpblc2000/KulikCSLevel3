@@ -13,7 +13,7 @@ namespace KulikCSLevel3.Infrastructure.Commands
                 win = Application.Current.Windows.Cast<Window>().FirstOrDefault(x => x.IsFocused);
             if (win is null)
                 win = Application.Current.Windows.Cast<Window>().FirstOrDefault(x => x.IsActive);
-            if (win!= null)
+            if (win != null)
             {
                 MainWindow main = win as MainWindow;
                 main.TabItemScheduler.IsSelected = true;

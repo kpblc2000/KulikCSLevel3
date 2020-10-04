@@ -6,7 +6,7 @@ using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace KulikCSLevel3.VIewModels.Base
+namespace KulikCSLevel3.ViewModels.Base
 {
     abstract class ViewModel : INotifyPropertyChanged
     {

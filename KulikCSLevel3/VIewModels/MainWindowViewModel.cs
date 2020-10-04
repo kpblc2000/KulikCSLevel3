@@ -1,22 +1,24 @@
 ﻿using KulikCSLevel3.Data;
 using KulikCSLevel3.Infrastructure.Commands;
 using KulikCSLevel3.Models;
-using KulikCSLevel3.VIewModels.Base;
-using System;
-using System.Collections.Generic;
+using KulikCSLevel3.ViewModels.Base;
 using System.Collections.ObjectModel;
+using System.IO;
 using System.Linq;
-using System.Runtime.InteropServices;
-using System.Text;
-using System.Threading.Tasks;
+using System.Runtime.InteropServices.WindowsRuntime;
 using System.Windows;
 using System.Windows.Input;
 
-namespace KulikCSLevel3.VIewModels
+namespace KulikCSLevel3.ViewModels
 {
     class MainWindowViewModel : ViewModel
     {
-        private string _title = "test window";
+
+        private TestData _savedDatas;
+
+        private static string __DataFileName = "data.xml";
+
+        private string _title = "Кулик : рассылка почты";
 
         public string Title
         {
@@ -24,6 +26,7 @@ namespace KulikCSLevel3.VIewModels
             set => Set(ref _title, value);
         }
 
+        #region Скрыть
         // Попытка работы с командами
         /*
         private ICommand _ShowDlgCmd;
@@ -66,6 +69,7 @@ namespace KulikCSLevel3.VIewModels
             
         }
         */
+        #endregion
 
         #region Данные и свойства
         // Вывод данных из представления
@@ -149,6 +153,47 @@ namespace KulikCSLevel3.VIewModels
 
         //#endregion
 
+        private ICommand _LoadDataCommand;
+        public ICommand LoadDataCommand
+        {
+            get
+            {
+                if (_LoadDataCommand is null)
+                {
+                    _LoadDataCommand = new RelayCommand(OnLoadDataCommandExecuted);
+                }
+                return _LoadDataCommand;
+            }
+        }
+
+        private void OnLoadDataCommandExecuted(object obj)
+        {
+            _savedDatas = File.Exists(__DataFileName) ? TestData.LoadFromXML(__DataFileName) : new TestData();
+
+            Servers = new ObservableCollection<Server>(_savedDatas.Servers);
+            Senders = new ObservableCollection<Sender>(_savedDatas.Senders);
+            Recipients = new ObservableCollection<Recipient>(_savedDatas.Recipients);
+            Messages = new ObservableCollection<Message>(_savedDatas.Messages);
+        }
+
+        private ICommand _SaveDataCommand;
+        public ICommand SaveDataCommand
+        {
+            get
+            {
+                if (_SaveDataCommand is null)
+                {
+                    _SaveDataCommand = new RelayCommand(OnSaveDataCommandExecuted);
+                }
+                return _SaveDataCommand;
+            } 
+        }
+
+        private void OnSaveDataCommandExecuted(object o)
+        {
+            _savedDatas.SaveToXML(__DataFileName);
+        }
+
         #region Server
         #region  CreateNewServerCommand
         private ICommand _CreateNewServerCommand;
@@ -209,7 +254,7 @@ namespace KulikCSLevel3.VIewModels
             AddEditServer win = new AddEditServer();
             win.Title = "Редактирование сервера";
             win.ServerName.Text = server.Adress;
-            win.ServerPort.Text = server.Port.ToString() ;
+            win.ServerPort.Text = server.Port.ToString();
             win.UseSsl.IsChecked = server.UseSSL;
             win.ShowDialog();
             if (win.DialogResult == true)
@@ -245,7 +290,7 @@ namespace KulikCSLevel3.VIewModels
             if (server is null) return;
             Servers.Remove(server);
             SelectedServer = Servers.FirstOrDefault();
-            MessageBox.Show($"Erase server {server.Adress}"); 
+            MessageBox.Show($"Erase server {server.Adress}");
         }
         #endregion
         #endregion
@@ -456,13 +501,10 @@ namespace KulikCSLevel3.VIewModels
 
         #endregion
 
-        public MainWindowViewModel()
-        {
-            Servers = new ObservableCollection<Server>(TestData.Servers);
-            Senders = new ObservableCollection<Sender>(TestData.Senders);
-            Recipients = new ObservableCollection<Recipient>(TestData.Recipients);
-            Messages = new ObservableCollection<Message>(TestData.Messages);
-        }
+        //public MainWindowViewModel()
+        //{
+        //    OnLoadDataCommandExecuted(null);
+        //}
 
 
     }

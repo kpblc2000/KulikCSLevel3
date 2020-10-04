@@ -34,6 +34,8 @@ namespace KulikCSLevel3.Models
             }
         }
 
+        public int Id { get; set; }
+
         /// <summary>
         /// Адрес автора письма. В случае некорректности исходного e-mail возвращает null
         /// </summary>
