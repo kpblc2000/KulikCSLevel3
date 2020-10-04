@@ -1,11 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Input;
 
-namespace KulikCSLevel3.Infrastrucuture.Command.Base
+namespace KulikCSLevel3.Infrastrucuture.Commands.Base
 {
     /// <summary>
     /// Общее описание команды для окна

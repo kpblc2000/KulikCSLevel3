@@ -83,7 +83,8 @@
     <Compile Include="ErrorMessage.xaml.cs">
       <DependentUpon>ErrorMessage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Infrastrucuture\Command\Base\Command.cs" />
+    <Compile Include="Infrastrucuture\Commands\Base\Command.cs" />
+    <Compile Include="Infrastrucuture\Commands\CloseWindowCommand.cs" />
     <Compile Include="Models\Message.cs" />
     <Compile Include="Models\Recipient.cs" />
     <Compile Include="Models\Sender.cs" />

@@ -7,6 +7,7 @@
         xmlns:data="clr-namespace:KulikCSLevel3.Data"
         xmlns:m="clr-namespace:KulikCSLevel3.Models"
         xmlns:vm="clr-namespace:KulikCSLevel3.ViewModels"
+        xmlns:cmd="clr-namespace:KulikCSLevel3.Infrastrucuture.Commands"
         xmlns:local="clr-namespace:KulikCSLevel3"
         mc:Ignorable="d"
         Title="{Binding Title}" Height="450" Width="800" MinHeight="350" MinWidth="600" WindowStartupLocation="CenterScreen">
@@ -21,7 +22,11 @@
         <MenuItem  Header="Сохранить" Name="mnuSave"/>
         <MenuItem Header="Закрыть" Name="mnuClose"/>
         <Separator/>
-        <MenuItem Header="Выход" Name="mnuExit"/>
+        <MenuItem Header="Выход" Name="mnuExit">
+          <MenuItem.Command>
+            <cmd:CloseWindowCommand/>
+          </MenuItem.Command>
+        </MenuItem>
       </MenuItem>
       <MenuItem Header="Сервис">
         <MenuItem Header="Параметры" Name="mnuSettings"/>
