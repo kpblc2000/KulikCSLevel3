@@ -6,9 +6,13 @@
         xmlns:fa="http://schemas.fontawesome.com/icons/"
         xmlns:data="clr-namespace:KulikCSLevel3.Data"
         xmlns:m="clr-namespace:KulikCSLevel3.Models"
+        xmlns:vm="clr-namespace:KulikCSLevel3.ViewModels"
         xmlns:local="clr-namespace:KulikCSLevel3"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800" MinHeight="350" MinWidth="600" WindowStartupLocation="CenterScreen">
+        Title="{Binding Title}" Height="450" Width="800" MinHeight="350" MinWidth="600" WindowStartupLocation="CenterScreen">
+  <Window.DataContext>
+    <vm:MainWindowViewModel/>
+  </Window.DataContext>
   <DockPanel>
     <Menu DockPanel.Dock="Top">
       <MenuItem Header="Файл">

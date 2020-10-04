@@ -83,10 +83,13 @@
     <Compile Include="ErrorMessage.xaml.cs">
       <DependentUpon>ErrorMessage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Infrastrucuture\Command\Base\Command.cs" />
     <Compile Include="Models\Message.cs" />
     <Compile Include="Models\Recipient.cs" />
     <Compile Include="Models\Sender.cs" />
     <Compile Include="Models\Server.cs" />
+    <Compile Include="ViewModels\Base\ViewModel.cs" />
+    <Compile Include="ViewModels\MainWindowViewModel.cs" />
     <Compile Include="WpfMailSender.xaml.cs">
       <DependentUpon>WpfMailSender.xaml</DependentUpon>
       <SubType>Code</SubType>
