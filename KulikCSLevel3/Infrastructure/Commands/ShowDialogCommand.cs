@@ -18,6 +18,7 @@ namespace KulikCSLevel3.Infrastructure.Commands
         {
             string msg = parameter as string ?? "Hi You";
             MessageBox.Show(msg, "Сообщение");
+            // App.Services.GetService<IDialogMessageService>.
         }
     }
 }

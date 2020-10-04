@@ -4,9 +4,10 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:KulikCSLevel3"
+         xmlns:cmd="clr-namespace:KulikCSLevel3.Infrastructure.Commands"
         mc:Ignorable="d"
         Title="Ошибка отправки письма" Height="250" Width="300" MinWidth="200" MinHeight="150">
-    <Grid Margin="2">
+  <Grid Margin="2">
     <Grid.ColumnDefinitions>
       <ColumnDefinition Width="1*"/>
       <ColumnDefinition Width="100"/>
@@ -16,6 +17,10 @@
       <RowDefinition Height="42"/>
     </Grid.RowDefinitions>
     <TextBlock Name="MessageText" Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" Margin="4" TextWrapping="Wrap"/>
-    <Button Name="CloseButton" Grid.Row="1" Grid.Column="1" Margin="8" Click="CloseButton_Click">Закрыть</Button>
+    <Button Name="CloseButton" Grid.Row="1" Grid.Column="1" Margin="8" Click="CloseButton_Click" Content="Закрыть" >
+      <Button.Command>
+        <cmd:CloseWindowCommand/>
+      </Button.Command>
+    </Button>
   </Grid>
 </Window>
