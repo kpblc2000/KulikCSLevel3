@@ -16,7 +16,14 @@ namespace KulikCSLevel3.Data
             ).ToList();
 
         public static List<Server> Servers { get; } = Enumerable.Range(1, 5)
-            .Select(i => new Server { Adress = $"smtp.server{i}.com", Port = 25, UseSSL = (i % 2 == 0), Login = $"login-{i}", Passord = TextEncoder.Encoder($"pwd{i}", 1) }
+            .Select(i => new Server
+            {
+                Adress = $"smtp.server{i}.com",
+                Port = 25,
+                UseSSL = (i % 2 == 0),
+                Login = $"login-{i}",
+                Passord = TextEncoder.Encoder($"pwd{i}", 1)
+            }
             ).ToList();
 
         public static List<Message> Messages { get; } = Enumerable.Range(1, 15)

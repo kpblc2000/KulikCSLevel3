@@ -6,74 +6,9 @@
         xmlns:fa="http://schemas.fontawesome.com/icons/"
         xmlns:data="clr-namespace:KulikCSLevel3.Data"
         xmlns:m="clr-namespace:KulikCSLevel3.Models"
-        xmlns:vm="clr-namespace:KulikCSLevel3.VIewModels"
-        xmlns:cmd="clr-namespace:KulikCSLevel3.Infrastructure.Commands"
         xmlns:local="clr-namespace:KulikCSLevel3"
         mc:Ignorable="d"
-<<<<<<< HEAD
         Title="MainWindow" Height="450" Width="800" MinHeight="350" MinWidth="600" WindowStartupLocation="CenterScreen">
-=======
-        DataContext="{Binding MainWindowModel, Source={StaticResource Locator}}" 
-        Title="{Binding Title}" Height="450" Width="800" MinHeight="350" MinWidth="600" WindowStartupLocation="CenterScreen">
-  <!-- -->
-  <!--<DockPanel>
-    <Menu DockPanel.Dock="Top">
-      <MenuItem Header="Файл">
-        <MenuItem Name="mnuExit" Header="Выход" Click="btnExit_Click"/>
-      </MenuItem>
-    </Menu>
-    <Grid DockPanel.Dock="Bottom">
-      <Grid.ColumnDefinitions>
-        <ColumnDefinition Width="1*">
-        </ColumnDefinition>
-        <ColumnDefinition Width="100">
-        </ColumnDefinition>
-        <ColumnDefinition Width="100">
-        </ColumnDefinition>
-      </Grid.ColumnDefinitions>
-      <StatusBar Grid.Column="0" Margin="2">
-        <TextBlock Name="StatusBarMessage" TextWrapping="Wrap"/>
-      </StatusBar>
-      
-      <Button Name="btnExit" Grid.Column="2" Margin="10" Padding="3" Click="btnExit_Click" IsCancel="True">Выход</Button>
-    </Grid>
-
-    <TabControl>
-      <TabItem Header="1 письмо" >
-        <Grid Margin="2">
-          <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="2*"/>
-            <ColumnDefinition Width="5*"/>
-            <ColumnDefinition Width="100"/>
-          </Grid.ColumnDefinitions>
-          <Grid.RowDefinitions>
-            <RowDefinition Height="23"/>
-            <RowDefinition Height="23"/>
-            <RowDefinition Height="23"/>
-            <RowDefinition Height="23"/>
-            <RowDefinition/>
-            <RowDefinition Height="42"/>
-          </Grid.RowDefinitions>
-          <Label Grid.Row="0" Grid.Column="0" Foreground="Black" Margin="2">От кого:</Label>
-          <Label Grid.Row="1" Grid.Column="0" Foreground="Black" Margin="2">Пароль:</Label>
-          <Label Grid.Row="2" Grid.Column="0" Foreground="Black" Margin="2">Кому</Label>
-          <Label Grid.Row="3" Grid.Column="0" Foreground="Black" Margin="2">Заголовок:</Label>
-          <Label Grid.Row="4" Grid.Column="0" Foreground="Black" VerticalAlignment="Top" Margin="2">Текст письма:</Label>
-          <TextBox Grid.Row="0" Grid.Column="1" Foreground="Black" Name="MailFrom" Grid.ColumnSpan="2" Margin="2"/>
-          <PasswordBox Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="2" Name="PasswordText" Margin="2"/>
-          <TextBox Grid.Row="2" Grid.Column="1" Foreground="Black" Name="MailTo" Grid.ColumnSpan="2" Margin="2"/>
-          <TextBox Grid.Row="3" Grid.Column="1" Foreground="Black" Name="Subject" Grid.ColumnSpan="2" Margin="2"/>
-          <TextBox Grid.Row="4" Grid.Column="1" Foreground="Black" Name="Body" Grid.ColumnSpan="2" Margin="2"/>
-          <Button Name="btnSend" Grid.Column="2" Margin="8" Padding="3" Grid.Row="5" IsDefault="True" Click="btnSend_Click">Отправить</Button>
-        </Grid>
-      </TabItem>
-      <TabItem Header="Списки" IsEnabled="False"></TabItem>
-      <TabItem Header="Планировщик" IsEnabled="False"></TabItem>
-      <TabItem Header="Письма" IsEnabled="False"></TabItem>
-      <TabItem Header="Статистика" IsEnabled="False"></TabItem>
-    </TabControl>
-  </DockPanel>-->
->>>>>>> f3228c23ed00e07fbe81ea686be2b5b47374afdb
   <DockPanel>
     <Menu DockPanel.Dock="Top">
       <MenuItem Header="Файл">
@@ -82,11 +17,7 @@
         <MenuItem  Header="Сохранить" Name="mnuSave"/>
         <MenuItem Header="Закрыть" Name="mnuClose"/>
         <Separator/>
-        <MenuItem Header="Выход" Name="mnuExit">
-          <MenuItem.Command>
-            <cmd:CloseWindowCommand/>
-          </MenuItem.Command>
-        </MenuItem>
+        <MenuItem Header="Выход" Name="mnuExit"/>
       </MenuItem>
       <MenuItem Header="Сервис">
         <MenuItem Header="Параметры" Name="mnuSettings"/>
@@ -106,12 +37,7 @@
         <DockPanel>
           <ToolBarTray DockPanel.Dock="Top">
             <ToolBar Header="Сервера" Band="0">
-<<<<<<< HEAD
-              <ComboBox Name="Serverlist" MaxWidth="200" MinWidth="120" SelectedIndex="0" Margin="26,0,0,0">
-                <!--ItemsSource="{x:Static data:TestData.Servers}">-->
-=======
-              <ComboBox Name="Serverlist" MaxWidth="200" MinWidth="120" SelectedIndex="0" Margin="26,0,0,0" ItemsSource="{Binding Servers}" SelectedItem="{Binding SelectedServer}">
->>>>>>> f3228c23ed00e07fbe81ea686be2b5b47374afdb
+              <ComboBox Name="Serverlist" MaxWidth="200" MinWidth="120" SelectedIndex="0" Margin="26,0,0,0" ItemsSource="{x:Static data:TestData.Servers}">
                 <ComboBox.ItemTemplate>
                   <DataTemplate>
                     <StackPanel Orientation="Horizontal">
@@ -122,17 +48,12 @@
                   </DataTemplate>
                 </ComboBox.ItemTemplate>
               </ComboBox>
-              <Button fa:Awesome.Content="Solid_PlusCircle" Foreground="DarkBlue" Command="{Binding CreateNewServerCommand}"/>
-              <Button fa:Awesome.Content="Solid_Edit" Foreground="Green" Command="{Binding EditServerCommand}" CommandParameter="{Binding SelectedServer}"/>
-              <Button fa:Awesome.Content="Regular_TrashAlt" Foreground="Red" Command="{Binding DeleteServerCommand}" CommandParameter="{Binding SelectedServer}"/>
+              <Button fa:Awesome.Content="Solid_PlusCircle" Foreground="DarkBlue"/>
+              <Button fa:Awesome.Content="Solid_Edit" Foreground="Green"/>
+              <Button fa:Awesome.Content="Regular_TrashAlt" Foreground="Red"/>
             </ToolBar>
             <ToolBar Header="Отправители" Band="1">
-<<<<<<< HEAD
-              <ComboBox Name="SenderList" MaxWidth="200" MinWidth="120" SelectedIndex="0" >
-                <!--ItemsSource="{x:Static data:TestData.Senders}">-->
-=======
-              <ComboBox Name="SenderList" MaxWidth="200" MinWidth="120" SelectedIndex="0" ItemsSource="{Binding Senders}" SelectedItem="{Binding SelectedSender}">
->>>>>>> f3228c23ed00e07fbe81ea686be2b5b47374afdb
+              <ComboBox Name="SenderList" MaxWidth="200" MinWidth="120" SelectedIndex="0" ItemsSource="{x:Static data:TestData.Senders}">
                 <ComboBox.ItemTemplate>
                   <DataTemplate DataType="m:Sender">
                     <StackPanel Orientation="Horizontal">
@@ -141,30 +62,21 @@
                   </DataTemplate>
                 </ComboBox.ItemTemplate>
               </ComboBox>
-              <Button fa:Awesome.Content="Solid_PlusCircle" Foreground="DarkBlue" Command="{Binding CreateNewSenderCommand}"/>
-              <Button fa:Awesome.Content="Solid_Edit" Foreground="Green" Command="{Binding EditSenderCommand}" CommandParameter="{Binding SelectedSender}"/>
-              <Button fa:Awesome.Content="Regular_TrashAlt" Foreground="Red" Command="{Binding DeleteSenderCommand}" CommandParameter="{Binding SelectedSender}"/>
+              <Button fa:Awesome.Content="Solid_PlusCircle" Foreground="DarkBlue"/>
+              <Button fa:Awesome.Content="Solid_Edit" Foreground="Green"/>
+              <Button fa:Awesome.Content="Regular_TrashAlt" Foreground="Red"/>
             </ToolBar>
             <ToolBar Header="Планировщик" Band="0">
-              <Button Name="ButtonTabScheduler" fa:Awesome.Content="Regular_Clock" >
-                <Button.Command>
-                  <cmd:TabScheduleActivateCommand/>
-                </Button.Command>
-              </Button>
+              <Button Name="ButtonTabScheduler" fa:Awesome.Content="Regular_Clock" Click="ButtonTabScheduler_Click"/>
             </ToolBar>
             <ToolBar Header="Получатели" Band="1">
-              <Button fa:Awesome.Content="Solid_PlusCircle" Foreground="DarkBlue" Command="{Binding CreateNewRecipientCommand}"/>
-              <Button fa:Awesome.Content="Solid_Edit" Foreground="Green" Command="{Binding EditRecipientCommand}" CommandParameter="{Binding SelectedRecipient}"/>
-              <Button fa:Awesome.Content="Regular_TrashAlt" Foreground="Red" Command="{Binding DeleteRecipientCommand}" CommandParameter="{Binding SelectedRecipient}"/>
+              <Button fa:Awesome.Content="Solid_PlusCircle" Foreground="DarkBlue"/>
+              <Button fa:Awesome.Content="Solid_Edit" Foreground="Green"/>
+              <Button fa:Awesome.Content="Regular_TrashAlt" Foreground="Red"/>
             </ToolBar>
           </ToolBarTray>
           <GroupBox Header="Список получателей">
-<<<<<<< HEAD
-            <DataGrid Name="RecipientList" AutoGenerateColumns="False" AlternatingRowBackground="LightGray" GridLinesVisibility="Vertical" VerticalGridLinesBrush="Gray">
-              <!--ItemsSource="{x:Static data:TestData.Recipients}"-->
-=======
-            <DataGrid Name="RecipientList" ItemsSource="{Binding Recipients}" AutoGenerateColumns="False" AlternatingRowBackground="LightGray" GridLinesVisibility="Vertical" VerticalGridLinesBrush="Gray" SelectedItem="{Binding SelectedRecipient}">
->>>>>>> f3228c23ed00e07fbe81ea686be2b5b47374afdb
+            <DataGrid Name="RecipientList" AutoGenerateColumns="False" AlternatingRowBackground="LightGray" GridLinesVisibility="Vertical" VerticalGridLinesBrush="Gray" ItemsSource="{x:Static data:TestData.Recipients}">
               <DataGrid.Columns>
                 <DataGridTextColumn Header="Id" MinWidth="30"/>
                 <DataGridTextColumn Header="Имя" Width="1*" Binding="{Binding Name}"/>
@@ -241,12 +153,7 @@
             <ColumnDefinition Width="1*"/>
           </Grid.ColumnDefinitions>
           <GroupBox Grid.Column="0" Header="Список писем">
-<<<<<<< HEAD
-            <ListBox Name="MessagesList">
-              <!--ItemsSource="{x:Static data:TestData.Messages}">-->
-=======
-            <ListBox Name="MessagesList" ItemsSource="{Binding Messages}" SelectedItem="{Binding SelectedMessage}">
->>>>>>> f3228c23ed00e07fbe81ea686be2b5b47374afdb
+            <ListBox Name="MessagesList" ItemsSource="{x:Static data:TestData.Messages}">
               <ListBox.ItemTemplate>
                 <DataTemplate>
                   <StackPanel Orientation="Vertical">

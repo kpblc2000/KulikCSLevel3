@@ -55,11 +55,6 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="Infrastructure\Commands\Base\Command.cs" />
-    <Compile Include="Infrastructure\Commands\CloseWindowCommand.cs" />
-    <Compile Include="Infrastructure\Commands\RelayCommand.cs" />
-    <Compile Include="VIewModels\Base\ViewModel.cs" />
-    <Compile Include="VIewModels\MainWindowsViewModel.cs" />
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>

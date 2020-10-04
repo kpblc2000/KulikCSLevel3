@@ -16,6 +16,6 @@
       <RowDefinition Height="42"/>
     </Grid.RowDefinitions>
     <TextBlock Name="MessageText" Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" Margin="4" TextWrapping="Wrap"/>
-    <Button Name="CloseButton" Grid.Row="1" Grid.Column="1" Margin="8">Закрыть</Button>
+    <Button Name="CloseButton" Grid.Row="1" Grid.Column="1" Margin="8" Click="CloseButton_Click">Закрыть</Button>
   </Grid>
 </Window>

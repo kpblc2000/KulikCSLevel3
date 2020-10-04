@@ -1,30 +1,14 @@
-﻿<Window x:Class="KulikCSLevel3.MainWindow"
+﻿<Window x:Class="WPFTests.MainWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:KulikCSLevel3"
-        xmlns:vm="clr-namespace:KulikCSLevel3.VIewModels"
-        xmlns:cmd="clr-namespace:KulikCSLevel3.Infrastructure.Commands"
+        xmlns:local="clr-namespace:WPFTests"
         mc:Ignorable="d"
-        Title="{Binding Title}"
-        Height="455.05" Width="555.5"
-        >
-  <Window.DataContext>
-    <vm:MainWindowsViewModel/>
-  </Window.DataContext>
+        Title="Кулик : Рассылка" Height="455.05" Width="555.5">
   <Grid>
     <TextBox Name="txt" HorizontalAlignment="Left" Height="23" Margin="86,89,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="120"/>
     <Slider HorizontalAlignment="Left" Margin="46,203,0,0" VerticalAlignment="Top" Width="237" Value="{Binding ElementName=txt, Path=Text}" Minimum="-100" Maximum="100"/>
-    <TextBox HorizontalAlignment="Left" Height="23" Margin="130,262,0,0" TextWrapping="Wrap" Text="{Binding Title, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Top" Width="120"/>
-    <TextBlock HorizontalAlignment="Left" Margin="355,10,0,0" TextWrapping="Wrap" Text="{Binding CurrentTime, ConverterCulture=ru-RU, StringFormat=HH:mm:ss}" VerticalAlignment="Top" Width="183"/>
-    <Button Content="Button" HorizontalAlignment="Left" Margin="170,346,0,0" VerticalAlignment="Top" Width="75" >
-      <Button.Command>
-        <cmd:CloseWindowCommand/>
-      </Button.Command>
-    </Button>
-    <Button Content="Button" HorizontalAlignment="Left" Margin="395,346,0,0" VerticalAlignment="Top" Width="75" Command="{Binding ShowDialogCommand}">
-      <!--<Button.Command></Button.Command>-->
-    </Button>
+
   </Grid>
 </Window>
