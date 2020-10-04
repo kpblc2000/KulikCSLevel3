@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace WPFTests.Properties
+namespace KulikCSLevel3.Properties
 {
 
 

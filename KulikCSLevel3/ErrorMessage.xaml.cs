@@ -23,10 +23,5 @@ namespace KulikCSLevel3
         {
             InitializeComponent();
         }
-
-        private void CloseButton_Click(object sender, RoutedEventArgs e)
-        {
-            Close();
-        }
     }
 }

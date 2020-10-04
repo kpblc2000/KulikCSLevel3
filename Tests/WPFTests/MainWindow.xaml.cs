@@ -6,7 +6,7 @@
 /// C# уровень 3, урок 3
 /// </summary>
 
-namespace WPFTests
+namespace KulikCSLevel3
 {
     /// <summary>
     /// Логика взаимодействия для MainWindow.xaml
