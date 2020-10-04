@@ -34,6 +34,8 @@ namespace KulikCSLevel3
         private static void InitializeServices(IServiceCollection services)
         {
             services.AddTransient<IDialogMessageService, WinDialogMessage>();
+            services.AddSingleton<KulikCSLevel3.ViewModels.MainWindowViewModel>();
+            // services.AddSingleton<IDialogMessageService, WinDialogMessage>();
             //services.AddScoped<IDialogService, WindowDialog>();
             //services.AddSingleton<IDialogService, WindowDialog>();
         }
