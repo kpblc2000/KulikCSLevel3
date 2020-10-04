@@ -1,7 +1,9 @@
 ﻿using KulikCSLevel3.Models;
 using MailSender.lib.Service;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
+using System.Xml.Serialization;
 
 namespace KulikCSLevel3.Data
 {
@@ -75,23 +77,19 @@ namespace KulikCSLevel3.Data
             set { _Messages = value; }
         }
 
-        //public static List<Recipient> Recipients { get; } = Enumerable.Range(1, 20)
-        //    .Select(i => new Recipient { Name = $"Получатель {i}", EmailAdress = $"client{i}@server.ru" }
-        //    ).ToList();
+        public static TestData LoadFromXML(string FileName)
+        {
+            var serializer = new XmlSerializer(typeof(TestData));
+            using (var file = File.OpenText(FileName))
+            { return (TestData)serializer.Deserialize(file); }
+        }
 
-        //public static List<Server> Servers { get; } = Enumerable.Range(1, 5)
-        //    .Select(i => new Server
-        //    {
-        //        Adress = $"smtp.server{i}.com",
-        //        Port = 25,
-        //        UseSSL = (i % 2 == 0),
-        //        Login = $"login-{i}",
-        //        Passord = TextEncoder.Encoder($"pwd{i}", 1)
-        //    }
-        //    ).ToList();
+        public void SaveToXML(string FileName)
+        {
+            var serializer = new XmlSerializer(typeof(TestData));
+            using (var file = File.Create(FileName))
+            { serializer.Serialize(file, this); }
+        }
 
-        //public static List<Message> Messages { get; } = Enumerable.Range(1, 15)
-        //    .Select(i => new Message { Subject = $"Subj{i}", Body = $"Body{i}" })
-        //    .ToList();
     }
 }

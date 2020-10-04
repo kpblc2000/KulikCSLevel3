@@ -35,9 +35,6 @@ namespace KulikCSLevel3
         {
             services.AddTransient<IDialogMessageService, WinDialogMessage>();
             services.AddSingleton<KulikCSLevel3.ViewModels.MainWindowViewModel>();
-            // services.AddSingleton<IDialogMessageService, WinDialogMessage>();
-            //services.AddScoped<IDialogService, WindowDialog>();
-            //services.AddSingleton<IDialogService, WindowDialog>();
         }
 
     }
