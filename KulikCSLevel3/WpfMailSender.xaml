@@ -11,6 +11,11 @@
         xmlns:vm="clr-namespace:KulikCSLevel3.ViewModels"
         xmlns:cmd="clr-namespace:KulikCSLevel3.Infrastructure.Commands"
         xmlns:local="clr-namespace:KulikCSLevel3"
+        
+        xmlns:diag="clr-namespace:System.Diagnostics;assembly=WindowsBase"
+        
+         
+        
         mc:Ignorable="d"
         DataContext="{Binding MainWindowModel, Source={StaticResource Locator}}"
         Title="{Binding Title}"
@@ -25,6 +30,10 @@
       <i:InvokeCommandAction Command="{Binding LoadDataCommand}"/>
     </i:EventTrigger>
   </i:Interaction.Triggers>
+
+  <Window.Resources>
+    <local:DebugDummyConverter x:Key="DebugDummyConverter" />
+  </Window.Resources>
 
   <!--<Window.DataContext>
     <vm:MainWindowViewModel/>
@@ -61,7 +70,7 @@
         <DockPanel>
           <ToolBarTray DockPanel.Dock="Top">
             <ToolBar Header="Сервера" Band="0">
-              <ComboBox Name="ServerList" MaxWidth="200" MinWidth="120" SelectedIndex="0" Margin="26,0,0,0" ItemsSource="{Binding Servers}">
+              <ComboBox Name="ServerList" MaxWidth="200" MinWidth="120" SelectedIndex="0" Margin="26,0,0,0" ItemsSource="{Binding Servers, diag:PresentationTraceSources.TraceLevel=High,  Converter={StaticResource DebugDummyConverter}}" SelectedItem="{Binding SelectedServer}">
                 <ComboBox.ItemTemplate>
                   <DataTemplate>
                     <StackPanel Orientation="Horizontal">
