@@ -9,7 +9,6 @@ namespace KulikCSLevel3.Data
 {
     public class TestData
     {
-
         private List<Sender> _Senders;
 
         public List<Sender> Senders

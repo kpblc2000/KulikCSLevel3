@@ -1,5 +1,6 @@
 ﻿using KulikCSLevel3.Data;
 using KulikCSLevel3.Infrastructure.Commands;
+using KulikCSLevel3.Infrastructure.Commands.Base;
 using KulikCSLevel3.Models;
 using KulikCSLevel3.ViewModels.Base;
 using System;
@@ -88,8 +89,8 @@ namespace KulikCSLevel3.ViewModels
 
         #region Команды сериализации
 
-        private ICommand _LoadDataCommand;
-        public ICommand LoadDataCommand
+        private Command _LoadDataCommand;
+        public Command LoadDataCommand
         {
             get
             {
@@ -111,8 +112,8 @@ namespace KulikCSLevel3.ViewModels
             Messages = new ObservableCollection<Message>(_savedDatas.Messages);
         }
 
-        private ICommand _SaveDataCommand;
-        public ICommand SaveDataCommand
+        private Command _SaveDataCommand;
+        public Command SaveDataCommand
         {
             get
             {
@@ -126,7 +127,20 @@ namespace KulikCSLevel3.ViewModels
 
         private void OnSaveDataCommandExecuted(object o)
         {
-            _savedDatas.SaveToXML(__DataFileName);
+
+            List<Server> servers = new List<Server>(Servers);
+            List<Sender> senders = new List<Sender>(Senders);
+            List<Recipient> recs = new List<Recipient>(Recipients);
+            List<Message> msgs = new List<Message>(Messages);
+            var data = new TestData
+            {
+                Servers = servers,
+                Senders = senders,
+                Recipients = recs,
+                Messages = msgs
+            };
+            data.SaveToXML(__DataFileName);
+
         }
 
         #endregion

@@ -3,6 +3,9 @@ using System.Windows.Media;
 using MailSender.lib;
 using System.Net.Mail;
 using System.Windows;
+using System.Windows.Data;
+using System.Diagnostics;
+using System;
 /// <summary>
 /// Алексей Кулик kpblc2000@yandex.ru
 /// C# Уровень 3 урок 3.
@@ -11,12 +14,11 @@ namespace KulikCSLevel3
 {
     public partial class MainWindow
     {
-        public MainWindow() => InitializeComponent();
-
-        private void btnExit_Click(object sender, System.Windows.RoutedEventArgs e)
+        public MainWindow()
         {
-            Close();
+            InitializeComponent();
         }
+
 
         private void btnSend_Click(object sender, System.Windows.RoutedEventArgs e)
         {
