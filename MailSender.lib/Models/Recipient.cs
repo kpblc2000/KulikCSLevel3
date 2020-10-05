@@ -1,6 +1,6 @@
 ﻿namespace KulikCSLevel3.Models
 {
-    class Sender
+    public class Recipient
     {
         public int Id { get; set; }
         public string Name { get; set; }
