@@ -6,9 +6,9 @@ namespace KulikCSLevel3.Infrastructure.Commands.Base
     /// <summary>
     /// Общее описание команды для окна
     /// </summary>
-    public abstract class Command : ICommand
+    abstract class Command : ICommand
     {
-        event EventHandler ICommand.CanExecuteChanged
+        public event EventHandler CanExecuteChanged
         {
             add => CommandManager.RequerySuggested += value;
             remove => CommandManager.RequerySuggested -= value;
