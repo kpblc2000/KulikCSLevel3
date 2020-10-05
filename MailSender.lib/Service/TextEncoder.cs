@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace MailSender.lib.Service
+namespace WpfMailSender.Service
 {
     public static class TextEncoder
     {

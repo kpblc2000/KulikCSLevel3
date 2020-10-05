@@ -47,7 +47,7 @@
         <DockPanel>
           <ToolBarTray DockPanel.Dock="Top">
             <ToolBar Header="Сервера" Band="0">
-              <ComboBox Name="ServerList" MaxWidth="200" MinWidth="120" SelectedIndex="0" Margin="26,0,0,0" ItemsSource="{x:Static data:TestData.Servers}">
+              <ComboBox Name="ServersList" MaxWidth="200" MinWidth="120" SelectedIndex="0" Margin="26,0,0,0" ItemsSource="{x:Static data:TestData.Servers}">
                 <ComboBox.ItemTemplate>
                   <DataTemplate>
                     <StackPanel Orientation="Horizontal">
@@ -63,7 +63,7 @@
               <Button fa:Awesome.Content="Regular_TrashAlt" Foreground="Red"/>
             </ToolBar>
             <ToolBar Header="Отправители" Band="1">
-              <ComboBox Name="SenderList" MaxWidth="200" MinWidth="120" SelectedIndex="0" ItemsSource="{Binding Senders}">
+              <ComboBox Name="SendersList" MaxWidth="200" MinWidth="120" SelectedIndex="0" ItemsSource="{Binding Senders}">
                 <ComboBox.ItemTemplate>
                   <DataTemplate DataType="m:Sender">
                     <StackPanel Orientation="Horizontal">
@@ -87,7 +87,7 @@
             </ToolBar>
           </ToolBarTray>
           <GroupBox Header="Список получателей">
-            <DataGrid Name="RecipientList" AutoGenerateColumns="False" AlternatingRowBackground="LightGray" GridLinesVisibility="Vertical" VerticalGridLinesBrush="Gray" ItemsSource="{Binding Recipients}">
+            <DataGrid Name="RecipientsList" AutoGenerateColumns="False" AlternatingRowBackground="LightGray" GridLinesVisibility="Vertical" VerticalGridLinesBrush="Gray" ItemsSource="{Binding Recipients}">
               <DataGrid.Columns>
                 <DataGridTextColumn Header="Id" MinWidth="30"/>
                 <DataGridTextColumn Header="Имя" Width="1*" Binding="{Binding Name}"/>

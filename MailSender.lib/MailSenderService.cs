@@ -1,4 +1,4 @@
-﻿using MailSender.lib.Service;
+﻿using WpfMailSender.Service;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -6,7 +6,7 @@ using System.Net;
 using System.Net.Mail;
 using System.Text;
 
-namespace MailSender.lib
+namespace WpfMailSender
 {
     public class MailSenderService
     {

@@ -1,10 +1,8 @@
-﻿using System.Windows.Media;
-using MailSender.lib;
+﻿using KulikCSLevel3.Models;
+using KulikCSLevel3.Services;
+using System.Diagnostics;
 using System.Net.Mail;
 using System.Windows;
-using System.Windows.Data;
-using System.Diagnostics;
-using System;
 /// <summary>
 /// Алексей Кулик kpblc2000@yandex.ru
 /// C# Уровень 3 урок 3.
@@ -17,6 +15,36 @@ namespace KulikCSLevel3
         {
             InitializeComponent();
         }
+
+        private void OnSendNowButtonClick(object Sender, RoutedEventArgs E)
+        {
+            if (!(SendersList.SelectedItem is Sender sender)) return;
+            if (!(RecipientsList.SelectedItem is Recipient recipient)) return;
+            if (!(ServersList.SelectedItem is Server server)) return;
+            if (!(MessagesList.SelectedItem is Message message)) return;
+            var mail_sender = new SmtpSender(
+                server.Address,
+                server.Port,
+                server.UseSSL,
+                server.Login,
+                server.Password);
+            try
+            {
+                var timer = Stopwatch.StartNew();
+                mail_sender.Send(
+                    sender.Email,
+                    recipient.Email,
+                    message.Subject,
+                    message.Body);
+                timer.Stop();
+                MessageBox.Show($"Почта успешно отправлена за {timer.Elapsed.TotalSeconds:0.##}c", "Отправка почты", MessageBoxButton.OK, MessageBoxImage.Information);
+            }
+            catch (SmtpException)
+            {
+                MessageBox.Show("Ошибка при отправке почты", "Отправка почты", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+        }
+        #region Hide
         private void btnSend_Click(object sender, System.Windows.RoutedEventArgs e)
         {
             //Mail mail = new Mail(
@@ -101,5 +129,6 @@ namespace KulikCSLevel3
         //    }
 
         //}
+        #endregion
     }
 }
