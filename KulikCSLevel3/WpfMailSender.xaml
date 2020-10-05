@@ -7,8 +7,8 @@
         xmlns:i="http://schemas.microsoft.com/xaml/behaviors"
         xmlns:l="clr-namespace:KulikCSLevel3"
         xmlns:local="clr-namespace:KulikCSLevel3"
-        
-        xmlns:data="clr-namespace:KulikCSLevel3.Data"
+
+        xmlns:cmd="clr-namespace:KulikCSLevel3.Infrastructure.Commands"
         xmlns:m="clr-namespace:KulikCSLevel3.Models;assembly=MailSender.lib"
         xmlns:vm="clr-namespace:KulikCSLevel3.ViewModels"
         
@@ -23,14 +23,18 @@
   <Window.DataContext>
     <vm:MainWindowViewModel/>
   </Window.DataContext>
-  
+
   <DockPanel>
     <Menu DockPanel.Dock="Top">
       <MenuItem Header="Файл">
         <MenuItem Header="Создать" Name="mnuCreate"/>
-        <MenuItem Header="Открыть" Name="mnuOpen" Command="{Binding LoadDataCommand}"/>
-        <MenuItem  Header="Сохранить" Name="mnuSave" Command="{Binding SaveDataCommand}"/>
-        <MenuItem Header="Закрыть" Name="mnuClose"/>
+        <MenuItem Header="Открыть" Name="mnuOpen" />
+        <MenuItem  Header="Сохранить" Name="mnuSave"/>
+        <MenuItem Header="Закрыть" Name="mnuClose" >
+          <MenuItem.Command>
+            <cmd:CloseWindowCommand/>
+          </MenuItem.Command>
+        </MenuItem>
         <Separator/>
         <MenuItem Header="Выход" Name="mnuExit">
         </MenuItem>
@@ -53,7 +57,7 @@
         <DockPanel>
           <ToolBarTray DockPanel.Dock="Top">
             <ToolBar Header="Сервера" Band="0">
-              <ComboBox Name="ServersList" MaxWidth="200" MinWidth="120" SelectedIndex="0" Margin="26,0,0,0" >
+              <ComboBox Name="ServersList" MaxWidth="200" MinWidth="120" SelectedIndex="0" Margin="26,0,0,0">
                 <ComboBox.ItemTemplate>
                   <DataTemplate>
                     <StackPanel Orientation="Horizontal">
@@ -69,7 +73,7 @@
               <Button fa:Awesome.Content="Regular_TrashAlt" Foreground="Red"/>
             </ToolBar>
             <ToolBar Header="Отправители" Band="1">
-              <ComboBox Name="SendersList" MaxWidth="200" MinWidth="120" SelectedIndex="0" ItemsSource="{Binding Senders}">
+              <ComboBox Name="SendersList" MaxWidth="200" MinWidth="120" SelectedIndex="0">
                 <ComboBox.ItemTemplate>
                   <DataTemplate DataType="m:Sender">
                     <StackPanel Orientation="Horizontal">
@@ -93,7 +97,7 @@
             </ToolBar>
           </ToolBarTray>
           <GroupBox Header="Список получателей">
-            <DataGrid Name="RecipientsList" AutoGenerateColumns="False" AlternatingRowBackground="LightGray" GridLinesVisibility="Vertical" VerticalGridLinesBrush="Gray" ItemsSource="{Binding Recipients}">
+            <DataGrid Name="RecipientsList" AutoGenerateColumns="False" AlternatingRowBackground="LightGray" GridLinesVisibility="Vertical" VerticalGridLinesBrush="Gray">
               <DataGrid.Columns>
                 <DataGridTextColumn Header="Id" MinWidth="30"/>
                 <DataGridTextColumn Header="Имя" Width="1*" Binding="{Binding Name}"/>
@@ -170,7 +174,7 @@
             <ColumnDefinition Width="1*"/>
           </Grid.ColumnDefinitions>
           <GroupBox Grid.Column="0" Header="Список писем">
-            <ListBox Name="MessagesList" ItemsSource="{Binding Messages}">
+            <ListBox Name="MessagesList">
               <ListBox.ItemTemplate>
                 <DataTemplate>
                   <StackPanel Orientation="Vertical">
@@ -228,6 +232,9 @@
           <TextBlock Grid.Column="0" Grid.Row="3" Text="Число запусков : "/>
           <TextBlock Grid.Column="1" Grid.Row="3" Text="4"/>
           <Button Name="TestButton" Grid.Row="4" Content="ShowDlg" CommandParameter="Command msg">
+            <Button.Command>
+              <cmd:ShowDialogCommand/>
+            </Button.Command>
           </Button>
         </Grid>
       </TabItem>
