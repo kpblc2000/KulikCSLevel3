@@ -1,12 +1,15 @@
 ﻿using KulikCSLevel3.Models;
 using MailSender.lib.Service;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Xml;
 using System.Xml.Serialization;
 
 namespace KulikCSLevel3.Data
 {
+    [Serializable]
     public class TestData
     {
         private List<Sender> _Senders;
