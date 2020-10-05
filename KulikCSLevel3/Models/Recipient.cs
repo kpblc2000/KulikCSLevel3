@@ -1,13 +1,10 @@
-﻿using System;
-using System.Net.Mail;
-
-namespace KulikCSLevel3.Models
+﻿namespace KulikCSLevel3.Models
 {
-    public class Recipient : ModelBase
+    class Recipient
     {
-
+        public int Id { get; set; }
         public string Name { get; set; }
-
-        public string EmailAdress { get; set; }
+        public string Email { get; set; }
+        public string Description { get; set; }
     }
 }

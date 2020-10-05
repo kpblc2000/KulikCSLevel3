@@ -4,20 +4,31 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:fa="http://schemas.fontawesome.com/icons/"
+        xmlns:data="clr-namespace:KulikCSLevel3.Data"
         xmlns:i="http://schemas.microsoft.com/xaml/behaviors"
         xmlns:l="clr-namespace:KulikCSLevel3"
-        xmlns:local="clr-namespace:KulikCSLevel3"
-        
-        xmlns:data="clr-namespace:KulikCSLevel3.Data"
         xmlns:m="clr-namespace:KulikCSLevel3.Models"
-        
+        xmlns:vm="clr-namespace:KulikCSLevel3.ViewModels"
+        xmlns:cmd="clr-namespace:KulikCSLevel3.Infrastructure.Commands"
+        xmlns:local="clr-namespace:KulikCSLevel3"
         mc:Ignorable="d"
+        DataContext="{Binding MainWindowModel, Source={StaticResource Locator}}"
+        Title="{Binding Title}"
         Height="450"
         Width="800"
         MinHeight="350" 
         MinWidth="600" 
         WindowStartupLocation="CenterScreen"
         >
+  <i:Interaction.Triggers>
+    <i:EventTrigger EventName="Loaded">
+      <i:InvokeCommandAction Command="{Binding LoadDataCommand}"/>
+    </i:EventTrigger>
+  </i:Interaction.Triggers>
+
+  <!--<Window.DataContext>
+    <vm:MainWindowViewModel/>
+  </Window.DataContext>-->
   <DockPanel>
     <Menu DockPanel.Dock="Top">
       <MenuItem Header="Файл">
@@ -27,6 +38,9 @@
         <MenuItem Header="Закрыть" Name="mnuClose"/>
         <Separator/>
         <MenuItem Header="Выход" Name="mnuExit">
+          <MenuItem.Command>
+            <cmd:CloseWindowCommand/>
+          </MenuItem.Command>
         </MenuItem>
       </MenuItem>
       <MenuItem Header="Сервис">
@@ -47,11 +61,11 @@
         <DockPanel>
           <ToolBarTray DockPanel.Dock="Top">
             <ToolBar Header="Сервера" Band="0">
-              <ComboBox Name="ServerList" MaxWidth="200" MinWidth="120" SelectedIndex="0" Margin="26,0,0,0" ItemsSource="{x:Static data:TestData.Servers}">
+              <ComboBox Name="ServerList" MaxWidth="200" MinWidth="120" SelectedIndex="0" Margin="26,0,0,0" ItemsSource="{Binding Servers}">
                 <ComboBox.ItemTemplate>
                   <DataTemplate>
                     <StackPanel Orientation="Horizontal">
-                      <TextBlock Text="{Binding Address}"/>
+                      <TextBlock Text="{Binding Adress}"/>
                       <TextBlock Text=" : "/>
                       <TextBlock Text="{Binding Port}"/>
                     </StackPanel>
@@ -78,6 +92,9 @@
             </ToolBar>
             <ToolBar Header="Планировщик" Band="0">
               <Button Name="ButtonTabScheduler" fa:Awesome.Content="Regular_Clock">
+                <Button.Command>
+                  <cmd:TabScheduleActivateCommand/>
+                </Button.Command>
               </Button>
             </ToolBar>
             <ToolBar Header="Получатели" Band="1">
@@ -113,7 +130,7 @@
                     <Setter Property="Margin" Value="0,3"/>
                   </Style>
                 </StackPanel.Resources>
-                <Button Name="BtnSend" Content="Отправить"/>
+                <Button Name="BtnSend" Content="Отправить" Click="OnSendButtonClick"/>
                 <Button Content="Запланировать"/>
               </StackPanel>
             </StackPanel>
@@ -222,6 +239,9 @@
           <TextBlock Grid.Column="0" Grid.Row="3" Text="Число запусков : "/>
           <TextBlock Grid.Column="1" Grid.Row="3" Text="4"/>
           <Button Name="TestButton" Grid.Row="4" Content="ShowDlg" CommandParameter="Command msg">
+            <Button.Command>
+              <cmd:ShowDialogCommand/>
+            </Button.Command>
           </Button>
         </Grid>
       </TabItem>

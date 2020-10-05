@@ -1,39 +1,14 @@
-﻿using System;
-
-namespace KulikCSLevel3.Models
+﻿namespace KulikCSLevel3.Models
 {
-    public class Server : ModelBase
+    class Server
     {
-        private string _adress;
-        private int _port;
-        private bool _useSsl;
-
-        public string Adress { get { return _adress; } set { _adress = value; } }
-
-        public int Port
-        {
-            get { return _port; }
-            set
-            {
-                if (_port <= 0 || _port > 65535)
-                {
-                    throw new ArgumentOutOfRangeException("Номер порта должен быть от 1 до 65535");
-                }
-                _port = value;
-            }
-        }
-
-        public bool UseSSL
-        {
-            get { return _useSsl; }
-            set { _useSsl = value; }
-        }
-
+        public int Id { get; set; }
+        public string Name { get; set; }
+        public string Address { get; set; }
+        public int Port { get; set; } = 25;
+        public bool UseSSL { get; set; }
         public string Login { get; set; }
-
-        public string Passord { get; set; }
-
+        public string Password { get; set; }
         public string Description { get; set; }
-
     }
 }

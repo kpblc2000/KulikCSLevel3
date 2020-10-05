@@ -1,0 +1,15 @@
+﻿<Application x:Class="KulikCSLevel3.App"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:vm="clr-namespace:KulikCSLevel3.ViewModels"
+             xmlns:local="clr-namespace:KulikCSLevel3"
+             StartupUri="WpfMailSender.xaml">
+  <Application.Resources>
+    <vm:ViewModelLocator x:Key="Locator"/>
+    <!--<ResourceDictionary>
+      <ResourceDictionary.MergedDictionaries>
+        <ResourceDictionary Source="Theme.xaml"/>
+      </ResourceDictionary.MergedDictionaries>
+    </ResourceDictionary>-->
+  </Application.Resources>
+</Application>

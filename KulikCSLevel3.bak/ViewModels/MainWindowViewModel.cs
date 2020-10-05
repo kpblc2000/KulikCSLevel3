@@ -145,6 +145,71 @@ namespace KulikCSLevel3.ViewModels
 
         #endregion
 
+        #region Команды сервера
+        private ICommand _CreateServerCommand;
+        public ICommand CreateServerCommand // => _CreateServerCommand ??= new LambdaCommand(OnCreateServerCommandExecuted); 
+        {
+            get
+            {
+                if (_CreateServerCommand is null)
+                {
+                    _CreateServerCommand = new RelayCommand(OnCreateServerCommandExecuted);
+                }
+                return _CreateServerCommand;
+            }
+        }
 
+        private void OnCreateServerCommandExecuted(object p)
+        {
+            if (!ServerEditDialog.Create(out var name, out var address, out var port, out var ssl, out var description, out var login, out var password)) return;
+            var server = new Server
+            {
+                // Id = Servers.DefaultIfEmpty().Max(s => s?.Id ?? 0) + 1,
+                Adress = address,
+                Port = port,
+                UseSSL = ssl,
+                Description = description,
+                Login = login,
+                Password = password
+            }; Servers.Add(server);
+        }
+
+        private ICommand _EditServerCommand;
+        public ICommand EditServerCommand
+        {
+            get
+            {
+                if (_EditServerCommand is null)
+                {
+                    _EditServerCommand = new RelayCommand(OnEditServerCommandExecuted, CanEditServerCommandExecute);
+                }
+                return _EditServerCommand;
+            }
+        }
+
+        private bool CanEditServerCommandExecute(object p) => p is Server;
+
+        private void OnEditServerCommandExecuted(object p)
+        {
+            if (!(p is Server server)) return;
+
+            var address = server.Adress;
+            var port = server.Port;
+            var ssl = server.UseSSL;
+            var description = server.Description;
+            var login = server.Login;
+            var password = server.Password;
+
+            if (!ServerEditDialog.ShowDialog("Редактирование сервера", ref name, ref address, ref port, ref ssl, ref description, ref login, ref password)) return;
+
+            server.Adress = address;
+            server.Port = port;
+            server.UseSSL = ssl;
+            server.Description = description;
+            server.Login = login;
+            server.Password = password;
+        }
+
+        #endregion
     }
 }

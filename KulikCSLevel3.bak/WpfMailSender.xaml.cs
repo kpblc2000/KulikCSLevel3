@@ -1,4 +1,5 @@
-﻿using System.Windows.Media;
+﻿using KulikCSLevel3.Models;
+using System.Windows.Media;
 using MailSender.lib;
 using System.Net.Mail;
 using System.Windows;
@@ -17,6 +18,8 @@ namespace KulikCSLevel3
         {
             InitializeComponent();
         }
+
+
         private void btnSend_Click(object sender, System.Windows.RoutedEventArgs e)
         {
             //Mail mail = new Mail(
@@ -71,35 +74,35 @@ namespace KulikCSLevel3
         //    }
         //}
 
-        //private void OnSendButtonClick(object sender, RoutedEventArgs e)
-        //{
-        //    if (!(SenderList.SelectedItem is Sender sendSender)) return;
-        //    if (!(RecipientList.SelectedItem is Recipient sendRecip)) return;
-        //    if (!(ServerList.SelectedItem is Server sendServer)) return;
-        //    if (!(MessagesList.SelectedItem is Message msg)) return;
+        private void OnSendButtonClick(object sender, RoutedEventArgs e)
+        {
+            if (!(SenderList.SelectedItem is Sender sendSender)) return;
+            if (!(RecipientList.SelectedItem is Recipient sendRecip)) return;
+            if (!(ServerList.SelectedItem is Server sendServer)) return;
+            if (!(MessagesList.SelectedItem is Message msg)) return;
 
-        //    var sendService = new MailSenderService
-        //    {
-        //        ServerAdress = sendServer.Adress,
-        //        ServerPort = sendServer.Port,
-        //        UseSSL = sendServer.UseSSL,
-        //        Password = sendServer.Passord,
-        //        Login = sendServer.Login
-        //    };
+            var sendService = new MailSenderService
+            {
+                ServerAdress = sendServer.Adress,
+                ServerPort = sendServer.Port,
+                UseSSL = sendServer.UseSSL,
+                Password = sendServer.Passord,
+                Login = sendServer.Login
+            };
 
-        //    try
-        //    {
-        //        sendService.SendMessage(sendSender.EmailAdress, sendRecip.EmailAdress, msg.Subject, msg.Body);
-        //    }
-        //    catch (SmtpException ex)
-        //    {
-        //        MessageBox.Show("Ошибка SMTP при отправке почты: " + ex.Message, "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
-        //    }
-        //    catch (System.Exception ex)
-        //    {
-        //        MessageBox.Show("Ошибка при отправке почты: " + ex.Message, "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
-        //    }
+            try
+            {
+                sendService.SendMessage(sendSender.EmailAdress, sendRecip.EmailAdress, msg.Subject, msg.Body);
+            }
+            catch (SmtpException ex)
+            {
+                MessageBox.Show("Ошибка SMTP при отправке почты: " + ex.Message, "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+            catch (System.Exception ex)
+            {
+                MessageBox.Show("Ошибка при отправке почты: " + ex.Message, "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
 
-        //}
+        }
     }
 }
