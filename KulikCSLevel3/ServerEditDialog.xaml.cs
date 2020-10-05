@@ -14,7 +14,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using KulikCSLevel3.Models;
 
-namespace KulikCSLevel3.Services
+namespace KulikCSLevel3
 {
     /// <summary>
     /// Логика взаимодействия для ServerEditDialog.xaml

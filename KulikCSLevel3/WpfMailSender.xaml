@@ -9,7 +9,8 @@
         xmlns:local="clr-namespace:KulikCSLevel3"
         
         xmlns:data="clr-namespace:KulikCSLevel3.Data"
-        xmlns:m="clr-namespace:KulikCSLevel3.Models"
+        xmlns:m="clr-namespace:KulikCSLevel3.Models;assembly=MailSender.lib"
+        xmlns:vm="clr-namespace:KulikCSLevel3.ViewModels"
         
         mc:Ignorable="d"
         Height="450"
@@ -17,7 +18,12 @@
         MinHeight="350" 
         MinWidth="600" 
         WindowStartupLocation="CenterScreen"
+        Title="{Binding Title}"
         >
+  <Window.DataContext>
+    <vm:MainWindowViewModel/>
+  </Window.DataContext>
+  
   <DockPanel>
     <Menu DockPanel.Dock="Top">
       <MenuItem Header="Файл">
@@ -47,7 +53,7 @@
         <DockPanel>
           <ToolBarTray DockPanel.Dock="Top">
             <ToolBar Header="Сервера" Band="0">
-              <ComboBox Name="ServersList" MaxWidth="200" MinWidth="120" SelectedIndex="0" Margin="26,0,0,0" ItemsSource="{x:Static data:TestData.Servers}">
+              <ComboBox Name="ServersList" MaxWidth="200" MinWidth="120" SelectedIndex="0" Margin="26,0,0,0" >
                 <ComboBox.ItemTemplate>
                   <DataTemplate>
                     <StackPanel Orientation="Horizontal">

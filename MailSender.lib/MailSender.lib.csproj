@@ -1,8 +1,9 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
     <RootNamespace>WpfMailSender</RootNamespace>
+    <LangVersion>latest</LangVersion>
   </PropertyGroup>
 
   <ItemGroup>
@@ -15,6 +16,17 @@
     <Compile Remove="DbService.cs" />
     <Compile Remove="MailScheduler.cs" />
     <Compile Remove="MailSenderService.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Remove="Services\ServerEditDialog.xaml" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Page Include="Services\ServerEditDialog.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
   </ItemGroup>
 
 </Project>

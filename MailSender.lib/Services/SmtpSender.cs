@@ -4,7 +4,7 @@ using System.Net.Mail;
 
 namespace KulikCSLevel3.Services
 {
-    class SmtpSender
+    public class SmtpSender
     {
         private readonly string _Address;
         private readonly int _Port;

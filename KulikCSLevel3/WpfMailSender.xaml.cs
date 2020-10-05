@@ -3,6 +3,8 @@ using KulikCSLevel3.Services;
 using System.Diagnostics;
 using System.Net.Mail;
 using System.Windows;
+using KulikCSLevel3.Services;
+
 /// <summary>
 /// Алексей Кулик kpblc2000@yandex.ru
 /// C# Уровень 3 урок 3.
