@@ -1,6 +1,6 @@
 ﻿namespace KulikCSLevel3.Models
 {
-    public class Message
+    public class Message : ModelBase
     {
         public string Subject { get; set; }
 

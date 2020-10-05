@@ -74,11 +74,6 @@ namespace KulikCSLevel3
         //    }
         //}
 
-        private void ButtonTabScheduler_Click(object sender, RoutedEventArgs e)
-        {
-            TabItemScheduler.IsSelected = true;
-        }
-
         private void OnSendButtonClick(object sender, RoutedEventArgs e)
         {
             if (!(SenderList.SelectedItem is Sender sendSender)) return;

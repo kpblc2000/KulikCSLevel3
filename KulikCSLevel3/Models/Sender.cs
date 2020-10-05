@@ -7,7 +7,7 @@ namespace KulikCSLevel3.Models
     /// <summary>
     /// Объект автора письма
     /// </summary>
-    public class Sender
+    public class Sender : ModelBase
     {
         public string Name { get; set; }
 
