@@ -1,4 +1,5 @@
 ﻿using KulikCSLevel3.Infrastructure.Commands.Base;
+using Microsoft.Extensions.DependencyInjection;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -17,8 +18,11 @@ namespace KulikCSLevel3.Infrastructure.Commands
         protected override void Execute(object parameter)
         {
             string msg = parameter as string ?? "Hi You";
-            // MessageBox.Show(msg, "Сообщение");
+            //MessageBox.Show(msg, "Сообщение");
+
             //App.Services.GetService<IDialogMessageService>().ShowDialog(msg);
+
+            App.Services.GetService<IDialogMsgBoxService>().ShowMsgBox(msg);
         }
     }
 }

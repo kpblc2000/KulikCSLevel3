@@ -23,14 +23,8 @@ namespace KulikCSLevel3.Infrastructure.Commands
             _canExec = CanExecute;
         }
 
-        protected override bool CanExecute(object Parameter)
-        {
-            return _canExec?.Invoke(Parameter) ?? true;
-        }
+        protected override bool CanExecute(object Parameter) => _canExec?.Invoke(Parameter) ?? true;
 
-        protected override void Execute(object Parameter)
-        {
-            _exec(Parameter);
-        }
+        protected override void Execute(object Parameter) => _exec(Parameter);
     }
 }

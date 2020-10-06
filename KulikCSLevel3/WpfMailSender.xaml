@@ -8,7 +8,7 @@
         xmlns:l="clr-namespace:KulikCSLevel3"
         xmlns:local="clr-namespace:KulikCSLevel3"
 
-        xmlns:cmd="clr-namespace:KulikCSLevel3.Infrastructure.Commands"
+        xmlns:commands="clr-namespace:KulikCSLevel3.Infrastructure.Commands"
         xmlns:m="clr-namespace:KulikCSLevel3.Models;assembly=MailSender.lib"
         xmlns:vm="clr-namespace:KulikCSLevel3.ViewModels"
         
@@ -31,12 +31,12 @@
         <MenuItem Header="Открыть" Name="mnuOpen" />
         <MenuItem  Header="Сохранить" Name="mnuSave"/>
         <MenuItem Header="Закрыть" Name="mnuClose" >
-          <MenuItem.Command>
-            <cmd:CloseWindowCommand/>
-          </MenuItem.Command>
         </MenuItem>
         <Separator/>
         <MenuItem Header="Выход" Name="mnuExit">
+          <MenuItem.Command>
+            <commands:CloseWindowCommand/>
+          </MenuItem.Command>
         </MenuItem>
       </MenuItem>
       <MenuItem Header="Сервис">
@@ -222,6 +222,7 @@
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
           </Grid.RowDefinitions>
           <TextBlock Grid.Column="0" Grid.Row="0" Text="Отправленных писем : "/>
           <TextBlock Grid.Column="1" Grid.Row="0" Text="1"/>
@@ -231,9 +232,9 @@
           <TextBlock Grid.Column="1" Grid.Row="2" Text="3"/>
           <TextBlock Grid.Column="0" Grid.Row="3" Text="Число запусков : "/>
           <TextBlock Grid.Column="1" Grid.Row="3" Text="4"/>
-          <Button Name="TestButton" Grid.Row="4" Content="ShowDlg" CommandParameter="Command msg">
+          <Button Name="TestButton" Grid.Row="4" Content="ShowDlg" CommandParameter="Command msg 2">
             <Button.Command>
-              <cmd:ShowDialogCommand/>
+              <commands:ShowDialogCommand/>
             </Button.Command>
           </Button>
         </Grid>
