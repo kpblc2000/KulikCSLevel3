@@ -13,16 +13,13 @@ namespace KulikCSLevel3.Infrastructure.Commands
 {
     class ShowDialogCommand : Command
     {
-        private ICommand _ShowDialogCommand;
+        // private ICommand _ShowDialogCommand;
 
         protected override void Execute(object parameter)
         {
             string msg = parameter as string ?? "Hi You";
             //MessageBox.Show(msg, "Сообщение");
-
-            //App.Services.GetService<IDialogMessageService>().ShowDialog(msg);
-
-            App.Services.GetService<IDialogMsgBoxService>().ShowMsgBox(msg);
+             App.Services.GetService<IDialogMsgBoxService>().ShowMsgBox(msg);
         }
     }
 }

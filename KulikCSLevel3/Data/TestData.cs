@@ -1,26 +1,28 @@
 ﻿using KulikCSLevel3.Models;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
+using System.Xml.Serialization;
 
 namespace KulikCSLevel3.Data
 {
-    static class TestData
+    class TestData
     {
-        public static IList<Sender> Senders { get; } = Enumerable.Range(1, 5).Select(i => new Sender
+        public IList<Sender> Senders { get; set; } = Enumerable.Range(1, 5).Select(i => new Sender
         {
             Id = i,
             Name = $"Отправитель {i}",
             Email = $"sender{i}@server.ru"
         }).ToList();
 
-        public static IList<Recipient> Recipients { get; } = Enumerable.Range(1, 25).Select(i => new Recipient
+        public IList<Recipient> Recipients { get; set; } = Enumerable.Range(1, 25).Select(i => new Recipient
         {
             Id = i,
             Name = $"Получатель {i}",
             Email = $"sender{i}@server.ru"
         }).ToList();
 
-        public static IList<Server> Servers { get; } = Enumerable.Range(1, 5).Select(i =>
+        public IList<Server> Servers { get; set; } = Enumerable.Range(1, 5).Select(i =>
            new Server
            {
                Id = i,
@@ -33,14 +35,28 @@ namespace KulikCSLevel3.Data
            }
         ).ToList();
 
-        public static IList<Message> Messages { get; } = Enumerable.Range(1, 10).Select(i =>
-        new Message
-        {
-            Id=i,
-            Subject=$"Sub{i}",
-            Body=$"Body{i}"
-        }
+        public IList<Message> Messages { get; set; } = Enumerable.Range(1, 10).Select(i =>
+       new Message
+       {
+           Id = i,
+           Subject = $"Sub{i}",
+           Body = $"Body{i}"
+       }
         ).ToList();
+
+        public static TestData LoadFromXML(string FileName)
+        {
+            var serializer = new XmlSerializer(typeof(TestData));
+            using var file = File.OpenText(FileName);
+            return (TestData)serializer.Deserialize(file);
+        }
+
+        public void SaveToXML(string FileName)
+        {
+            var serializer = new XmlSerializer(typeof(TestData));
+            using var file = File.Create(FileName);
+            serializer.Serialize(file, this);
+        }
 
     }
 }

@@ -1,4 +1,7 @@
-﻿using Microsoft.Extensions.DependencyInjection;
+﻿using KulikCSLevel3.Infrastructure.Commands;
+using KulikCSLevel3.ViewModels;
+using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Hosting;
 using System;
 using System.Collections.Generic;
 using System.Configuration;
@@ -14,6 +17,30 @@ namespace KulikCSLevel3
     /// </summary>
     public partial class App : Application
     {
+        
+        private static IHost __Hosting;
+
+        public static IHost Hosting
+        {
+            get
+            {
+                if (__Hosting != null) return __Hosting;
+                var hostBuilder = Host.CreateDefaultBuilder(Environment.GetCommandLineArgs());
+                hostBuilder.ConfigureServices(ConfigureServices);
+                return __Hosting = hostBuilder.Build();
+            }
+        }
+
+        public static IServiceProvider Services => Hosting.Services;
+
+        private static void ConfigureServices(HostBuilderContext host, IServiceCollection services)
+        {
+            services.AddSingleton<MainWindowViewModel>();
+            services.AddTransient<IDialogMsgBoxService, MsgBoxDialog>();
+        }
+        
+
+        /*
         private static IServiceProvider _Services;
 
         public static IServiceProvider Services => _Services ??= GetServices().BuildServiceProvider();
@@ -27,8 +54,10 @@ namespace KulikCSLevel3
 
         private static void InitServices(ServiceCollection services)
         {
+            services.AddSingleton<MainWindowViewModel>();
             services.AddTransient<IDialogMsgBoxService, MsgBoxDialog>();
         }
+        */
     }
 
     interface IDialogMsgBoxService
@@ -42,5 +71,6 @@ namespace KulikCSLevel3
         {
             MessageBox.Show(Message);
         }
+        
     }
 }
