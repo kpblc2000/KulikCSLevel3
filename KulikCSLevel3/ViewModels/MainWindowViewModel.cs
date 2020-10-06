@@ -33,6 +33,8 @@ namespace KulikCSLevel3.ViewModels
 
         private string _title = "Кулик : Рассылка";
 
+        public StatisticViewModel Statistic { get; } = new StatisticViewModel();
+
         public string Title
         {
             get => _title;
@@ -227,7 +229,8 @@ namespace KulikCSLevel3.ViewModels
             var sender = SelectedSender;
             var recipient = SelectedRecipient;
             var message = SelectedMessage;
-            client.Send(server.Address, recipient.Email, message.Subject, message.Body);
+            client.Send(sender.Email, recipient.Email, message.Subject, message.Body);
+            Statistic.MessageSended();
         }
 
         #endregion

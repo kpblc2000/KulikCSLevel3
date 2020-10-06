@@ -47,6 +47,8 @@
       </MenuItem>
       <MenuItem Header="Сервис">
         <MenuItem Header="Параметры" Name="mnuSettings"/>
+        <Separator/>
+        <MenuItem Header="Отправить письмо" Command="{Binding SendMailMessageCommand}"/>
       </MenuItem>
       <MenuItem Header="Справка" Name="mnuHelp"></MenuItem>
     </Menu>
@@ -223,7 +225,7 @@
             <RowDefinition Height="Auto"/>
           </Grid.RowDefinitions>
           <TextBlock Grid.Column="0" Grid.Row="0" Text="Отправленных писем : "/>
-          <TextBlock Grid.Column="1" Grid.Row="0" Text="1"/>
+          <TextBlock Grid.Column="1" Grid.Row="0" Text="{Binding Statistic.SendMessagesCount}"/>
           <TextBlock Grid.Column="0" Grid.Row="1" Text="Отправителей в БД : "/>
           <TextBlock Grid.Column="1" Grid.Row="1" Text="2"/>
           <TextBlock Grid.Column="0" Grid.Row="2" Text="Получателей в БД : "/>

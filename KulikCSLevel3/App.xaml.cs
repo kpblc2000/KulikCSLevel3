@@ -50,7 +50,6 @@ namespace KulikCSLevel3
             services.AddSingleton<ISendersStorage>(memory_store);
             services.AddSingleton<IRecipientsStorage>(memory_store);
             services.AddSingleton<IMessagesStorage>(memory_store);
-
         }
 
 

@@ -3,6 +3,9 @@ using System.Runtime.CompilerServices;
 
 namespace KulikCSLevel3.ViewModels.Base
 {
+    /// <summary>
+    /// Базовый класс представления модели (View-Model)
+    /// </summary>
     abstract class ViewModel :INotifyPropertyChanged
     {
         public event PropertyChangedEventHandler PropertyChanged;
