@@ -5,7 +5,7 @@ using WpfMailSender.Interfaces;
 
 namespace KulikCSLevel3.Services
 {
-    public class SmtpSender : IMailSender
+    public class SmtpMailSender : IMailSender
     {
         private readonly string _Address;
         private readonly int _Port;
@@ -13,7 +13,7 @@ namespace KulikCSLevel3.Services
         private readonly string _Login;
         private readonly string _Password;
 
-        public SmtpSender(string Address, int Port, bool UseSsl, string Login, string Password)
+        public SmtpMailSender(string Address, int Port, bool UseSsl, string Login, string Password)
         {
             _Address = Address;
             _Port = Port;

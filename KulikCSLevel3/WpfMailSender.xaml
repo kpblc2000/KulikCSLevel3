@@ -10,6 +10,7 @@
 
         xmlns:commands="clr-namespace:KulikCSLevel3.Infrastructure.Commands"
         xmlns:m="clr-namespace:KulikCSLevel3.Models;assembly=MailSender.lib"
+        xmlns:views="clr-namespace:KulikCSLevel3.Views"
         xmlns:vm="clr-namespace:KulikCSLevel3.ViewModels"
         
         mc:Ignorable="d"
@@ -35,6 +36,8 @@
         <MenuItem  Header="Сохранить" Name="mnuSave" Command="{Binding SaveDataCommand}"/>
         <!--<MenuItem Header="Закрыть" Name="mnuClose" >
         </MenuItem>-->
+        <Separator/>
+        <MenuItem Header="Отправить выбранным" Name="mnuSend" Command="{Binding SendMailMessageCommand}"/>
         <Separator/>
         <MenuItem Header="Выход" Name="mnuExit">
           <MenuItem.Command>
@@ -99,15 +102,7 @@
               <Button fa:Awesome.Content="Regular_TrashAlt" Foreground="Red"/>
             </ToolBar>
           </ToolBarTray>
-          <GroupBox Header="Список получателей">
-            <DataGrid Name="RecipientsList" AutoGenerateColumns="False" AlternatingRowBackground="LightGray" GridLinesVisibility="Vertical" VerticalGridLinesBrush="Gray" ItemsSource="{Binding Recipients}" SelectedItem="{Binding SelectedRecipient}">
-              <DataGrid.Columns>
-                <DataGridTextColumn Header="Id" MinWidth="30"/>
-                <DataGridTextColumn Header="Имя" Width="1*" Binding="{Binding Name}"/>
-                <DataGridTextColumn Header="Адрес email" MinWidth="120" Binding="{Binding EmailAdress}"/>
-              </DataGrid.Columns>
-            </DataGrid>
-          </GroupBox>
+          <views:RecipientListView DockPanel.Dock="Bottom"/>
         </DockPanel>
       </TabItem>
       <TabItem Header="Планировщик" Name="TabItemScheduler">

@@ -5,14 +5,14 @@ namespace WpfMailSender.Services
 {
     public class SmtpMailService : IMailService
     {
-        public SmtpSender GetSender(string Address, int Port, bool UseSsl, string Login, string Password)
+        public SmtpMailSender GetSender(string Address, int Port, bool UseSsl, string Login, string Password)
         {
-            return new SmtpSender(Address, Port, UseSsl, Login, Password);
+            return new SmtpMailSender(Address, Port, UseSsl, Login, Password);
         }
 
         IMailSender IMailService.GetSender(string Address, int Port, bool UseSsl, string Login, string Password)
         {
-            return new SmtpSender(Address, Port, UseSsl, Login, Password);
+            return new SmtpMailSender(Address, Port, UseSsl, Login, Password);
         }
     }
 }
