@@ -1,10 +1,11 @@
 ﻿using KulikCSLevel3.Models;
 using System.Net;
 using System.Net.Mail;
+using WpfMailSender.Interfaces;
 
 namespace KulikCSLevel3.Services
 {
-    public class SmtpSender
+    public class SmtpSender : IMailSender
     {
         private readonly string _Address;
         private readonly int _Port;

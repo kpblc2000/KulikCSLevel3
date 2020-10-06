@@ -7,12 +7,29 @@ using System.Collections.ObjectModel;
 using System.IO;
 using System.Linq;
 using System.Windows.Input;
+using WpfMailSender.Interfaces;
 
 namespace KulikCSLevel3.ViewModels
 {
     class MainWindowViewModel : ViewModel
     {
         private string __DataFileName = "data.xml";
+
+        #region сервис почты
+        private readonly IMailService _MailService;
+        private readonly IServersStorage _ServerStorage;
+        private readonly ISendersStorage _SenderStorage;
+        private readonly IRecipientsStorage _RecipientStorage;
+        private readonly IMessagesStorage _MessageStorage;
+        public MainWindowViewModel(IMailService MailService, IServersStorage ServerStorage, ISendersStorage SenderStorage, IRecipientsStorage RecipientStorage, IMessagesStorage MessageStorage)
+        {
+            _MailService = MailService;
+            _ServerStorage = ServerStorage;
+            _SenderStorage = SenderStorage;
+            _RecipientStorage = RecipientStorage;
+            _MessageStorage = MessageStorage;
+        }
+        #endregion  
 
         private string _title = "Кулик : Рассылка";
 
@@ -32,7 +49,7 @@ namespace KulikCSLevel3.ViewModels
         public ObservableCollection<Server> Servers
         {
             get => _servers;
-            set { Set(ref _servers, value);  }
+            set { Set(ref _servers, value); }
         }
 
         public ObservableCollection<Recipient> Recipients
@@ -93,11 +110,15 @@ namespace KulikCSLevel3.ViewModels
 
         private void OnLoadDataCommandExecuted(object obj)
         {
-            var data = File.Exists(__DataFileName) ? TestData.LoadFromXML(__DataFileName) : new TestData();
-            Servers = new ObservableCollection<Server>(data.Servers);
-            Senders = new ObservableCollection<Sender>(data.Senders);
-            Recipients = new ObservableCollection<Recipient>(data.Recipients);
-            Messages = new ObservableCollection<Message>(data.Messages);
+            _ServerStorage.Load();
+            _RecipientStorage.Load();
+            _SenderStorage.Load();
+            _MessageStorage.Load();
+
+            Servers = new ObservableCollection<Server>(_ServerStorage.Items);
+            Senders = new ObservableCollection<Sender>(_SenderStorage.Items) ;
+            Recipients = new ObservableCollection<Recipient>(_RecipientStorage.Items);
+            Messages = new ObservableCollection<Message>(_MessageStorage.Items);
         }
 
         private ICommand _SaveDataCommand;
@@ -106,14 +127,18 @@ namespace KulikCSLevel3.ViewModels
 
         private void OnSaveDataCommandExecuted(object obj)
         {
-            var data = new TestData
-            {
-                Servers = Servers,
-                Senders = Senders,
-                Recipients = Recipients,
-                Messages = Messages
-            };
-            data.SaveToXML(__DataFileName);
+            //var data = new TestData
+            //{
+            //    Servers = Servers,
+            //    Senders = Senders,
+            //    Recipients = Recipients,
+            //    Messages = Messages
+            //};
+            //data.SaveToXML(__DataFileName);
+            _ServerStorage.SaveChanges();
+            _SenderStorage.SaveChanges();
+            _RecipientStorage.SaveChanges();
+            _MessageStorage.SaveChanges();
         }
 
         #endregion
@@ -137,6 +162,7 @@ namespace KulikCSLevel3.ViewModels
                 Password = pass,
                 Description = descr
             };
+            _ServerStorage.Items.Add(server);
             Servers.Add(server);
         }
 
@@ -170,15 +196,39 @@ namespace KulikCSLevel3.ViewModels
 
         private ICommand _EraseServerCommand;
         public ICommand EraseServerCommand => _EraseServerCommand ??= new RelayCommand(OnEraseServerCommandExecuted);
-        
+
         private bool CanEraseServerCommandExecute(object p) => p is Server;
 
         private void OnEraseServerCommandExecuted(object obj)
         {
             if (!(obj is Server srv)) return;
+            _ServerStorage.Items.Remove(srv);
             Servers.Remove(srv);
         }
 
+
+        #endregion
+
+        #region Команда отправки почты
+
+        private ICommand _SendMailMessageCommand;
+
+        public ICommand SendMailMessageCommand => _SendMailMessageCommand ??= new RelayCommand(OnSendMailMessageCommandExecuted, CanSendMailMessageCommandExecute);
+
+        private bool CanSendMailMessageCommandExecute(object p)
+        {
+            return SelectedServer != null && SelectedSender != null && SelectedRecipient != null && SelectedMessage != null;
+        }
+
+        private void OnSendMailMessageCommandExecuted(object p)
+        {
+            var server = SelectedServer;
+            var client = _MailService.GetSender(server.Address, server.Port, server.UseSSL, server.Login, server.Password);
+            var sender = SelectedSender;
+            var recipient = SelectedRecipient;
+            var message = SelectedMessage;
+            client.Send(server.Address, recipient.Email, message.Subject, message.Body);
+        }
 
         #endregion
     }

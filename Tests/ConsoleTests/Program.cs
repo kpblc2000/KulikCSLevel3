@@ -1,6 +1,10 @@
 ﻿using System;
 using System.Net;
 using System.Net.Mail;
+using MailSender.lib.Service
+using WpfMailSender.Services;
+using WpfMailSender.Interfaces;
+
 // using System.Net.Http;
 
 namespace ConsoleTests
@@ -37,10 +41,8 @@ namespace ConsoleTests
             //client.Send(msg);
             #endregion
 
-            Values val = default;
-
-            Console.WriteLine(val + " " + val.ToString());
-
+            IEncryptorService cr = new Rfc2898Encryptor();
+            
             Console.WriteLine("Press any key");
             Console.ReadKey();
         }

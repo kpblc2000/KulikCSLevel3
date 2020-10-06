@@ -33,8 +33,8 @@
         <!--<MenuItem Header="Создать" Name="mnuCreate"/>--> 
         <MenuItem Header="Загрузить" Name="mnuOpen" Command="{Binding LoadDataCommand}" />
         <MenuItem  Header="Сохранить" Name="mnuSave" Command="{Binding SaveDataCommand}"/>
-        <MenuItem Header="Закрыть" Name="mnuClose" >
-        </MenuItem>
+        <!--<MenuItem Header="Закрыть" Name="mnuClose" >
+        </MenuItem>-->
         <Separator/>
         <MenuItem Header="Выход" Name="mnuExit">
           <MenuItem.Command>
@@ -126,7 +126,7 @@
                     <Setter Property="Margin" Value="0,3"/>
                   </Style>
                 </StackPanel.Resources>
-                <Button Name="BtnSend" Content="Отправить"/>
+                <Button Name="BtnSend" Content="Отправить" Command="{Binding SendMailMessageCommand}"/>
                 <Button Content="Запланировать"/>
               </StackPanel>
             </StackPanel>

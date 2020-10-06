@@ -9,6 +9,8 @@ using System.Data;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows;
+using WpfMailSender.Interfaces;
+using WpfMailSender.Services;
 
 namespace KulikCSLevel3
 {
@@ -35,7 +37,20 @@ namespace KulikCSLevel3
         private static void ConfigureServices(HostBuilderContext host, IServiceCollection services)
         {
             services.AddSingleton<MainWindowViewModel>();
+            services.AddSingleton<IEncryptorService, Rfc2898Encryptor>();
+#if DEBUG
+            services.AddTransient<IMailService, DebugMailService>();
+#else
+            services.AddTransient<IMailService, SmtpMailService>();
+#endif
             services.AddTransient<IDialogMsgBoxService, MsgBoxDialog>();
+
+            DataStorageInMemory memory_store = new DataStorageInMemory();
+            services.AddSingleton<IServersStorage>(memory_store);
+            services.AddSingleton<ISendersStorage>(memory_store);
+            services.AddSingleton<IRecipientsStorage>(memory_store);
+            services.AddSingleton<IMessagesStorage>(memory_store);
+
         }
 
 
