@@ -53,6 +53,7 @@ namespace KulikCSLevel3.ViewModels
             set => Set(ref _messages, value);
         }
 
+        #region Selected
         private Server _selServer;
         public Server SelectedServer
         {
@@ -81,6 +82,7 @@ namespace KulikCSLevel3.ViewModels
             get => _selMessage;
             set => Set(ref _selMessage, value);
         }
+        #endregion
         #endregion
 
         #region Команды сериализации в XML
