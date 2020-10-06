@@ -17,7 +17,6 @@ namespace KulikCSLevel3
     /// </summary>
     public partial class App : Application
     {
-        
         private static IHost __Hosting;
 
         public static IHost Hosting
@@ -38,7 +37,7 @@ namespace KulikCSLevel3
             services.AddSingleton<MainWindowViewModel>();
             services.AddTransient<IDialogMsgBoxService, MsgBoxDialog>();
         }
-        
+
 
         /*
         private static IServiceProvider _Services;
@@ -71,6 +70,6 @@ namespace KulikCSLevel3
         {
             MessageBox.Show(Message);
         }
-        
+
     }
 }
