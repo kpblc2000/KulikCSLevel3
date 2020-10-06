@@ -32,7 +32,7 @@ namespace KulikCSLevel3.ViewModels
         public ObservableCollection<Server> Servers
         {
             get => _servers;
-            set => Set(ref _servers, value);
+            set { Set(ref _servers, value);  }
         }
 
         public ObservableCollection<Recipient> Recipients

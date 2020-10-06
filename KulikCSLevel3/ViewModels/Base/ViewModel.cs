@@ -16,7 +16,7 @@ namespace KulikCSLevel3.ViewModels.Base
         {
             if (Equals(field, value)) return false;
             field = value;
-            OnPropertyChanged();
+            OnPropertyChanged(PropName);
             return true;
         }
 
