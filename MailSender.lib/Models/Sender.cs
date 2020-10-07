@@ -1,10 +1,9 @@
-﻿namespace KulikCSLevel3.Models
+﻿using WpfMailSender.Models.Base;
+
+namespace KulikCSLevel3.Models
 {
-    public class Sender
+    public class Sender : Person
     {
-        public int Id { get; set; }
-        public string Name { get; set; }
-        public string Email { get; set; }
         public string Description { get; set; }
     }
 }

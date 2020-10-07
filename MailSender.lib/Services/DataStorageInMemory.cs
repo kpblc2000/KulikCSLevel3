@@ -43,7 +43,7 @@ namespace WpfMailSender.Services
                 {
                     Id = i,
                     Name = $"Отправитель {i}",
-                    Email = $"sender{i}@server.ru"
+                    Address = $"sender{i}@server.ru"
                 }).ToList();
             }
 
@@ -53,7 +53,7 @@ namespace WpfMailSender.Services
                 {
                     Id = i,
                     Name = $"Получатель {i}",
-                    Email = $"sender{i}@server.ru"
+                    Address = $"sender{i}@server.ru"
                 }).ToList();
             }
 

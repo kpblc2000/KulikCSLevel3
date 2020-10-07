@@ -1,9 +1,9 @@
-﻿namespace KulikCSLevel3.Models
+﻿using WpfMailSender.Models.Base;
+
+namespace KulikCSLevel3.Models
 {
-    public class Server
+    public class Server : NamedEntity
     {
-        public int Id { get; set; }
-        public string Name { get; set; }
         public string Address { get; set; }
         public int Port { get; set; } = 25;
         public bool UseSSL { get; set; }

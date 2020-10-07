@@ -12,14 +12,14 @@ namespace KulikCSLevel3.Data
         {
             Id = i,
             Name = $"Отправитель {i}",
-            Email = $"sender{i}@server.ru"
+            Address = $"sender{i}@server.ru"
         }).ToList();
 
         public IList<Recipient> Recipients { get; set; } = Enumerable.Range(1, 25).Select(i => new Recipient
         {
             Id = i,
             Name = $"Получатель {i}",
-            Email = $"sender{i}@server.ru"
+            Address = $"sender{i}@server.ru"
         }).ToList();
 
         public IList<Server> Servers { get; set; } = Enumerable.Range(1, 5).Select(i =>

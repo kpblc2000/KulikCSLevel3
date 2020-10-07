@@ -1,0 +1,68 @@
+﻿<UserControl x:Class="KulikCSLevel3.Views.RecipientEditor"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:KulikCSLevel3.Views"
+             xmlns:validation="clr-namespace:KulikCSLevel3.Infrastructure.ValidationRules"
+             mc:Ignorable="d" 
+             d:DesignHeight="350" d:DesignWidth="250"
+             DataContext="{Binding Source={StaticResource Locator}, Path=MainWindowModel}">
+  <Grid Margin="10" Validation.Error="OnDataValidationError">
+
+    <Grid.Resources>
+      <Style TargetType="TextBlock">
+        <Setter Property="HorizontalAlignment" Value="Right"/>
+        <Setter Property="VerticalAlignment" Value="Center"/>
+      </Style>
+      <Style TargetType="TextBox">
+        <Setter Property="Margin" Value="2"/>
+        <Setter Property="Validation.ErrorTemplate">
+          <Setter.Value>
+            <ControlTemplate>
+              <DockPanel>
+                <TextBlock DockPanel.Dock="Right" Text="!" FontSize="18" FontWeight="Bold"  Foreground="Red" Margin="3" VerticalAlignment="Center"/>
+                <Border Padding="2" BorderBrush="Red" BorderThickness="3" CornerRadius="3">
+                  <AdornedElementPlaceholder/>
+                </Border>
+              </DockPanel>
+            </ControlTemplate>
+          </Setter.Value>
+        </Setter>
+      </Style>
+    </Grid.Resources>
+    <Grid.ColumnDefinitions>
+      <ColumnDefinition Width="Auto"/>
+      <ColumnDefinition/>
+    </Grid.ColumnDefinitions>
+    <Grid.RowDefinitions>
+      <RowDefinition Height="Auto"/>
+      <RowDefinition Height="Auto"/>
+      <RowDefinition Height="Auto"/>
+      <RowDefinition Height="Auto"/>
+      <RowDefinition/>
+    </Grid.RowDefinitions>
+    <TextBlock Grid.Column="0" Grid.Row="0" Text="Id :"/>
+    <TextBlock Grid.Column="0" Grid.Row="1" Text="Name :"/>
+    <TextBlock Grid.Column="0" Grid.Row="2" Text="Adress :"/>
+    <TextBlock Grid.Column="0" Grid.Row="3" Text="Descr :"/>
+    <TextBox Grid.Column="1" Grid.Row="0" Text="{Binding SelectedRecipient.Id, NotifyOnValidationError=True, UpdateSourceTrigger=PropertyChanged}"/>
+    <TextBox Grid.Column="1" Grid.Row="1" Text="{Binding SelectedRecipient.Name, NotifyOnValidationError=True, ValidatesOnDataErrors=True, ValidatesOnExceptions=True, ValidatesOnNotifyDataErrors=True, UpdateSourceTrigger=PropertyChanged}"/>
+    <TextBox Grid.Column="1" Grid.Row="2">
+      <Binding Path="SelectedRecipient.Address" UpdateSourceTrigger="PropertyChanged"  NotifyOnValidationError="True">
+        <Binding.ValidationRules>
+          <validation:RegExValidationRule Pattern="(\w+\.)*\w+@(\w+\.)+[A-Za-z]+" ErrorMessage="Строка адреса имеет неверный формат"/>
+          <ExceptionValidationRule/>
+          <DataErrorValidationRule/>
+          <NotifyDataErrorValidationRule/>
+        </Binding.ValidationRules>
+      </Binding>
+    </TextBox>
+    <TextBox Grid.Column="1" Grid.Row="3" 
+             Text="{Binding SelectedRecipient.Description, Mode=OneWay}"/>
+    <UniformGrid Grid.Column="0" Grid.ColumnSpan="2" Grid.Row="4" Rows="1" VerticalAlignment="Top" HorizontalAlignment="Center" Margin="0,10">
+      <Button Content="Сохранить" Margin="10,0" Padding="10,5"/>
+      <Button Content="Создать" Margin="10,0" Padding="10,5"/>
+    </UniformGrid>
+  </Grid>
+</UserControl>

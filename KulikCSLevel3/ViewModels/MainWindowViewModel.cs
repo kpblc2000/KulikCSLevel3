@@ -229,7 +229,7 @@ namespace KulikCSLevel3.ViewModels
             var sender = SelectedSender;
             var recipient = SelectedRecipient;
             var message = SelectedMessage;
-            client.Send(sender.Email, recipient.Email, message.Subject, message.Body);
+            client.Send(sender.Address, recipient.Address, message.Subject, message.Body);
             Statistic.MessageSended();
         }
 

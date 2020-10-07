@@ -1,8 +1,9 @@
-﻿namespace KulikCSLevel3.Models
+﻿using WpfMailSender.Models.Base;
+
+namespace KulikCSLevel3.Models
 {
-    public class Message
+    public class Message : Entity
     {
-        public int Id { get; set; }
         public string Subject { get; set; }
         public string Body { get; set; }
     }

@@ -17,7 +17,7 @@
     <UniformGrid DockPanel.Dock="Bottom" HorizontalAlignment="Center" Rows="1" Margin="0,0,0,10">
       <Button Content="Загрузить данные" Padding="30,5" Margin="5,0" Command="{Binding LoadDataCommand}"/>      
     </UniformGrid>
-    <DataGrid Grid.Row="1" Name="RecipientsList" Margin="10" ItemsSource="{Binding Recipients}" AutoGenerateColumns="False" GridLinesVisibility="Vertical" AlternatingRowBackground="PowderBlue" VerticalGridLinesBrush="Gray" IsReadOnly="True">
+    <DataGrid Grid.Row="1" Name="RecipientsList" Margin="10" ItemsSource="{Binding Recipients}" SelectedItem="{Binding SelectedRecipient}" AutoGenerateColumns="False" GridLinesVisibility="Vertical" AlternatingRowBackground="PowderBlue" VerticalGridLinesBrush="Gray" IsReadOnly="True">
       <DataGrid.Columns>
         <DataGridTextColumn Header="ID" Binding="{Binding Id}"/>
         <DataGridTextColumn Header="Имя" MinWidth="120" Binding="{Binding Name}"/>
