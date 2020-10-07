@@ -8,6 +8,14 @@ namespace WpfMailSender.Services
 {
     public class DebugMailService : IMailService
     {
+
+        private readonly IEncryptorService _EncryptorService;
+
+        public DebugMailService(IEncryptorService EncryptorService)
+        {
+            _EncryptorService = EncryptorService;
+        }
+
         public IMailSender GetSender(string Address, int Port, bool UseSSL, string Login, string Password) => new DebugMailSender(Address, Port, UseSSL, Login, Password);
 
         private class DebugMailSender : IMailSender
