@@ -22,14 +22,14 @@ namespace KulikCSLevel3.Views
 
         private void OnDataValidationError(object? SourceObject, ValidationErrorEventArgs E)
         {
-            Control ctrl = E.OriginalSource as Control;
-            if (ctrl != null)
-            {
-                if (E.Action == ValidationErrorEventAction.Added)
-                    ctrl.ToolTip = E.Error.ErrorContent.ToString();
-                else
-                    ctrl.ClearValue(ToolTipProperty);
-            }
+            //Control ctrl = E.OriginalSource as Control;
+            //if (ctrl != null)
+            //{
+            //    if (E.Action == ValidationErrorEventAction.Added)
+            //        ctrl.ToolTip = E.Error.ErrorContent.ToString();
+            //    else
+            //        ctrl.ClearValue(ToolTipProperty);
+            //}
         }
     }
 }
