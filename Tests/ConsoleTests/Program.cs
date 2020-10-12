@@ -1,9 +1,6 @@
 ﻿using System;
-using System.Net;
-using System.Net.Mail;
-using MailSender.lib.Service
-using WpfMailSender.Services;
-using WpfMailSender.Interfaces;
+using System.Diagnostics;
+using System.Threading;
 
 // using System.Net.Http;
 
@@ -13,38 +10,78 @@ namespace ConsoleTests
     class Program
     {
 
-        enum Values
-        {
-            val1 =1 ,
-            val2,
-            val3
-        }
-
         static void Main()
         {
-            #region TestMailConsole
-            //MailAddress from = new MailAddress("kpblc2000@yandex.ru", "NET Console");
-            //MailAddress to = new MailAddress("kpblc2000@gmail.com");
-            //MailMessage msg = new MailMessage(from, to);
-            //msg.Subject = "Test NET Console send";
-            //msg.Body = $"Testing Console send mail {DateTime.Now}";
-            //msg.IsBodyHtml = false;
 
-            //var client = new SmtpClient("smpt.yandex.ru", 587);
+            //Console.Write("Введите число для вычисления факториала : ");
+            //int val = int.Parse(Console.ReadLine());
 
-            //client.Credentials = new NetworkCredential
-            //{
-            //    UserName = "kpblc2000",
-            //    Password = "testPassword" // !!
-            //};
+            Thread _mainThread = Thread.CurrentThread;
+            int mainThrId = _mainThread.ManagedThreadId;
 
-            //client.Send(msg);
-            #endregion
+            Factorial f1 = new Factorial() { StartValue = 1, EndValue = 10 };
+            Factorial f2 = new Factorial() { StartValue = 11, EndValue = 20 };
+            Factorial f3 = new Factorial() { StartValue = 21, EndValue = 30 };
 
-            IEncryptorService cr = new Rfc2898Encryptor();
-            
+            Thread _t1 = new Thread(new ParameterizedThreadStart(EvalFact));
+            _t1.Start(f1);
+            Thread _t2 = new Thread(new ParameterizedThreadStart(EvalFact));
+            _t2.Start(f2);
+            Thread _t3 = new Thread(new ParameterizedThreadStart(EvalFact));
+            _t3.Start(f3);
+
+            _t1.Join();
+            _t2.Join();
+            _t3.Join();
+
+            double res = f1.Result * f2.Result * f3.Result ;
+
+            Console.WriteLine($"30! = {res}");
+
             Console.WriteLine("Press any key");
             Console.ReadKey();
         }
+
+        private static void EvalFact(object obj)
+        {
+            Factorial f = obj as Factorial;
+            double res = 1;
+            while(f.StartValue <= f.EndValue)
+                {
+                res *= f.StartValue;
+                f.StartValue++;
+            }
+            f.Result = res;
+        }
+
+
+    //    private static long EvalFact(long StartValue, long EndValue)
+    //    {
+    //        long res = 1;
+    //        while (StartValue <= EndValue)
+    //        {
+    //            res *= StartValue;
+    //            StartValue++;
+    //        }
+    //        return res;
+    //    }
+
+    //private static long EvalFact(object obj)
+    //{
+    //    return EvalFact(obj.x)
+    //}
+
+        public static void PrintThreadInfo()
+        {
+            Thread curThread = Thread.CurrentThread;
+            Console.WriteLine($"id={curThread.ManagedThreadId}; name={curThread.Name}; prior={curThread.Priority}");
+        }
+    }
+
+    public class Factorial
+    {
+        public long StartValue;
+        public long EndValue;
+        public double Result;
     }
 }

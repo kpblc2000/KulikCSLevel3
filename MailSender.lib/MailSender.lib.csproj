@@ -4,6 +4,7 @@
     <TargetFramework>netstandard2.0</TargetFramework>
     <RootNamespace>WpfMailSender</RootNamespace>
     <LangVersion>latest</LangVersion>
+    <Configurations>Debug;Release;DebugConsole</Configurations>
   </PropertyGroup>
 
   <ItemGroup>
