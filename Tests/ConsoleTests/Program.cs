@@ -1,8 +1,5 @@
 ﻿using System;
-using System.Diagnostics;
 using System.Threading;
-
-// using System.Net.Http;
 
 namespace ConsoleTests
 {
@@ -13,8 +10,9 @@ namespace ConsoleTests
         static void Main()
         {
 
-            //Console.Write("Введите число для вычисления факториала : ");
-            //int val = int.Parse(Console.ReadLine());
+            /*
+             * Все данные внесены "принудительно", т.к. я подумал, что основное все же потоки.
+             */
 
             Thread _mainThread = Thread.CurrentThread;
             int mainThrId = _mainThread.ManagedThreadId;
@@ -53,23 +51,6 @@ namespace ConsoleTests
             }
             f.Result = res;
         }
-
-
-    //    private static long EvalFact(long StartValue, long EndValue)
-    //    {
-    //        long res = 1;
-    //        while (StartValue <= EndValue)
-    //        {
-    //            res *= StartValue;
-    //            StartValue++;
-    //        }
-    //        return res;
-    //    }
-
-    //private static long EvalFact(object obj)
-    //{
-    //    return EvalFact(obj.x)
-    //}
 
         public static void PrintThreadInfo()
         {
