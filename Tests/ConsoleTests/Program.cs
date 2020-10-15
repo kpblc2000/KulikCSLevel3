@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Threading;
+using System.Threading.Tasks;
 
 namespace ConsoleTests
 {
@@ -9,32 +10,15 @@ namespace ConsoleTests
 
         static void Main()
         {
-
-            /*
-             * Все данные внесены "принудительно", т.к. я подумал, что основное все же потоки.
-             */
-
-            Thread _mainThread = Thread.CurrentThread;
-            int mainThrId = _mainThread.ManagedThreadId;
-
-            Factorial f1 = new Factorial() { StartValue = 1, EndValue = 10 };
-            Factorial f2 = new Factorial() { StartValue = 11, EndValue = 20 };
-            Factorial f3 = new Factorial() { StartValue = 21, EndValue = 30 };
-
-            Thread _t1 = new Thread(new ParameterizedThreadStart(EvalFact));
-            _t1.Start(f1);
-            Thread _t2 = new Thread(new ParameterizedThreadStart(EvalFact));
-            _t2.Start(f2);
-            Thread _t3 = new Thread(new ParameterizedThreadStart(EvalFact));
-            _t3.Start(f3);
-
-            _t1.Join();
-            _t2.Join();
-            _t3.Join();
-
-            double res = f1.Result * f2.Result * f3.Result ;
-
-            Console.WriteLine($"30! = {res}");
+            //     new Task(
+            //() =>
+            //{
+            //    while (true)
+            //    {
+            //        Console.Title = DateTime.Now.ToString();
+            //        Thread.Sleep(100);
+            //    }
+            //}).Start();
 
             Console.WriteLine("Press any key");
             Console.ReadKey();
@@ -44,8 +28,8 @@ namespace ConsoleTests
         {
             Factorial f = obj as Factorial;
             double res = 1;
-            while(f.StartValue <= f.EndValue)
-                {
+            while (f.StartValue <= f.EndValue)
+            {
                 res *= f.StartValue;
                 f.StartValue++;
             }
@@ -64,5 +48,39 @@ namespace ConsoleTests
         public long StartValue;
         public long EndValue;
         public double Result;
+    }
+
+    class MathTask
+    {
+
+        private readonly Thread _CalcTread;
+        private double _Result;
+        private bool _IsCompleted;
+
+        public MathTask(Func<int, double> Calculation, int FinalValue)
+        {
+            _CalcTread = new Thread(()
+                =>
+            {
+                _Result = Calculation(FinalValue);
+                _IsCompleted = true;
+            }
+            )
+            { IsBackground = true };
+        }
+
+        public void Start() => _CalcTread.Start();
+
+        public bool IsCompleted => _IsCompleted;
+
+        public double Result
+        {
+            get
+            {
+                if (!_IsCompleted)
+                    _CalcTread.Join();
+                return _Result;
+            }
+        }
     }
 }
