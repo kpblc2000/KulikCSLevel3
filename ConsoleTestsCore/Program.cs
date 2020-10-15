@@ -28,9 +28,9 @@ namespace ConsoleTestsCore
                 }
             }
 
-            for (int i = 0; i < a.GetLength(0); i++)
+            for (int i = 0; i < b.GetLength(0); i++)
             {
-                for (int j = 0; j < a.GetLength(1); j++)
+                for (int j = 0; j < b.GetLength(1); j++)
                 {
                     b[i, j] = rnd.Next(10);
                 }
