@@ -54,7 +54,7 @@ namespace ConsoleTestsCore
 
             var tasks = messages.Select(msg => Task.Run(() => LowSpeedPrinter(msg)));
             var running_tasks = tasks.ToArray();
-            await Task.WhenAll(running_tasks);
+            await Task.WhenAll(running_tasks).ConfigureAwait(false);
 
             Console.WriteLine("All done");
         }
