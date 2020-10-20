@@ -1,14 +1,12 @@
-﻿using KulikCSLevel3.Infrastructure.Commands;
-using KulikCSLevel3.ViewModels;
+﻿using KulikCSLevel3.ViewModels;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using Microsoft.Extensions.Logging;
 using System;
-using System.Collections.Generic;
-using System.Configuration;
-using System.Data;
-using System.Linq;
-using System.Threading.Tasks;
 using System.Windows;
+using WpfMailSender.Data;
 using WpfMailSender.Interfaces;
 using WpfMailSender.Services;
 
@@ -21,6 +19,8 @@ namespace KulikCSLevel3
     {
         private static IHost __Hosting;
 
+        public static readonly string ConnectionStringSql = @"Data Source=(localdb)\MSSQLLocalDB; Initial Catalog=MailSender.DB; Integrated Security=True;";
+
         public static IHost Hosting
         {
             get
@@ -28,6 +28,8 @@ namespace KulikCSLevel3
                 if (__Hosting != null) return __Hosting;
                 var hostBuilder = Host.CreateDefaultBuilder(Environment.GetCommandLineArgs());
                 hostBuilder.ConfigureServices(ConfigureServices);
+                hostBuilder.ConfigureAppConfiguration(c => c.AddJsonFile("AppSettings.json", true, true));
+                hostBuilder.ConfigureLogging(log => log.AddConsole().AddDebug());
                 return __Hosting = hostBuilder.Build();
             }
         }
@@ -50,6 +52,9 @@ namespace KulikCSLevel3
             services.AddSingleton<ISendersStorage>(memory_store);
             services.AddSingleton<IRecipientsStorage>(memory_store);
             services.AddSingleton<IMessagesStorage>(memory_store);
+
+//            services.AddDbContext<MailSenderDB>(opt => opt.UseSqlServer(ConnectionStringSql));
+            
         }
 
 

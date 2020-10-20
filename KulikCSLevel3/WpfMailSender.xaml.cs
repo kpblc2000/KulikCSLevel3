@@ -1,8 +1,14 @@
 ﻿using KulikCSLevel3.Models;
 using KulikCSLevel3.Services;
+using Microsoft.EntityFrameworkCore;
 using System.Diagnostics;
 using System.Net.Mail;
 using System.Windows;
+using WpfMailSender;
+using WpfMailSender.Data;
+using KulikCSLevel3;
+using WpfMailSender.Interfaces;
+using WpfMailSender.Services;
 
 /// <summary>
 /// Алексей Кулик kpblc2000@yandex.ru
@@ -15,6 +21,11 @@ namespace KulikCSLevel3
         public MainWindow()
         {
             InitializeComponent();
+
+            using (var db = new MailSenderDB(new DbContextOptionsBuilder<MailSenderDB>().UseSqlServer(App.ConnectionStringSql).Options))
+            {
+
+            }
         }
 
        
