@@ -19,7 +19,7 @@ namespace ConsoleTestsCore
         {
             Console.WriteLine("Start is sync!");
             var resTask = GetStringResReallyAsync();
-            var res = await resTask;
+            var res = await resTask.ConfigureAwait(false);
             Console.WriteLine($"res = {res}");
         }
 
